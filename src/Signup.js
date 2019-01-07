@@ -34,7 +34,8 @@ class Signup extends Component {
   handleChangeConfirmPassword(e) {
     this.setState({ confirmPassword: e.target.value });
   }
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     const { email, password, confirmPassword } = this.state;
     if (password !== confirmPassword) {
       this.setState({ error: "Les deux mots de passe ne correspondent pas" });

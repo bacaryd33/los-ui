@@ -6,6 +6,7 @@ Coding rules :
 - The final version of this project should not have any console.log (or worse, alert())
 - You're free to change the linter rules but then stick to them (in VS code, use the "Prettier - Code formatter" extension with format on save).
 - Feel free to change the existing code
+- Add tests
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -13,9 +13,14 @@ class Signin extends Component {
       email: "",
       password: ""
     };
+
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  setConnection() {
+  handleSubmit(e) {
+    e.preventDefault();
     axios
       .get(
         SERVER_URL +
@@ -25,15 +30,17 @@ class Signin extends Component {
           this.state.password
       )
       .then(res => {
-        const data = res.data;
-        if (data.status === "ok") {
-          /*  this.props.dispatch({ type: 'CONNECT' });
-        this.props.dispatch({ type: 'SETUSER', value: data.data.name});
-        this.props.dispatch({ type: 'SETTOKEN', value: data.data.token});
-        this.props.dispatch({ type: 'SETEMAIL', value: this.state.email});*/
-          this.props.setSessionToken(data.data.token);
+        if (res.data.status === "ok") {
+          this.props.setSessionToken(res.data.token);
+          this.props.history.push(process.env.PUBLIC_URL + "/");
         }
       });
+  }
+  handleChangeEmail(e) {
+    this.setState({ email: e.target.value });
+  }
+  handleChangePassword(e) {
+    this.setState({ password: e.target.value });
   }
 
   render() {
@@ -43,12 +50,22 @@ class Signin extends Component {
           Connectez-vous :
           <div>
             <label>
-              Login : <input type="text" value={this.state.email} />
+              Login :{" "}
+              <input
+                type="text"
+                value={this.state.email}
+                onChange={this.handleChangeEmail}
+              />
             </label>
           </div>
           <div>
             <label>
-              Mot de passe : <input type="text" value={this.state.password} />
+              Mot de passe :{" "}
+              <input
+                type="password"
+                value={this.state.password}
+                onChange={this.handleChangePassword}
+              />
             </label>
           </div>
           <div>
