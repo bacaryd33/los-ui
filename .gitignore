@@ -33,3 +33,5 @@ yarn-error.log*
 \.idea/vcs\.xml
 
 \.idea/workspace\.xml
+
+package-lock\.json
