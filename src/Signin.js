@@ -33,6 +33,8 @@ class Signin extends Component {
         if (res.data.status === "ok") {
           this.props.setSessionToken(res.data.token);
           this.props.history.push(process.env.PUBLIC_URL + "/");
+        }else{
+          alert("Login ou password faux");
         }
       });
   }
@@ -42,7 +44,6 @@ class Signin extends Component {
   handleChangePassword(e) {
     this.setState({ password: e.target.value });
   }
-
   render() {
     return (
         <div class="container">
@@ -55,15 +56,15 @@ class Signin extends Component {
               </div>
               <form id="Login">
                 <div class="form-group">
-                  <input type="email" class="form-control" id="inputEmail" placeholder="Login" value={this.state.email}/>
+                  <input type="email" class="form-control" id="inputEmail" placeholder="Login" value={this.state.email} onChange={this.handleChangeEmail}/>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" id="inputPassword" placeholder="Password" value={this.state.password}/>
+                  <input type="password" class="form-control" id="inputPassword" placeholder="Password" value={this.state.password} onChange={this.handleChangePassword}/>
                 </div>
                 <div class="forgot">
                   <p><Link to="/signup"> Creer un Compte des maintenant</Link></p>
                 </div>
-                <button type="submit" class="btn btn-primary">Login <Link to="/game"></Link></button>
+                <button type="submit" class="btn btn-primary" onClick={this.handleSubmit}>Login</button>
               </form>
             </div>
           </div></div>
