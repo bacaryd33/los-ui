@@ -45,6 +45,7 @@
   margin: 10px auto 30px;
   max-width: 38%;
   padding: 50px 70px 70px 71px;
+  opacity: 0.9;
 }
 
 .login-form .form-group {
@@ -99,7 +100,9 @@
   text-align: center;
   color: white;
 }
-
+#Login {
+  opacity: 1;
+}
 #allPage {
   background-image: url("back.jpg") ;
   width: 100vw;
