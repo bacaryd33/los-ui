@@ -33,6 +33,8 @@ class Signin extends Component {
         if (res.data.status === "ok") {
           this.props.setSessionToken(res.data.token);
           this.props.history.push(process.env.PUBLIC_URL + "/");
+        }else{
+          alert("Login ou password faux");
         }
       });
   }
@@ -42,43 +44,30 @@ class Signin extends Component {
   handleChangePassword(e) {
     this.setState({ password: e.target.value });
   }
-
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          Connectez-vous :
-          <div>
-            <label>
-              Login :{" "}
-              <input
-                type="text"
-                value={this.state.email}
-                onChange={this.handleChangeEmail}
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Mot de passe :{" "}
-              <input
-                type="password"
-                value={this.state.password}
-                onChange={this.handleChangePassword}
-              />
-            </label>
-          </div>
-          <div>
-            <input type="submit" value="Se connecter" />
-          </div>
-        </form>
-        <div>
-          {
-            "Vous n’avez pas de compte ? Créez votre compte en quelques secondes "
-          }
-          <Link to="/signup">en cliquant ici !</Link>
-        </div>
-      </div>
+        <div class="container">
+          <h1 class="form-heading">login Form</h1>
+          <div class="login-form">
+            <div class="main-div">
+              <div class="panel">
+                <h2>Connection</h2>
+                <p>Please enter your email and password</p>
+              </div>
+              <form id="Login">
+                <div class="form-group">
+                  <input type="email" class="form-control" id="inputEmail" placeholder="Login" value={this.state.email} onChange={this.handleChangeEmail}/>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="inputPassword" placeholder="Password" value={this.state.password} onChange={this.handleChangePassword}/>
+                </div>
+                <div class="forgot">
+                  <p><Link to="/signup"> Creer un Compte des maintenant</Link></p>
+                </div>
+                <button type="submit" class="btn btn-primary" onClick={this.handleSubmit}>Login</button>
+              </form>
+            </div>
+          </div></div>
     );
   }
 }
