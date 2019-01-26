@@ -41,6 +41,7 @@ class Signup extends Component {
       this.setState({ error: "Les deux mots de passe ne correspondent pas" });
       return;
     }
+    alert("l utilisateur "+email+" a bien été inscrit");
     let url =
       SERVER_URL +
       "/users/subscribe?email=" +

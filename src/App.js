@@ -9,6 +9,7 @@ import {
 import Signin from "./Signin";
 import Signup from "./Signup";
 import Game from "./Game";
+import Board from "./Board";
 
 import "./App.css";
 
@@ -52,6 +53,7 @@ class App extends Component {
           />
           />
           <Route path="/signup" component={Signup} />
+          <PrivateRoute path="/matchMaking" component={Board} isConnected={this.state.isConnected} />
           <PrivateRoute component={Game} isConnected={this.state.isConnected} />
         </Switch>
       </Router>
