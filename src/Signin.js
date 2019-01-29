@@ -50,7 +50,7 @@ class Signin extends Component {
   render() {
     return (
         <div className="container">
-          <h1 className="form-heading">login Form</h1>
+          <h1 className="form-heading">Login Form</h1>
           <div className="login-form">
             <div className="main-div">
               <div className="panel">
@@ -59,9 +59,11 @@ class Signin extends Component {
               </div>
               <form id="Login">
                 <div className="form-group">
+                  <label>E-mail</label>
                   <input type="email" className="form-control" id="inputEmail" placeholder="Login" value={this.state.email} onChange={this.handleChangeEmail}/>
                 </div>
                 <div className="form-group">
+                  <label>Password</label>
                   <input type="password" className="form-control" id="inputPassword" placeholder="Password" value={this.state.password} onChange={this.handleChangePassword}/>
                 </div>
                 <div className="forgot">
