@@ -120,12 +120,12 @@ CSS DE LA PAGE SINGIN.JS
   text-decoration: underline;
 }
 body {
- background-image: url("back.jpg");
+ background-image: url("bgTest.jpg");
  background-color: #cccccc;
 }
 .card {
   border: 0px;
-  max-width: 500px;
+  max-width: 500px; 
   float: none;
   margin: 0 auto;
 }
