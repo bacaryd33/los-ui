@@ -56,17 +56,17 @@ class Game extends Component {
                 alert("failure unparticipate");
             }
         });
-        //let url =
-          //  SERVER_URL +
-            //"/users/disonnect?&token="+this.props.location.state.token;
-       // axios.get(url).then(res=>{
-         //   let data=res.data;
-           // if(data.status==="ok"){
-             //   alert("disconnect user");
-            //}else{
-              //  alert("epic failed");
-            //}
-      //  });
+        let url =
+            SERVER_URL +
+            "/users/disonnect?&token="+this.props.location.state.token;
+        axios.get(url).then(res=>{
+            let data=res.data;
+            if(data.status==="ok"){
+                alert("disconnect user");
+            }else{
+                alert("epic failed");
+            }
+        });
     }
     handleMatchRequest(e){
         alert("marche po");
