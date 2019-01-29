@@ -149,7 +149,7 @@ body {
 }
 .card {
   border: 0px;
-  max-width: 500px; 
+  max-width: 500px;
   float: none;
   margin: 0 auto;
 }
@@ -167,4 +167,49 @@ body {
 
 .form-group {
   margin-bottom: 20px;
+}
+
+/* CS DE LA PAGE GAME.JS */
+nav {
+  background-color: #050F18;
+}
+
+nav img {
+  height: 50px;
+  vertical-align: middle;
+}
+
+#navbarDropdownMenuLink{
+  font-size: 25px;
+  color: white;
+}
+
+.dropdown-menu.dropdown-menu-right {
+  background-color: #0A1324;
+}
+
+.dropdown-menu.dropdown-menu-right a:hover {
+  background-color: #050F18;
+}
+
+nav button {
+  background-color: transparent;
+  border: 0;
+}
+
+nav button a {
+  color: white;
+}
+
+nav button a img {
+  height: 25px;
+  padding-right: 10px;
+}
+
+.container .row {
+    padding-top: 20px;
+}
+
+.container .row .card .card-body {
+  min-height: 300px;
 }

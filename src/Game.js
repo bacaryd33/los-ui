@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { SERVER_URL } from "./consts";
 import Card from "./Card";
-import logo from "./logo.svg";
+import logo from './miniLogo.png';
+import deco from './deconnexion.png';
+import desin from './desinscrire.png';
+import regle from './regles.png';
 import "./App.css";
 import axios from "axios";
 
@@ -84,15 +87,49 @@ class Game extends Component {
         render() {
     return (
       <div className="Appli">
-          <button onClick={this.handleDeconnexion}><Link to="/signin"> Deconnexion</Link></button>
-          <div className="colequal">
-              <h1> Choissez votre Deck </h1>
-              <table id="tableDeck"></table>
+      <nav class="navbar navbar-light">
+        <img src={logo}/>
+        <div>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">
+              <button onClick={this.handleDeconnexion}><Link to="/signin"><img src={regle}/> Règles du jeu</Link></button>
+            </a>
+            <a class="dropdown-item" href="#">
+              <button onClick={this.handleDeconnexion}><Link to="/signin"><img src={desin}/> Se désinscrire</Link></button>
+            </a>
+            <a class="dropdown-item" href="#">
+              <button onClick={this.handleDeconnexion}><Link to="/signin"><img src={deco}/> Deconnexion</Link></button>
+            </a>
           </div>
-          <div className="colequal">
-              <h1>MatchMaking</h1>
-              <table id="tableMatchMaking" className="tableMatch"><tr><th><h2>id</h2></th><th><h2>name</h2></th></tr></table>
+        </div>
+      </nav>
+
+      <div className="container">
+        <div className="row">
+          <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div className="card">
+              <div className="card-header">
+                <h2> Choissez votre Deck </h2>
+              </div>
+              <div className="card-body">
+                <table id="tableDeck"></table>
+              </div>
+            </div>
           </div>
+          <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div className="card">
+              <div className="card-header">
+                <h2>MatchMaking</h2>
+              </div>
+              <div className="card-body">
+                <table id="tableMatchMaking" className="tableMatch"><tr><th><h2>id</h2></th><th><h2>name</h2></th></tr></table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
           <footer>
               <div className="footerMatchMaking">
                   <input type="checkbox" id="aleamatch"  onChange={this.handleRandomMatchMaking} checked={this.state.randomMatch}/>
