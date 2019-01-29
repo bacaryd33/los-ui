@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import logo from './mainLogo.png';
 
 import { SERVER_URL } from "./consts";
+import 'bootstrap/dist/css/bootstrap.css';
 
 import "./App.css";
 
@@ -33,6 +35,8 @@ class Signin extends Component {
         if (res.data.status === "ok") {
           this.props.setSessionToken(res.data.token);
           this.props.history.push(process.env.PUBLIC_URL + "/");
+        }else{
+          alert("Login ou password faux");
         }
       });
   }
@@ -42,43 +46,35 @@ class Signin extends Component {
   handleChangePassword(e) {
     this.setState({ password: e.target.value });
   }
-
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          Connectez-vous :
-          <div>
-            <label>
-              Login :{" "}
-              <input
-                type="text"
-                value={this.state.email}
-                onChange={this.handleChangeEmail}
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Mot de passe :{" "}
-              <input
-                type="password"
-                value={this.state.password}
-                onChange={this.handleChangePassword}
-              />
-            </label>
-          </div>
-          <div>
-            <input type="submit" value="Se connecter" />
-          </div>
-        </form>
-        <div>
-          {
-            "Vous n’avez pas de compte ? Créez votre compte en quelques secondes "
-          }
-          <Link to="/signup">en cliquant ici !</Link>
-        </div>
-      </div>
+        <div class="container">
+          <div class="login-form">
+             <img src={logo}/>
+            <div class="main-div">
+              <div class="card">
+                <div class="card-header">
+                  <h2>Connection</h2>
+                </div>
+                <div class="card-body">
+                  <form id="Login">
+                    <div class="form-group">
+                      <label for="inputEmail">Email address</label>
+                      <input type="email" class="form-control" id="inputEmail" value={this.state.email} onChange={this.handleChangeEmail}/>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword">Password</label>
+                      <input type="password" class="form-control" id="inputPassword" value={this.state.password} onChange={this.handleChangePassword}/>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="connexion" onClick={this.handleSubmit}>Login</button>
+                    <div class="forgot">
+                      <p><Link to="/signup"> Creer un Compte dès maintenant</Link></p>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div></div>
     );
   }
 }

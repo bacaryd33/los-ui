@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import { SERVER_URL } from "./consts";
+import logo from './mainLogo.png';
 
 class Signup extends Component {
   constructor(props) {
@@ -60,49 +61,46 @@ class Signup extends Component {
   }
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>{this.state.error}</div>
-          Inscrivez-vous :
-          <label>
-            Pseudo :{" "}
-            <input
-              type="text"
-              value={this.state.login}
-              onChange={this.handleChangeLogin}
-            />
-          </label>
-          <label>
-            Email :{" "}
-            <input
-              type="text"
-              value={this.state.email}
-              onChange={this.handleChangeEmail}
-            />
-          </label>
-          <label>
-            Mot de passe :{" "}
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.handleChangePassword}
-            />
-          </label>
-          <label>
-            Confirmation du mot de passe :{" "}
-            <input
-              type="password"
-              value={this.state.confirmPassword}
-              onChange={this.handleChangeConfirmPassword}
-            />
-          </label>
-          <input type="submit" value="S'inscrire" />
-        </form>
-        <div>
-          {"Vous avez déjà un compte ? "}
-          <Link to="/signin">Connectez-vous ici !</Link>
+        <div className="container">
+          <div className="login-form">
+            <img src={logo}/>
+            <div className="main-div">
+              <div className="card">
+                <div className="card-header">
+                  <h2>Inscription</h2>
+                </div>
+                <div className="card-body">
+                  <form id="Login">
+                    <div className="form-group">
+                      <label for="inputLogin">Login</label>
+                      <input type="text" className="form-control" id="inputLogin"
+                             value={this.state.login} onChange={this.handleChangeLogin}/>
+                    </div>
+                    <div className="form-group">
+                      <label for="inputEmail">Email address</label>
+                      <input type="email" className="form-control" id="inputEmail"
+                             value={this.state.email} onChange={this.handleChangeEmail}/>
+                    </div>
+                    <div className="form-group">
+                      <label for="inputPassword">Password</label>
+                      <input type="password" className="form-control" id="inputPassword"
+                             value={this.state.password} onChange={this.handleChangePassword}/>
+                    </div>
+                    <div className="form-group">
+                      <label for="inputRePassword">Confirm Password</label>
+                      <input type="password" className="form-control" id="inputRePassword"
+                             value={this.state.confirmPassword} onChange={this.handleChangeConfirmPassword}/>
+                    </div>
+                    <button type="submit" className="btn btn-primary" id="connexion" onClick={this.handleSubmit}>Inscription</button>
+                    <div className="forgot">
+                      <p><Link to="/signin"> Vous avez deja un compte ? Connectez vous !</Link></p>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
     );
   }
 }
