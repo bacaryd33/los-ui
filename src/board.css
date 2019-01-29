@@ -1,5 +1,7 @@
 .board {
   background-image: url("backboard.jpg") ;
-  width:1000000000000000000000px;
-  height:100000000000000000000px;
+  background-position: center;
+  background-size: 'cover';
+  background-repeat: 'no-repeat';
+  height: 680px;
 }
