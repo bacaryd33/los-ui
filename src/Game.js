@@ -1,4 +1,12 @@
 import React, { Component } from "react";
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+  Link
+} from "react-router-dom";
+import Board from "./Board.js";
 import { Link } from "react-router-dom";
 import { SERVER_URL } from "./consts";
 import Card from "./Card";
@@ -83,7 +91,7 @@ class Game extends Component {
 
         render() {
     return (
-      <div className="Appli">
+<div className="Appli">
           <button onClick={this.handleDeconnexion}><Link to="/signin"> Deconnexion</Link></button>
           <div className="colequal">
               <h1> Choissez votre Deck </h1>
