@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import logo from './mainLogo.png';
 
 import { SERVER_URL } from "./consts";
+import 'bootstrap/dist/css/bootstrap.css';
 
 import "./App.css";
 
@@ -11,6 +13,7 @@ class Signin extends Component {
     super(props);
     this.state = {
       email: "",
+      token:"",
       password: ""
     };
 
@@ -31,8 +34,10 @@ class Signin extends Component {
       )
       .then(res => {
         if (res.data.status === "ok") {
-          this.props.setSessionToken(res.data.token);
-          this.props.history.push(process.env.PUBLIC_URL + "/");
+          this.props.setSessionToken(res.data["data"]["token"]);
+          this.setState({token:res.data["data"]["token"]});
+          this.props.history.push({pathname:process.env.PUBLIC_URL + "/",
+          state:{token: this.state.token}});
         }else{
           alert("Login ou password faux");
         }
@@ -47,25 +52,30 @@ class Signin extends Component {
   render() {
     return (
         <div class="container">
-          <h1 class="form-heading">login Form</h1>
           <div class="login-form">
+             <img src={logo}/>
             <div class="main-div">
-              <div class="panel">
-                <h2>Connection</h2>
-                <p>Please enter your email and password</p>
+              <div class="card">
+                <div class="card-header">
+                  <h2>Connection</h2>
+                </div>
+                <div class="card-body">
+                  <form id="Login">
+                    <div class="form-group">
+                      <label for="inputEmail">Email address</label>
+                      <input type="email" class="form-control" id="inputEmail" value={this.state.email} onChange={this.handleChangeEmail}/>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword">Password</label>
+                      <input type="password" class="form-control" id="inputPassword" value={this.state.password} onChange={this.handleChangePassword}/>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="connexion" onClick={this.handleSubmit}>Login</button>
+                    <div class="forgot">
+                      <p><Link to="/signup"> Creer un Compte dès maintenant</Link></p>
+                    </div>
+                  </form>
+                </div>
               </div>
-              <form id="Login">
-                <div class="form-group">
-                  <input type="email" class="form-control" id="inputEmail" placeholder="Login" value={this.state.email} onChange={this.handleChangeEmail}/>
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control" id="inputPassword" placeholder="Password" value={this.state.password} onChange={this.handleChangePassword}/>
-                </div>
-                <div class="forgot">
-                  <p><Link to="/signup"> Creer un Compte des maintenant</Link></p>
-                </div>
-                <button type="submit" class="btn btn-primary" onClick={this.handleSubmit}>Login</button>
-              </form>
             </div>
           </div></div>
     );
