@@ -122,7 +122,7 @@
 /*
 CSS DE LA PAGE SINGIN.JS
 */
-#connexion{
+#connexion, #buttonPlay{
   background-color: #1E2328;
   text-transform: uppercase;
   border: 3px solid #016A8C;
@@ -212,4 +212,21 @@ nav button a img {
 
 .container .row .card .card-body {
   min-height: 300px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+footer button {
+  margin-bottom: 10px;
+}
+
+.footerMatchMaking {
+  padding-bottom: 5px;
 }

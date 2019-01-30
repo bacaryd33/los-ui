@@ -133,7 +133,7 @@ class Game extends Component {
           <footer>
               <div className="footerMatchMaking">
                   <input type="checkbox" id="aleamatch"  onChange={this.handleRandomMatchMaking} checked={this.state.randomMatch}/>
-                      <label htmlFor="horns">Lancer un match aleatoire</label>
+                  <label htmlFor="horns">Lancer un match aleatoire</label>
               </div>
               <button id="buttonPlay" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Jouer</button>
 
