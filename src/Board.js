@@ -5,38 +5,22 @@ import "./board.css";
 import { Link } from "react-router-dom";
 
 class Board extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            hp: "",
+            mana: "",
 
-    
+
+        }
+
+    }
     
     render() {
         return (
-            <div class="board">
-            <div>
-               react en i mamene
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <br/>
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-
-
-               v
-            </div>
-            </div>          
-        );
+                <div class="board">
+                </div>
+           );
       }
 }
 export default Board;

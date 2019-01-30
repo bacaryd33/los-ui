@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import { SERVER_URL } from "./consts";
+import logo from './mainLogo.png';
 
 class Signup extends Component {
   constructor(props) {
@@ -62,35 +63,42 @@ class Signup extends Component {
   render() {
     return (
         <div className="container">
-          <h1 className="form-heading">SignUp Form</h1>
           <div className="login-form">
+            <img src={logo}/>
             <div className="main-div">
-              <div className="panel">
-                <h2>Inscription</h2>
-                <p>Completez les champs</p>
+              <div className="card">
+                <div className="card-header">
+                  <h2>Inscription</h2>
+                </div>
+                <div className="card-body">
+                  <form id="Login">
+                    <div className="form-group">
+                      <label for="inputLogin">Login</label>
+                      <input type="text" className="form-control" id="inputLogin"
+                             value={this.state.login} onChange={this.handleChangeLogin}/>
+                    </div>
+                    <div className="form-group">
+                      <label for="inputEmail">Email address</label>
+                      <input type="email" className="form-control" id="inputEmail"
+                             value={this.state.email} onChange={this.handleChangeEmail}/>
+                    </div>
+                    <div className="form-group">
+                      <label for="inputPassword">Password</label>
+                      <input type="password" className="form-control" id="inputPassword"
+                             value={this.state.password} onChange={this.handleChangePassword}/>
+                    </div>
+                    <div className="form-group">
+                      <label for="inputRePassword">Confirm Password</label>
+                      <input type="password" className="form-control" id="inputRePassword"
+                             value={this.state.confirmPassword} onChange={this.handleChangeConfirmPassword}/>
+                    </div>
+                    <button type="submit" className="btn btn-primary" id="connexion" onClick={this.handleSubmit}>Inscription</button>
+                    <div className="forgot">
+                      <p><Link to="/signin"> Vous avez deja un compte ? Connectez vous !</Link></p>
+                    </div>
+                  </form>
+                </div>
               </div>
-              <form id="Login">
-                <div className="form-group">
-                  <input type="text" className="form-control" id="inputEmail" placeholder="Login"
-                         value={this.state.login} onChange={this.handleChangeLogin}/>
-                </div>
-                <div className="form-group">
-                  <input type="email" className="form-control" id="inputEmail" placeholder="random@gmail.com"
-                         value={this.state.email} onChange={this.handleChangeEmail}/>
-                </div>
-                <div className="form-group">
-                  <input type="password" className="form-control" id="inputPassword" placeholder="Password"
-                         value={this.state.password} onChange={this.handleChangePassword}/>
-                </div>
-                <div className="form-group">
-                  <input type="password" className="form-control" id="inputPassword" placeholder="PasswordConfirm"
-                         value={this.state.confirmPassword} onChange={this.handleChangeConfirmPassword}/>
-                </div>
-                <div className="forgot">
-                  <p><Link to="/signin"> Vous avez deja un compte ? Connectez vous !</Link></p>
-                </div>
-                <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Login</button>
-              </form>
             </div>
           </div>
         </div>
