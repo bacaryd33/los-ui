@@ -57,7 +57,7 @@ class Signin extends Component {
             <div class="main-div">
               <div class="card">
                 <div class="card-header">
-                  <h2>Connection</h2>
+                  <h2>Sign in</h2>
                 </div>
                 <div class="card-body">
                   <form id="Login">
@@ -71,7 +71,7 @@ class Signin extends Component {
                     </div>
                     <button type="submit" class="btn btn-primary" id="connexion" onClick={this.handleSubmit}>Login</button>
                     <div class="forgot">
-                      <p><Link to="/signup"> Creer un Compte dès maintenant</Link></p>
+                      <p><Link to="/signup"> Create an account</Link></p>
                     </div>
                   </form>
                 </div>

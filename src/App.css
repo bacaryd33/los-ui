@@ -126,9 +126,12 @@ CSS DE LA PAGE SINGIN.JS
   background-color: #1E2328;
   text-transform: uppercase;
   border: 3px solid #016A8C;
-  font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
   border-radius: unset;
+}
+#connexion:hover, #buttonPlay:hover {
+  box-shadow: 0 5px 14px 0 rgba(41, 231, 239, 0.5), 0 1px 50px 0 rgba(41, 231, 239, 0.5);
+  border: 3px solid #047D90;
 }
 
 .login-form .form-control {
@@ -146,6 +149,7 @@ CSS DE LA PAGE SINGIN.JS
 body {
  background-image: url("bgTest.jpg");
  background-color: #cccccc;
+ font-family: Cambria,Georgia,serif;
 }
 .card {
   border: 0px;
@@ -221,6 +225,7 @@ footer {
   width: 100%;
   color: white;
   text-align: center;
+  font-size: 20px;
 }
 
 footer button {

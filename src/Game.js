@@ -94,13 +94,13 @@ class Game extends Component {
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="#">
-              <button onClick={this.handleDeconnexion}><Link to="/signin"><img src={regle}/> Règles du jeu</Link></button>
+              <button onClick={this.handleDeconnexion}><Link to="/signin"><img src={regle}/> Rules of the game</Link></button>
             </a>
             <a class="dropdown-item" href="#">
-              <button onClick={this.handleDeconnexion}><Link to="/signin"><img src={desin}/> Se désinscrire</Link></button>
+              <button onClick={this.handleDeconnexion}><Link to="/signin"><img src={desin}/> Delete my account</Link></button>
             </a>
             <a class="dropdown-item" href="#">
-              <button onClick={this.handleDeconnexion}><Link to="/signin"><img src={deco}/> Deconnexion</Link></button>
+              <button onClick={this.handleDeconnexion}><Link to="/signin"><img src={deco}/> Log out</Link></button>
             </a>
           </div>
         </div>
@@ -111,7 +111,7 @@ class Game extends Component {
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <div className="card">
               <div className="card-header">
-                <h2> Choissez votre Deck </h2>
+                <h3> Chose your Deck </h3>
               </div>
               <div className="card-body">
                 <table id="tableDeck"></table>
@@ -121,7 +121,7 @@ class Game extends Component {
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <div className="card">
               <div className="card-header">
-                <h2>MatchMaking</h2>
+                <h3>Invite an opponent</h3>
               </div>
               <div className="card-body">
                 <table id="tableMatchMaking" className="tableMatch"><tr><th><h2>id</h2></th><th><h2>name</h2></th></tr></table>
@@ -133,9 +133,9 @@ class Game extends Component {
           <footer>
               <div className="footerMatchMaking">
                   <input type="checkbox" id="aleamatch"  onChange={this.handleRandomMatchMaking} checked={this.state.randomMatch}/>
-                  <label htmlFor="horns">Lancer un match aleatoire</label>
+                  <label htmlFor="horns">Find a game randomly</label>
               </div>
-              <button id="buttonPlay" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Jouer</button>
+              <button id="buttonPlay" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Play</button>
 
           </footer>
       </div>

@@ -68,7 +68,7 @@ class Signup extends Component {
             <div className="main-div">
               <div className="card">
                 <div className="card-header">
-                  <h2>Inscription</h2>
+                  <h2>Sign up</h2>
                 </div>
                 <div className="card-body">
                   <form id="Login">
@@ -92,9 +92,9 @@ class Signup extends Component {
                       <input type="password" className="form-control" id="inputRePassword"
                              value={this.state.confirmPassword} onChange={this.handleChangeConfirmPassword}/>
                     </div>
-                    <button type="submit" className="btn btn-primary" id="connexion" onClick={this.handleSubmit}>Inscription</button>
+                    <button type="submit" className="btn btn-primary" id="connexion" onClick={this.handleSubmit}>Sign up</button>
                     <div className="forgot">
-                      <p><Link to="/signin"> Vous avez deja un compte ? Connectez vous !</Link></p>
+                      <p><Link to="/signin"> Already registered ? Sign in here !</Link></p>
                     </div>
                   </form>
                 </div>
