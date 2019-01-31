@@ -6,6 +6,12 @@ import logo from './miniLogo.png';
 import deco from './deconnexion.png';
 import desin from './desinscrire.png';
 import regle from './regles.png';
+import card from './mainLogo.png';
+import blue from './IconBlue.png';
+import green from './IconGreen.png';
+import purple from './IconPurple.png';
+import yellow from './IconYellow.png';
+import red from './IconRed.png';
 import "./App.css";
 import axios from "axios";
 
@@ -114,7 +120,52 @@ class Game extends Component {
                 <h3> Chose your Deck </h3>
               </div>
               <div className="card-body">
-                <table id="tableDeck"></table>
+                <div className="row">
+                  <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div className="card">
+                      <img src={card} className="card-img-top" alt="Deck1"/>
+                      <div className="card-body">
+                        <input class="form-check-input" type="radio" name="choosedeck" id="deck1" value="option1" checked/>
+                        <label class="form-check-label" for="deck1">
+                          Choose the deck 1
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div className="card">
+                    <img src={card} className="card-img-top" alt="Deck2"/>
+                    <div className="card-body">
+                      <input class="form-check-input" type="radio" name="choosedeck" id="deck2" value="option2"/>
+                      <label class="form-check-label" for="deck2">
+                        Choose the deck 2
+                      </label>
+                    </div>
+                    </div>
+                  </div>
+                  <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div className="card">
+                    <img src={card} className="card-img-top" alt="Deck3"/>
+                    <div className="card-body">
+                      <input class="form-check-input" type="radio" name="choosedeck" id="deck3" value="option3"/>
+                      <label class="form-check-label" for="deck3">
+                        Choose the deck 3
+                      </label>
+                    </div>
+                    </div>
+                  </div>
+                  <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div className="card">
+                    <img src={card} className="card-img-top" alt="Deck4"/>
+                    <div className="card-body">
+                      <input class="form-check-input" type="radio" name="choosedeck" id="deck4" value="option4"/>
+                      <label class="form-check-label" for="deck4">
+                        Choose the deck 4
+                      </label>
+                    </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -124,7 +175,53 @@ class Game extends Component {
                 <h3>Invite an opponent</h3>
               </div>
               <div className="card-body">
-                <table id="tableMatchMaking" className="tableMatch"><tr><th><h2>id</h2></th><th><h2>name</h2></th></tr></table>
+                <div className="row opponent">
+                  <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <img src={blue} />
+                  </div>
+                  <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    nameOpponent
+                  </div>
+                  <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                    <button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button>
+                  </div>
+                  <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <img src={green} />
+                  </div>
+                  <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    nameOpponent
+                  </div>
+                  <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                    <button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button>
+                  </div>
+                  <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <img src={yellow} />
+                  </div>
+                  <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    nameOpponent
+                  </div>
+                  <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                    <button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button>
+                  </div>
+                  <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <img src={purple} />
+                  </div>
+                  <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    nameOpponent
+                  </div>
+                  <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                    <button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button>
+                  </div>
+                  <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <img src={red} />
+                  </div>
+                  <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    nameOpponent
+                  </div>
+                  <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                    <button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

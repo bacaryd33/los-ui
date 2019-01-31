@@ -122,18 +122,23 @@
 /*
 CSS DE LA PAGE SINGIN.JS
 */
-#connexion, #buttonPlay{
+#connexion, #buttonPlay, #buttonInvite{
   background-color: #1E2328;
   text-transform: uppercase;
   border: 3px solid #016A8C;
   font-size: 25px;
   border-radius: unset;
 }
-#connexion:hover, #buttonPlay:hover {
+#connexion:hover, #buttonPlay:hover, #buttonInvite:hover {
   box-shadow: 0 5px 14px 0 rgba(41, 231, 239, 0.5), 0 1px 50px 0 rgba(41, 231, 239, 0.5);
   border: 3px solid #047D90;
 }
 
+#buttonInvite {
+  font-size: 20px!important;
+margin-top: -5px;
+margin-bottom: 50px;
+}
 .login-form .form-control {
     background: #f7f7f7 none repeat scroll 0 0;
     border: 3px solid #CD9D37;
@@ -212,10 +217,22 @@ nav button a img {
 
 .container .row {
     padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .container .row .card .card-body {
   min-height: 300px;
+}
+
+.container .row .card .card-body .row .card, .container .row .card .card-body .row .card .card-body{
+  min-height: 50px;
+  text-align: center;
+  background-color: transparent;
+}
+
+.row.opponent img {
+  margin-top: -20px;
 }
 
 footer {
@@ -226,12 +243,15 @@ footer {
   color: white;
   text-align: center;
   font-size: 20px;
+  background-color: #050F18;
 }
 
 footer button {
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .footerMatchMaking {
   padding-bottom: 5px;
+  display: inline;
 }
