@@ -3,24 +3,111 @@
   background-position: center;
   background-size: 'cover';
   background-repeat: 'no-repeat';
-  height: 620px;
-}
-
-
-
-.myzone{
-  position: fixed;
-  width: 100%;
-  background-color: aquamarine;
-  bottom: 0;
-}
-
-.wrapper{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto); 
-
   height: 100vh;
   width: 100vw;
+} 
+
+
+
+.bottom{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 10%; 
+}
+
+.midbottom{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 40%; 
+}
+
+.myplayedcard{
+  background-color: brown;
+  order:2;
+  width:70%;
+}
+
+.myname{
+  background-color: blueviolet;
+  order: 4;
+  width:15%;
+}
+
+.myavatar{
+  background-color: chartreuse;
+  order: 6;
+  width: 15%;
+}
+
+.mydeck{
+  background-color: red;
+  order:1;
+  width:15%;
+}
+
+.myendturn{
+  background-color: crimson;
+  order:3;
+  width:15%;
+}
+
+.myhand{
+  background-color: fuchsia;
+  order:5;
+  width:70%;
+}
+
+.top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 10%; 
+}
+
+.midtop{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 40%;
+  
+}
+
+.oppplayedcard{
+  background-color: brown;
+  order:2;
+  width:70%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.oppname{
+  background-color: blueviolet;
+  order: 4;
+  width:15%;
+}
+
+.oppavatar{
+  background-color: chartreuse;
+  order: 6;
+  width: 15%;
+}
+
+.oppdeck{
+  background-color: red;
+  order:1;
+  width:15%;
+}
+
+.oppendturn{
+  background-color: crimson;
+  order:3;
+  width:15%;
+}
+
+.opphand{
+  background-color: fuchsia;
+  order:5;
+  width:70%;
 }

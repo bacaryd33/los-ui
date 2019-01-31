@@ -5,9 +5,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.2.1",
+    "flexbox": "0.0.3",
     "jquery": "^3.3.1",
     "react": "^16.7.0",
     "react-bootstrap": "^0.32.4",
+    "react-css-grid": "^2.0.0-0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.3",

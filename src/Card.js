@@ -13,7 +13,7 @@ class Card extends Component {
 			flipped = "flipped";
 		}
 		return (
-			<div id={this.props.id} className="col-lg-3 col-md-4 col-xs-6 thumb flip" onClick={this.props.onClick} >
+			/*<div id={this.props.id} className="col-lg-3 col-md-4 col-xs-6 thumb flip" onClick={this.props.onClick} >
 				<div className={"card thumbnail " + flipped} >
 					<div className="face front">
 						<img className="card-img-top"
@@ -24,10 +24,23 @@ class Card extends Component {
 						</div>
 					</div>
 					<div className="face back">
-						<img className="card-img-top" src="back.jpg" alt="Card  cap"/>
-						<div className="card-body">
-							<p className="card-text">Click me</p>
-						</div>
+						<img className="card-img-top" src="Card-Back.png" alt="Card  cap"/>
+					</div>
+				</div>
+			</div>*/
+			<div className="cardzone">
+				<img className="imgcard"
+					src={"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + this.props.img+"_0.jpg"}
+				/>
+				<div className="namecard">
+					{this.props.name}
+				</div>
+				<div className="skillcard">
+					<div className="atqcard">
+						8
+					</div>
+					<div className="defcard">
+						10
 					</div>
 				</div>
 			</div>

@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./board.css";
 import Card from "./Card.js";
 import { SERVER_URL } from "./consts";
+import Grid from 'react-css-grid'
 //ajouter navbar
 //automatiser resize board
 //placer zone carte (deck, hand, board)
@@ -97,14 +98,77 @@ class Board extends Component {
 	render() {     
         return(
         <div className="board">
-            <div className="myzone">
-				<Card name="Varus" onClick={null} img="Varus"/>
-				<Card name="Aatrox" onClick={null} img="Aatrox"/>
-            </div>
-			<div className="oppzone">
-			
+
+			<div className="top">
+
+				<div className="opphand">
+					HAND
+				</div>
+
+				<div className="oppname">
+					NAME
+				</div>
+
+				<div className="oppavatar">
+					AVATAR
+				</div>
+
 			</div>
-        </div>
+
+			<div className="midtop">
+
+				<div className="oppdeck">
+					DECK
+				</div>
+
+				<div className="oppendturn">
+					END TURN
+				</div>
+
+				<div className="oppplayedcard">
+					<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+					<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+					<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+					<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+					<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
+				</div>
+
+			</div>
+
+			<div className="midbottom">
+
+				<div className="mydeck">
+					DECK
+				</div>
+
+				<div className="myendturn">
+					END TURN
+				</div>
+
+				<div className="myplayedcard">
+					PLAYED CARD
+					
+				</div>
+
+			</div>
+
+			<div className="bottom">
+
+				<div className="myhand">
+					HAND
+				</div>
+
+				<div className="myname">
+					NAME
+				</div>
+
+				<div className="myavatar">
+					AVATAR
+				</div>
+
+			</div>
+			
+		</div>
        
         )}
 }
