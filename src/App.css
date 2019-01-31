@@ -136,9 +136,8 @@ CSS DE LA PAGE SINGIN.JS
 
 #buttonInvite {
   font-size: 20px!important;
-margin-top: -5px;
-margin-bottom: 50px;
 }
+
 .login-form .form-control {
     background: #f7f7f7 none repeat scroll 0 0;
     border: 3px solid #CD9D37;
@@ -231,8 +230,12 @@ nav button a img {
   background-color: transparent;
 }
 
-.row.opponent img {
-  margin-top: -20px;
+#tableMatchMaking {
+  width: 100%;
+}
+
+#tableMatchMaking button {
+  float: right;
 }
 
 footer {

@@ -124,45 +124,21 @@ class Game extends Component {
                   <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                     <div className="card">
                       <img src={card} className="card-img-top" alt="Deck1"/>
-                      <div className="card-body">
-                        <input class="form-check-input" type="radio" name="choosedeck" id="deck1" value="option1" checked/>
-                        <label class="form-check-label" for="deck1">
-                          Choose the deck 1
-                        </label>
-                      </div>
                     </div>
                   </div>
                   <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                     <div className="card">
-                    <img src={card} className="card-img-top" alt="Deck2"/>
-                    <div className="card-body">
-                      <input class="form-check-input" type="radio" name="choosedeck" id="deck2" value="option2"/>
-                      <label class="form-check-label" for="deck2">
-                        Choose the deck 2
-                      </label>
-                    </div>
+                      <img src={card} className="card-img-top" alt="Deck2"/>
                     </div>
                   </div>
                   <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                     <div className="card">
                     <img src={card} className="card-img-top" alt="Deck3"/>
-                    <div className="card-body">
-                      <input class="form-check-input" type="radio" name="choosedeck" id="deck3" value="option3"/>
-                      <label class="form-check-label" for="deck3">
-                        Choose the deck 3
-                      </label>
-                    </div>
                     </div>
                   </div>
                   <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                     <div className="card">
                     <img src={card} className="card-img-top" alt="Deck4"/>
-                    <div className="card-body">
-                      <input class="form-check-input" type="radio" name="choosedeck" id="deck4" value="option4"/>
-                      <label class="form-check-label" for="deck4">
-                        Choose the deck 4
-                      </label>
-                    </div>
                     </div>
                   </div>
                 </div>
@@ -175,53 +151,42 @@ class Game extends Component {
                 <h3>Invite an opponent</h3>
               </div>
               <div className="card-body">
-                <div className="row opponent">
-                  <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    <img src={blue} />
-                  </div>
-                  <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                    nameOpponent
-                  </div>
-                  <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                    <button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button>
-                  </div>
-                  <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    <img src={green} />
-                  </div>
-                  <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                    nameOpponent
-                  </div>
-                  <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                    <button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button>
-                  </div>
-                  <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    <img src={yellow} />
-                  </div>
-                  <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                    nameOpponent
-                  </div>
-                  <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                    <button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button>
-                  </div>
-                  <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    <img src={purple} />
-                  </div>
-                  <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                    nameOpponent
-                  </div>
-                  <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                    <button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button>
-                  </div>
-                  <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    <img src={red} />
-                  </div>
-                  <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                    nameOpponent
-                  </div>
-                  <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                    <button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button>
-                  </div>
-                </div>
+                <table id="tableMatchMaking" className="tableMatch">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><img src={blue} /></td>
+                      <td>nameOpponent</td>
+                      <td><button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button></td>
+                    </tr>
+                    <tr>
+                      <td><img src={green} /></td>
+                      <td>nameOpponent</td>
+                      <td><button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button></td>
+                    </tr>
+                    <tr>
+                      <td><img src={red} /></td>
+                      <td>nameOpponent</td>
+                      <td><button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button></td>
+                    </tr>
+                    <tr>
+                      <td><img src={yellow} /></td>
+                      <td>nameOpponent</td>
+                      <td><button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button></td>
+                    </tr>
+                    <tr>
+                      <td><img src={purple} /></td>
+                      <td>nameOpponent</td>
+                      <td><button id="buttonInvite" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite</button></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
