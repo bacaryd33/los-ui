@@ -3,5 +3,24 @@
   background-position: center;
   background-size: 'cover';
   background-repeat: 'no-repeat';
-  height: 680px;
+  height: 620px;
+}
+
+
+
+.myzone{
+  position: fixed;
+  width: 100%;
+  background-color: aquamarine;
+  bottom: 0;
+}
+
+.wrapper{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto); 
+
+  height: 100vh;
+  width: 100vw;
 }

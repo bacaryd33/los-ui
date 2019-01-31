@@ -1,4 +1,3 @@
-
 import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
@@ -18,7 +17,7 @@ class Card extends Component {
 				<div className={"card thumbnail " + flipped} >
 					<div className="face front">
 						<img className="card-img-top"
-							 src={"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + this.props.img}
+							 src={"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + this.props.img+"_0.jpg"}
 							 alt="Card  cap"/>
 						<div className="card-body">
 							<p className="card-text">{this.props.name}</p>

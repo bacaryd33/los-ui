@@ -54,7 +54,8 @@ class App extends Component {
           />
           <Route path="/signup" component={Signup} />
           <PrivateRoute component={Board} isConnected={this.state.isConnected} />
-          
+          <PrivateRoute path="/matchMaking" component={Board} isConnected={this.state.isConnected} />
+          <PrivateRoute component={Game} isConnected={this.state.isConnected} />
         </Switch>
        
       </Router>
