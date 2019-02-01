@@ -37,10 +37,10 @@ class Card extends Component {
 				</div>
 				<div className="skillcard">
 					<div className="atqcard">
-						8
+						Atq : 8
 					</div>
 					<div className="defcard">
-						10
+						♥ : 10
 					</div>
 				</div>
 			</div>

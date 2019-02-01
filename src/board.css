@@ -7,8 +7,6 @@
   width: 100vw;
 } 
 
-
-
 .bottom{
   display: flex;
   flex-direction: row;
@@ -24,33 +22,53 @@
 }
 
 .myplayedcard{
-  background-color: brown;
+  //background-color: brown;
   order:2;
   width:70%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .myname{
   background-color: blueviolet;
   order: 4;
   width:15%;
+  font-size: 2vh;
+  text-align: center;
+  color: white;
+  padding-top: 3%;
 }
 
 .myavatar{
-  background-color: chartreuse;
+  background-image: url("https://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/Pantheon.png");
+  background-repeat: 'no-repeat';
+  background-size: cover;
   order: 6;
   width: 15%;
+
 }
 
 .mydeck{
-  background-color: red;
   order:1;
+  background-color:darkblue;
+  border: solid 0.5vw goldenrod;
+  color:goldenrod;
+  font-weight: bold;
   width:15%;
+  font-size: 3vh;
+  text-align: center;
+
 }
 
 .myendturn{
-  background-color: crimson;
+  background-color: green;
+  border: solid 0.5vh darkgreen;
+  color:white;
+  font-weight: bold;
   order:3;
   width:15%;
+  font-size: 3vh;
+  text-align: center;
 }
 
 .myhand{
@@ -59,6 +77,13 @@
   width:70%;
 }
 
+.myhand:hover
+{
+  background-color: aqua;
+  height: 200%;
+  top:20px;
+  text-align: center;
+}
 .top{
   display: flex;
   flex-direction: row;
@@ -75,7 +100,7 @@
 }
 
 .oppplayedcard{
-  background-color: brown;
+  /*background-color: brown;*/
   order:2;
   width:70%;
   display: flex;
@@ -86,10 +111,14 @@
   background-color: blueviolet;
   order: 4;
   width:15%;
+  font-size: 2vh;
+  text-align: center;
+  color: white;
+  padding-top: 3%;
 }
 
 .oppavatar{
-  background-color: chartreuse;
+  background-image: url("https://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/Pantheon.png");
   order: 6;
   width: 15%;
 }

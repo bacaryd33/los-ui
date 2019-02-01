@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import {Nav, NavItem} from "react-bootstrap"
+import {Nav, NavItem,Button} from "react-bootstrap"
 import "bootstrap/dist/css/bootstrap.css";
 import "./board.css";
 import Card from "./Card.js";
 import { SERVER_URL } from "./consts";
-import Grid from 'react-css-grid'
+
 //ajouter navbar
 //automatiser resize board
 //placer zone carte (deck, hand, board)
@@ -137,17 +137,19 @@ class Board extends Component {
 
 			<div className="midbottom">
 
-				<div className="mydeck">
-					DECK
-				</div>
+				<Button className="mydeck" variant="success">
+					Deck
+				</Button>
 
-				<div className="myendturn">
-					END TURN
-				</div>
+				<Button className="myendturn" variant="success">
+					end turn
+				</Button>
+				
 
 				<div className="myplayedcard">
-					PLAYED CARD
-					
+					<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+					<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+					<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />	
 				</div>
 
 			</div>
@@ -159,11 +161,11 @@ class Board extends Component {
 				</div>
 
 				<div className="myname">
-					NAME
+					monNomninou
 				</div>
 
 				<div className="myavatar">
-					AVATAR
+					
 				</div>
 
 			</div>
