@@ -20,6 +20,7 @@ class Game extends Component {
             matchmakingid:"",
             champs:[],
             tableDeck:[],
+            tabRequest:[],
             cards:[],
             isLoaded:true,
             error: ""
@@ -43,7 +44,6 @@ class Game extends Component {
         axios.get(url).then(res=>{
            let data=res.data;
            if(data.status=="ok"){
-               alert("sup compte ok12334");
            }
         });
     }
@@ -73,38 +73,25 @@ class Game extends Component {
     }
 
     handleDeconnexion(e){
-        let url =
-            SERVER_URL +
-            "/users/disconnect";
-        axios.get(url).then(res=>{
-            let data=res.data;
-            if(data.status=="ok") {
-                let urlUnparticipate = SERVER_URL + "/matchmaking/unparticipate?matchmakingid=" + this.state.matchmakingid + "&token=" + this.props.location.state.token;
-                axios.get(urlUnparticipate).then(res => {
-                    let data = res.data;
-                    if (data.status == "ok") {
-                        alert(process.env.PUBLIC_URL);
+        let urlUnparticipate = SERVER_URL + "/matchmaking/unparticipate?matchmakingid=" + this.state.matchmakingid + "&token=" + this.props.location.state.token;
+        axios.get(urlUnparticipate).then(res => {
+            let data = res.data;
+            if (data.status == "ok") {
+                let url =
+                    SERVER_URL +
+                    "/users/disconnect";
+                axios.get(url).then(res=>{
+                    let data=res.data;
+                    if(data.status=="ok") {
                         this.props.history.push(process.env.PUBLIC_URL + "/signin");
-                    } else {
-                        alert("failure unparticipate");
-                    }
-                });
-            }else{
-                alert("failure disconnection");
+                    }else{
+                            alert("failure disconnection");
+                        }
+                    });
+            } else {
+                alert("failure unparticipate");
             }
         });
-            //this.props.history.push({pathname:process.env.PUBLIC_URL + "/"});
-            //console.log(this.props);
-    }
-
-    handleMatchRequest(tabRequest){
-        if(tabRequest.length>0){
-            for(let elt of tabRequest){
-                if(window.confirm(elt.name+" vous defie  voulez vous jouez")){
-                    alert("debut match");
-                }
-            }
-        }
     }
 
     randomPick(champs, number) {
@@ -215,6 +202,10 @@ class Game extends Component {
                                 <th><h2>id</h2></th>
                                 <th><h2>name</h2></th>
                             </tr>
+                            <tr>
+                                <th><h2>t</h2></th>
+                                <th><h2>n</h2></th>
+                            </tr>
                         </table>
                     </div>
                     <footer>
@@ -233,6 +224,26 @@ class Game extends Component {
   }
 
   componentDidMount() {
+        function handleMatchRequest(tabRequest,tok) {
+            if(tabRequest.length>0){
+                for(let elt of tabRequest){
+                    alert("passe dans elt");
+                    console.log(tok);
+                    if(window.confirm(elt.name+" vous defie  voulez vous jouez")){
+                        let url=SERVER_URL+"/matchmaking/acceptRequest?matchmakingId="+elt.matchmakingId+"&token="+tok;
+                        axios.get(url).then(res=>{
+                            let data=res.data;
+                            if(data.status=="ok"){
+                                this.props.history.push({pathname:process.env.PUBLIC_URL + "/board",
+                                    state:{match:data}});
+                            }
+                        })
+                    }
+                }
+            }else{
+                alert("tab request null");
+            }
+        }
         function SendRequest(data,tok,i){
             let url =
                 SERVER_URL +
@@ -241,66 +252,68 @@ class Game extends Component {
             axios.get(url).then(res=>{
                 let data = res.data;
                 if (data.status=="ok"){
-                    alert("request send");
+                    this.props.history.push({state:{Deck:this.state.tableDeck[this.state.Deck]}});
+
                 } else{
                     this.setState({ error: "Une erreur s'est produite : " + data.message });
                 }
             })
 
         }
-        let url23=SERVER_URL+"/matchmaking/participate?&token="+this.props.location.state.token;
-        axios.get(url23).then(res=>{
-            let data=res.data;
-            if(data.status=="ok"){
-                this.setState({matchmakingid:data.data["matchmakingId"]});
-            }else{
-                this.setState({error: "Une erreur s'est produite : " + data.message});
-            }
-        })
         let tok=this.props.location.state.token;
         let cont=this;
         setTimeout(function (cont){
-            let url =
+            let url23=SERVER_URL+"/matchmaking/participate?&token="+tok;
+            axios.get(url23).then(res=>{
+                let data=res.data;
+                if(data.status=="ok"){
+                    let allRequest=data.data["request"];
+                    console.log("affiche tab request before methode");
+                    console.log(Object.keys(data));
+                    handleMatchRequest(allRequest,tok);
+                    this.setState({matchmakingid:data.data["matchmakingId"]});
+                    this.forceUpdate();
+                }else{
+                    this.setState({error: "Une erreur s'est produite : " + data.message});
+                }
+            })
+        },2000);
+        setTimeout(function(count){
+            let url2 =
                 SERVER_URL +
                 "/matchmaking/getAll?&token="
-                +this.props.location.state.token;
-            axios.get(url).then(res => {
-                var datafgf;
+                +cont.props.location.state.token;
+            axios.get(url2).then(res => {
+                let datafgf;
                 datafgf = res.data;
                 if (datafgf.status === "ok") {
-                    let allRequest=datafgf.request;
-                    console.log(" request"+allRequest);
-                    cont.handleMatchRequest(allRequest);
                     datafgf=datafgf.data;
                     let tableM=document.getElementById("tableMatchMaking");
+                    var rowCount = tableM.rows.length;
+                    for (var x=rowCount-1; x>0; x--) {
+                        tableM.deleteRow(x);
+                    }
+                    //tableM.innerHTML="";
                     for( let i=0;i<datafgf.length;i++){
-                        if(datafgf[i]["matchmakingId"]!=this.state.matchmakingid){
+                        if(datafgf[i]["matchmakingId"]!=cont.state.matchmakingid){
                             let  l1=tableM.insertRow(-1);
                             let cellId=l1.insertCell(-1);
                             let cellN=l1.insertCell(-1);
                             let matchMaking=datafgf[i]["matchmakingId"];
-                            cellId.innerHTML=datafgf[i]["matchmakingId"];
+                            cellId.innerHTML=datafgf[i]["email"];
                             cellN.innerHTML=datafgf[i]["name"];
                             l1.onclick=function(){
-                                SendRequest(matchMaking,tok,i);
+                                SendRequest(matchMaking,cont.props.location.state.token,i);
                             }
                         }else{
-                            alert("passe par la");
                         }
                     }
-                    //   l1.insertData(elt.id);
-                    // l1.insertData(elt.name);
-                    // l1.onclick=function(){alert("test new");};
-                    // tableM.innerHTML+="<tr><th onclick='function(){alert(1);'>elt.id</th><th>elt.name</th></tr>";
-                    //}
-                    //} /*
-                    //this.props.history.push(process.env.PUBLIC_URL + "/");
+                    this.forceUpdate();
                 } else {
                     this.setState({ error: "Une erreur s'est produite : " + datafgf.message });
                 }
             });
-        },1500);
-
+        },800);
       let url2=SERVER_URL +
           "/cards/getAll";
       axios.get(url2).then(res=>{
@@ -324,7 +337,26 @@ class Game extends Component {
       });
   }
     componentWillReceiveProps(nextProps) {
+        function handleMatchRequest(tabRequest,tok) {
+            if(tabRequest.length>0){
+                for(let elt of tabRequest){
+                    if(window.confirm(elt.name+" vous defie  voulez vous jouez")){
+                        let url=SERVER_URL+"/matchmaking/acceptRequest/?matchmakingId="+elt.matchmakingId+"&token="+tok;
+                        axios.get(url).then(res=>{
+                            let data=res.data;
+                            if(data.status=="ok"){
+                                this.props.history.push({pathname:process.env.PUBLIC_URL + "/board",
+                                    state:{match:data}});
+                            }
+                        });
+                    }
+                }
+            }else{
+                alert("tab request null");
+            }
+        }
         function SendRequest(data,tok,i){
+            alert("passe ic");
             let url =
                 SERVER_URL +
                 "/matchmaking/request?matchmakingId="+data+"&token="
@@ -333,54 +365,78 @@ class Game extends Component {
                 let data = res.data;
                 if (data.status=="ok"){
                     alert("request send");
+                    this.props.history.push({state:{Deck:this.state.tableDeck[this.state.Deck]}});
+
                 } else{
                     this.setState({ error: "Une erreur s'est produite : " + data.message });
                 }
             })
 
         }
-        let url2 =
-            SERVER_URL +
-            "/matchmaking/getAll?&token="
-            +this.props.location.state.token;
-        axios.get(url2).then(res => {
-            let datafgf;
-            datafgf = res.data;
-            if (datafgf.status === "ok") {
-                let allRequest=datafgf.request;
-                console.log(" reuest"+allRequest);
-                datafgf=datafgf.data;
-                let tableM=document.getElementById("tableMatchMaking");
-                tableM.innerHTML="";
-                for( let i=0;i<datafgf.length;i++){
-                    if(datafgf[i]["matchmakingId"]!=this.state.matchmakingid){
-                        let  l1=tableM.insertRow(-1);
-                        let cellId=l1.insertCell(-1);
-                        let cellN=l1.insertCell(-1);
-                        let matchMaking=datafgf[i]["matchmakingId"];
-                        cellId.innerHTML=datafgf[i]["matchmakingId"];
-                        cellN.innerHTML=datafgf[i]["name"];
-                        l1.onclick=function(){
-                            SendRequest(matchMaking,this.props.location.state.token,i);
-                        }
-                    }else{
-                        alert("passe par la");
-                    }
+        let tok=this.props.location.state.token;
+        let cont=this;
+        setTimeout(function (cont){
+            let url23=SERVER_URL+"/matchmaking/participate?&token="+tok;
+            axios.get(url23).then(res=>{
+                let data=res.data;
+                if(data.status=="ok"){
+                    let allRequest=data.request;
+                    handleMatchRequest(allRequest,tok);
+                    this.setState({matchmakingid:data.data["matchmakingId"]});
+                    this.forceUpdate();
+                }else{
+                    this.setState({error: "Une erreur s'est produite : " + data.message});
                 }
-                //   l1.insertData(elt.id);
-                // l1.insertData(elt.name);
-                // l1.onclick=function(){alert("test new");};
-                // tableM.innerHTML+="<tr><th onclick='function(){alert(1);'>elt.id</th><th>elt.name</th></tr>";
-                //}
-                //} /*
-                //this.props.history.push(process.env.PUBLIC_URL + "/");
-            } else {
-                this.setState({ error: "Une erreur s'est produite : " + datafgf.message });
-            }
-        });
-        let url=SERVER_URL +
+            })
+        },2000);
+        setTimeout(function(count){
+            let url2 =
+                SERVER_URL +
+                "/matchmaking/getAll?&token="
+                +cont.props.location.state.token;
+            axios.get(url2).then(res => {
+                let datafgf;
+                datafgf = res.data;
+                if (datafgf.status === "ok") {
+                    let allRequest=datafgf.request;
+                    console.log(" reuest"+allRequest);
+                    datafgf=datafgf.data;
+                    let tableM=document.getElementById("tableMatchMaking");
+                    var rowCount = tableM.rows.length;
+                    for (var x=rowCount-1; x>0; x--) {
+                        tableM.deleteRow(x);
+                    }
+                    //tableM.innerHTML="";
+                    for( let i=0;i<datafgf.length;i++){
+                        if(datafgf[i]["matchmakingId"]!=cont.state.matchmakingid){
+                            let  l1=tableM.insertRow(-1);
+                            let cellId=l1.insertCell(-1);
+                            let cellN=l1.insertCell(-1);
+                            let matchMaking=datafgf[i]["matchmakingId"];
+                            cellId.innerHTML=datafgf[i]["email"];
+                            cellN.innerHTML=datafgf[i]["name"];
+                            l1.onclick=function(){
+                                SendRequest(matchMaking,cont.props.location.state.token,i);
+                            }
+                        }else{
+                        }
+                    }
+                    this.forceUpdate();
+                    //   l1.insertData(elt.id);
+                    // l1.insertData(elt.name);
+                    // l1.onclick=function(){alert("test new");};
+                    // tableM.innerHTML+="<tr><th onclick='function(){alert(1);'>elt.id</th><th>elt.name</th></tr>";
+                    //}
+                    //} /*
+                    //this.props.history.push(process.env.PUBLIC_URL + "/");
+                } else {
+                    this.setState({ error: "Une erreur s'est produite : " + datafgf.message });
+                }
+            });
+        },800);
+        let url2=SERVER_URL +
             "/cards/getAll";
-        axios.get(url).then(res=>{
+        axios.get(url2).then(res=>{
             let data=res.data;
             if(data.status==="ok") {
                 let tableD=[];
