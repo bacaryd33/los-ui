@@ -37,9 +37,8 @@ class Signin extends Component {
           this.props.setSessionToken(res.data["data"]["token"]);
           this.setState({token:res.data["data"]["token"]});
           this.props.history.push({pathname:process.env.PUBLIC_URL + "/",
-          state:{token: this.state.token}});
-          // store.subscribe(() =>
-          //     localStorage.setItem('TOKEN', store.getState().token))
+          state:{token: this.state.token,email:this.state.email,password:this.state.password}});
+
         }else{
           alert("Login ou password faux");
         }
