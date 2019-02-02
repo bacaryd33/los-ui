@@ -22,7 +22,7 @@
 }
 
 .myplayedcard{
-  //background-color: brown;
+  background-color: brown;
   order:2;
   width:70%;
   display: flex;

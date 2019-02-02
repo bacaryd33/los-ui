@@ -131,6 +131,21 @@ CSS DE LA PAGE SINGIN.JS
   font-size: 20px;
   border-radius: unset;
 }
+.tableDeck,th,td{
+  border-collapse: collapse;
+  border:solid 1px black;
+}
+/*
+CSS DE LA PAGE SINGIN.JS
+*/
+#connexion{
+  background-color: #1E2328;
+  text-transform: uppercase;
+  border: 3px solid #016A8C;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: unset;
+}
 
 .login-form .form-control {
     background: #f7f7f7 none repeat scroll 0 0;
