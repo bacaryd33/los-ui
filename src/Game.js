@@ -7,7 +7,6 @@ import {
   Link
 } from "react-router-dom";
 import Board from "./Board.js";
-import { Link } from "react-router-dom";
 import { SERVER_URL } from "./consts";
 import Card from "./Card";
 import "./App.css";
