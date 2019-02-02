@@ -198,14 +198,14 @@ class Game extends Component {
                   <label htmlFor="horns">Find a game randomly</label>
               </div>
               <button id="buttonPlay" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Play</button>
-              
+
               <button type="button" id="try" class="btn btn-primary" data-toggle="modal" data-target="#popupMatch">
                 Try popupMatch
               </button>
           </footer>
 
           <div class="modal fade" id="popupMatch" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div className="headerpopup">
                   <h5 class="modal-title" id="popupMatchlLabel" align="center">Match found</h5>
