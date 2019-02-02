@@ -7,7 +7,6 @@ import {
   Link
 } from "react-router-dom";
 import Board from "./Board.js";
-import { Link } from "react-router-dom";
 import { SERVER_URL } from "./consts";
 import Card from "./Card";
 import "./App.css";
@@ -140,12 +139,7 @@ class Game extends Component {
                         </div>
                         <div className="colequal">
                             <h1>MatchMaking</h1>
-                            <table id="tableMatchMaking" className="tableMatch">
-                                <tr>
-                                    <th><h2>id</h2></th>
-                                    <th><h2>name</h2></th>
-                                </tr>
-                            </table>
+                            <table id="tableMatchMaking" className="tableMatch"><tr><th><h2>id</h2></th><th><h2>name</h2></th></tr></table>
                         </div>
                         <footer>
                             <div className="footerMatchMaking">
