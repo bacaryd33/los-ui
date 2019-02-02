@@ -4,6 +4,16 @@ import { SERVER_URL } from "./consts";
 import Card from "./Card";
 import "./App.css";
 import "./card.css";
+import logo from './miniLogo.png';
+import deco from './deconnexion.png';
+import desin from './desinscrire.png';
+import regle from './regles.png';
+import card from './mainLogo.png';
+import blue from './IconBlue.png';
+import green from './IconGreen.png';
+import purple from './IconPurple.png';
+import yellow from './IconYellow.png';
+import red from './IconRed.png';
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
@@ -173,51 +183,6 @@ class Game extends Component {
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td><img src={blue}/></td>
-                                                    <td>nameOpponent</td>
-                                                    <td>
-                                                        <button id="buttonInvite"
-                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src={green}/></td>
-                                                    <td>nameOpponent</td>
-                                                    <td>
-                                                        <button id="buttonInvite"
-                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src={red}/></td>
-                                                    <td>nameOpponent</td>
-                                                    <td>
-                                                        <button id="buttonInvite"
-                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src={yellow}/></td>
-                                                    <td>nameOpponent</td>
-                                                    <td>
-                                                        <button id="buttonInvite"
-                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src={purple}/></td>
-                                                    <td>nameOpponent</td>
-                                                    <td>
-                                                        <button id="buttonInvite"
-                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                        </button>
-                                                    </td>
-                                                </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -324,51 +289,6 @@ class Game extends Component {
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td><img src={blue}/></td>
-                                                    <td>nameOpponent</td>
-                                                    <td>
-                                                        <button id="buttonInvite"
-                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src={green}/></td>
-                                                    <td>nameOpponent</td>
-                                                    <td>
-                                                        <button id="buttonInvite"
-                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src={red}/></td>
-                                                    <td>nameOpponent</td>
-                                                    <td>
-                                                        <button id="buttonInvite"
-                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src={yellow}/></td>
-                                                    <td>nameOpponent</td>
-                                                    <td>
-                                                        <button id="buttonInvite"
-                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src={purple}/></td>
-                                                    <td>nameOpponent</td>
-                                                    <td>
-                                                        <button id="buttonInvite"
-                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                        </button>
-                                                    </td>
-                                                </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -476,51 +396,6 @@ class Game extends Component {
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td><img src={blue}/></td>
-                                                <td>nameOpponent</td>
-                                                <td>
-                                                    <button id="buttonInvite"
-                                                            className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src={green}/></td>
-                                                <td>nameOpponent</td>
-                                                <td>
-                                                    <button id="buttonInvite"
-                                                            className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src={red}/></td>
-                                                <td>nameOpponent</td>
-                                                <td>
-                                                    <button id="buttonInvite"
-                                                            className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src={yellow}/></td>
-                                                <td>nameOpponent</td>
-                                                <td>
-                                                    <button id="buttonInvite"
-                                                            className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src={purple}/></td>
-                                                <td>nameOpponent</td>
-                                                <td>
-                                                    <button id="buttonInvite"
-                                                            className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
-                                                    </button>
-                                                </td>
-                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -652,12 +527,15 @@ class Game extends Component {
                             let  l1=tableM.insertRow(-1);
                             let cellId=l1.insertCell(-1);
                             let cellN=l1.insertCell(-1);
+                            let cellB=l1.insertCell(-1);
+                            let img=document.createElement("img");
+                            img.source={blue};
+                            cellId.appendChild(img);
                             let matchMaking=datafgf[i]["matchmakingId"];
-                            cellId.innerHTML=datafgf[i]["email"];
                             cellN.innerHTML=datafgf[i]["name"];
-                            l1.onclick=function(){
-                                SendRequest(matchMaking,cont.props.location.state.token,i);
-                            }
+                            let button=document.createElement("button");
+                            button.onClick=SendRequest(matchMaking,cont.props.location.token,i);
+                            cellB.appendChild(button);
                         }else{
                         }
                     }
@@ -765,12 +643,15 @@ class Game extends Component {
                             let  l1=tableM.insertRow(-1);
                             let cellId=l1.insertCell(-1);
                             let cellN=l1.insertCell(-1);
+                            let cellB=l1.insertCell(-1);
+                            let img=document.createElement("img");
+                            img.source={blue};
+                            cellId.appendChild(img);
                             let matchMaking=datafgf[i]["matchmakingId"];
-                            cellId.innerHTML=datafgf[i]["email"];
                             cellN.innerHTML=datafgf[i]["name"];
-                            l1.onclick=function(){
-                                SendRequest(matchMaking,cont.props.location.state.token,i);
-                            }
+                            let button=document.createElement("button");
+                            button.onClick=SendRequest(matchMaking,cont.props.location.token,i);
+                            cellB.appendChild(button);
                         }else{
                         }
                     }
