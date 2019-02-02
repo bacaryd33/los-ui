@@ -121,7 +121,7 @@ class Game extends Component {
     }
     generateCards(champs) {
         let cards = [];
-        let str=["offensif","defensif","equilibré","hasard"];
+        let str=["offensif","defensif","equilibré","hasard"]; // A voir
         for (let i = 0; i < champs.length; i++) {
             cards.push(
                 <Card id={champs[i][0].id}
@@ -440,6 +440,7 @@ class Game extends Component {
             }else{
             }
         }
+        
         function SendRequest(data,tok,i){
             let url =
                 SERVER_URL +
@@ -448,6 +449,7 @@ class Game extends Component {
             axios.get(url).then(res=>{
                 let data = res.data;
                 if (data.status=="ok"){
+                    alert("Request sent successfully")
                     this.props.history.push({state:{Deck:this.state.tableDeck[this.state.Deck]}});
 
                 } else{
