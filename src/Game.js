@@ -198,11 +198,39 @@ class Game extends Component {
                   <label htmlFor="horns">Find a game randomly</label>
               </div>
               <button id="buttonPlay" className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Play</button>
-
+              
+              <button type="button" id="try" class="btn btn-primary" data-toggle="modal" data-target="#popupMatch">
+                Try popupMatch
+              </button>
           </footer>
+
+          <div class="modal fade" id="popupMatch" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div className="headerpopup">
+                  <h5 class="modal-title" id="popupMatchlLabel" align="center">Match found</h5>
+
+                </div>
+                <div class="modal-body">
+                  <span id="nameOpponent">nameOpponent</span> wants to confront you
+                </div>
+                <div class="modal-footer">
+                  <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <button type="button" id="declineMatchmaking" class="btn btn-secondary" data-dismiss="modal">Decline</button>
+                  </div>
+                  <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <button type="button" id="acceptMatchmaking" class="btn btn-primary">Accept !</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
+
+
     );
   }
+
   componentDidMount() {
         function SendRequest(data,tok,i){
             let url =

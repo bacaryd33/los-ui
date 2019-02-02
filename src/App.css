@@ -122,7 +122,7 @@
 /*
 CSS DE LA PAGE SINGIN.JS
 */
-#connexion, #buttonPlay, #buttonInvite{
+#connexion, #buttonPlay, #buttonInvite, #try{
   background-color: #1E2328;
   text-transform: uppercase;
   border: 3px solid #016A8C;
@@ -136,6 +136,10 @@ CSS DE LA PAGE SINGIN.JS
 
 #buttonInvite {
   font-size: 20px!important;
+}
+
+#try {
+  font-size: 15px;
 }
 
 .login-form .form-control {
@@ -257,4 +261,72 @@ footer button {
 .footerMatchMaking {
   padding-bottom: 5px;
   display: inline;
+}
+
+#popupMatch .modal-content{
+  background-color: #0A1324;
+  border: 5px solid #CD9D37;
+  border-radius: 0px;
+  color: white;
+  text-align: center;
+}
+
+#popupMatch .modal-content .headerpopup{
+  border-bottom: none!important;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+#popupMatch #nameOpponent {
+  color: #CD9D37;
+}
+
+#popupMatch .modal-content .modal-footer {
+  border-top: none!important;
+}
+
+#declineMatchmaking {
+  background-color: #1E2328;
+  text-transform: uppercase;
+  border: 3px solid #CD9D37;
+  font-size: 25px;
+  border-radius: unset;
+  font-size: 17px;
+}
+
+#declineMatchmaking:hover{
+  box-shadow: 0 5px 14px 0 rgba(80, 62, 22, 0.5), 0 1px 50px 0 rgba(80, 62, 22, 0.5);
+  border: 3px solid #CD9D37;
+}
+
+#acceptMatchmaking {
+  background-color: #1E2328;
+  text-transform: uppercase;
+  border: 3px solid #016A8C;
+  font-size: 17px;
+  border-radius: unset;
+}
+
+#acceptMatchmaking:hover {
+  box-shadow: 0 5px 14px 0 rgba(41, 231, 239, 0.5), 0 1px 50px 0 rgba(41, 231, 239, 0.5);
+  border: 3px solid #047D90;
+}
+
+#progressBar {
+  width: 90%;
+  margin: 10px auto;
+  height: 22px;
+  background-color: #0A5F44;
+}
+
+#progressBar div {
+  height: 100%;
+  text-align: right;
+  padding: 0 10px;
+  line-height: 22px; /* same as #progressBar height if we want text middle aligned */
+  width: 0;
+  background-color: #CBEA00;
+  box-sizing: border-box;
 }
