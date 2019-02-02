@@ -32,11 +32,68 @@
     background: white;
     color: black;
     cursor: pointer;
+    width: 70%;
 }
 .flip .card .back {
     -webkit-transform: rotatex(-180deg);
     background: blue;
-    background: black;
     color: white;
     cursor: pointer;
+
+}
+
+.designcardfront{
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-column-gap: 1px;
+}
+
+.cardzone{
+    margin-top: 5%;
+    height: 70%;
+    width:18%;
+    background-color: darkred;
+    border: solid 1px goldenrod;
+}
+
+.frontcard{
+    border: 5px solid goldenrod;
+}
+.imgcard{
+    height:50%;
+    background-color: darkgreen;
+    position: center;
+    width:100%;
+}
+.namecard{
+    height: 25%;
+    background-color: aqua;
+    text-align: center;
+    font-size: 3vm;
+    font-style: normal;
+}
+
+.skillcard{
+    background-color: darkmagenta;
+    height:25%;
+    display: flex;
+    flex-direction: row;
+    text-align:center;
+}
+
+.atqcard{
+    background-color: silver;
+    width:50%;
+}
+
+.defcard{
+    background-color: red;
+    width:50%;
+}
+.bottomcard{
+    display: flex;
+    flex-direction: row; 
+}
+
+.backcard{
 }

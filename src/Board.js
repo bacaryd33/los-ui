@@ -1,61 +1,161 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { Column, Row } from 'simple-flexbox';
+import {Nav, NavItem} from "react-bootstrap"
+import "bootstrap/dist/css/bootstrap.css";
+import "./board.css";
+import Card from "./Card.js";
 import { SERVER_URL } from "./consts";
+import Mediacard from "./CardBoard"
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+// import Grid from 'react-css-grid'
+//ajouter navbar
+//automatiser resize board
+//placer zone carte (deck, hand, board)
+//facultatif placer hand adverse
+//récupérer json depuis web service
+import "bootstrap/dist/js/bootstrap.js";
+import axios from "axios";
+import Makedeck from "./Makedeck";
+// import CardBoard from "CardBoard";
 
-class Board extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            login: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-            error: ""
-        };
-    }
 
-    render() {
-        return (
-            <div className="container">
-                <Column flexGrow={1}>
-                    <Row horizontal='center'>
-                        <h1>HAND</h1>
-                    </Row>
-                    <Row vertical='center'>
-                        <Column flexGrow={1} horizontal='center'>
-                            <h3> CARD 1 </h3>
-                            <span> column 1 content </span>
-                        </Column>
-                        <Column flexGrow={1} horizontal='center'>
-                            <h3> CARD 2 </h3>
-                            <span> column 2 content </span>
-                        </Column>
-                        <Column flexGrow={1} horizontal='center'>
-                            <h3> CARD 3 </h3>
-                            <span> column 2 content </span>
-                        </Column>
-                        <Column flexGrow={1} horizontal='center'>
-                            <h3> CARD 4 </h3>
-                            <span> column 2 content </span>
-                        </Column>
-                        <Column flexGrow={1} horizontal='center'>
-                            <h3> CARD 5 </h3>
-                            <span> column 2 content </span>
-                        </Column>
-                        <Column flexGrow={1} horizontal='center'>
-                            <h3> CARD 6 </h3>
-                            <span> column 2 content </span>
-                        </Column>
-                        <Column flexGrow={1} horizontal='center'>
-                            <h3> CARD 7 </h3>
-                        </Column>
-                    </Row>
-                </Column>
+class Board extends Component {
 
-            </div>
-        );
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			status:null, //Deck is pending /
+			player1:null,
+			player2:null,
+		};
+	}
+    //localhost:3001/match/initDeck?[{key:"Jax"},{key:"Sona"},{key:"Tristana"},{key:"TahmKench"},{key:"Singed"},{key:"Thresh"},{key:"Karma"}]
+
+	initDeck(tabdeck,token,i){ //a tester
+		let url =
+			SERVER_URL +
+			"/match/initDeck?deck="+tabdeck+"&token="+token;
+		axios.get(url).then(res=>{
+			let data = res.data;
+			if (data.status=="ok"){
+				alert("Deck initialized");
+			} else{
+				this.setState({ error: "Error Deck initialization : " + data.message });
+			}
+		})
+	}
+
+	pickCard(deck,npick){
+		if(this.turn && npick==0){
+			let url=SERVER_URL + "match/pickCard"
+			axios.get(url).then(res=>{
+				let data = res.data;
+				if (data.status=="ok"){
+					alert("Card Picked");
+				} else{
+					this.setState({ error: "Error of Card Picking : " + data.message });
+				}
+			})
+		}
+
+	}
+
+	playcard(hand,turn,card){
+		if(turn){
+			let url=SERVER_URL + "match/playCard"
+			axios.get(url).then(res=>{
+				let data = res.data;
+				if (data.status=="ok"){
+					alert("Card played");
+				} else{
+					this.setState({ error: "Error Playing Card : " + data.message });
+				}
+			})
+		}
+	}
+
+	attack(card,ennemycard){
+
+	}
+
+	endturn(turn){
+
+	}
+
+	finishmatch(){
+
+	}
+
+	componentDidMount(){
+		let url=(SERVER_URL+"/cards/getAll");
+			console.log(url)     
+		axios.get(url)
+			.then(res=>{
+				let data=res.data;
+				console.log(data);});
+	}
+
+	componentWillReceiveProps(){
+
+	}
+
+	render()
+	{
+		return(
+			<div className="board">
+				<div className="top">
+					<div className="opphand">
+						HAND
+					</div>
+					<div className="oppname">
+						NAME
+					</div>
+					<div className="oppavatar">
+						AVATAR
+					</div>
+				</div>
+				<div className="midtop">
+					<div className="oppdeck">
+						DECK
+					</div>
+					<div className="oppendturn">
+						END TURN
+					</div>
+					<div className="oppplayedcard">
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
+					</div>
+				</div>
+				<div className="space">
+					SPACE
+				</div>
+				<div className="midbottom">
+					<div className="mydeck">
+						DECK
+					</div>
+					<div className="myendturn">
+						END TURN
+					</div>
+					<div className="myplayedcard">
+						<Card/>
+					</div>
+				</div>
+				<div className="bottom">
+					<div className="myhand">
+						HAND
+					</div>
+					<div className="myname">
+						NAME
+					</div>
+					<div className="myavatar">
+						AVATAR
+					</div>
+				</div>
+			</div>
+		)}
 }
+
 export default Board;
