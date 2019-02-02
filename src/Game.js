@@ -122,103 +122,456 @@ class Game extends Component {
             const tableD=this.state.tableDeck;
             if(error){
                 return(<div className="Appli">
-                        <button onClick={this.handleUnsubscribe}>Unsubscribe</button>
-                        <button onClick={this.handleDeconnexion}> Deconnexion</button>
-                        <div className="colequal">
-                            <h1> Choissez votre Deck </h1>
-                            <section className="row" classID="board">
-                                <p>Error</p>
-                            </section>
-                        </div>
-                        <div className="colequal">
-                            <h1>MatchMaking</h1>
-                            <table id="tableMatchMaking" className="tableMatch">
-                                <tr>
-                                    <th><h2>id</h2></th>
-                                    <th><h2>name</h2></th>
-                                </tr>
-                            </table>
+                        <nav className="navbar navbar-light">
+                            <img src={logo}/>
+                            <div>
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </a>
+                                <div className="dropdown-menu dropdown-menu-right"
+                                     aria-labelledby="navbarDropdownMenuLink">
+                                    <a className="dropdown-item" href="#">
+                                        <button onClick={this.handleRule}><Link to="/signin"><img
+                                            src={regle}/> Rules of the game</Link></button>
+                                    </a>
+                                    <a className="dropdown-item" href="#">
+                                        <button onClick={this.handleUnsubscribe}><Link to="/signin"><img
+                                            src={desin}/> Delete my account</Link></button>
+                                    </a>
+                                    <a className="dropdown-item" href="#">
+                                        <button onClick={this.handleDeconnexion}><Link to="/signin"><img
+                                            src={deco}/> Log out</Link></button>
+                                    </a>
+                                </div>
+                            </div>
+                        </nav>
+
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div className="card">
+                                        <div className="card-header">
+                                            <h3> Chose your Deck </h3>
+                                        </div>
+                                        <div className="card-body">
+                                            <p>Error</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div className="card">
+                                        <div className="card-header">
+                                            <h3>Invite an opponent</h3>
+                                        </div>
+                                        <div className="card-body">
+                                            <table id="tableMatchMaking" className="tableMatch">
+                                                <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td><img src={blue}/></td>
+                                                    <td>nameOpponent</td>
+                                                    <td>
+                                                        <button id="buttonInvite"
+                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src={green}/></td>
+                                                    <td>nameOpponent</td>
+                                                    <td>
+                                                        <button id="buttonInvite"
+                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src={red}/></td>
+                                                    <td>nameOpponent</td>
+                                                    <td>
+                                                        <button id="buttonInvite"
+                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src={yellow}/></td>
+                                                    <td>nameOpponent</td>
+                                                    <td>
+                                                        <button id="buttonInvite"
+                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src={purple}/></td>
+                                                    <td>nameOpponent</td>
+                                                    <td>
+                                                        <button id="buttonInvite"
+                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <footer>
                             <div className="footerMatchMaking">
                                 <input type="checkbox" id="aleamatch" onChange={this.handleRandomMatchMaking}
                                        checked={this.state.randomMatch}/>
-                                <label htmlFor="horns">Lancer un match aleatoire</label>
+                                <label htmlFor="horns">Find a game randomly</label>
                             </div>
                             <button id="buttonPlay"
-                                    className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Jouer
+                                    className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"} onClick={this.handleJouer}>Play
                             </button>
 
+                            <button type="button" id="try" className="btn btn-primary" data-toggle="modal"
+                                    data-target="#popupMatch">
+                                Try popupMatch
+                            </button>
                         </footer>
+
+                        <div className="modal fade" id="popupMatch" tabIndex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal-dialog modal-dialog-centered" role="document">
+                                <div className="modal-content">
+                                    <div className="headerpopup">
+                                        <h5 className="modal-title" id="popupMatchlLabel" align="center">Match
+                                            found</h5>
+
+                                    </div>
+                                    <div className="modal-body">
+                                        <img src={blue}/><br/>
+                                        <span id="nameOpponent">nameOpponent</span> wants to confront you
+                                    </div>
+                                    <div className="modal-footer">
+                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                            <button type="button" id="declineMatchmaking" className="btn btn-secondary"
+                                                    data-dismiss="modal">Decline
+                                            </button>
+                                        </div>
+                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                            <button type="button" id="acceptMatchmaking"
+                                                    className="btn btn-primary">Accept !
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 );
             } else if (!isLoaded){
                 return (<div className="Appli">
-                        <button onClick={this.handleUnsubscribe}>Unsubscribe</button>
-                        <button onClick={this.handleDeconnexion}>Deconnexion</button>
-                        <div className="colequal">
-                            <h1> Choissez votre Deck </h1>
-                            <section className="row" classID="board">
-                                <p>Loading</p>
-                            </section>
-                        </div>
-                        <div className="colequal">
-                            <h1>MatchMaking</h1>
-                            <table id="tableMatchMaking" className="tableMatch">
-                                <tr>
-                                    <th><h2>id</h2></th>
-                                    <th><h2>name</h2></th>
-                                </tr>
-                            </table>
+                        <nav className="navbar navbar-light">
+                            <img src={logo}/>
+                            <div>
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </a>
+                                <div className="dropdown-menu dropdown-menu-right"
+                                     aria-labelledby="navbarDropdownMenuLink">
+                                    <a className="dropdown-item" href="#">
+                                        <button onClick={this.handleRule}><Link to="/signin"><img
+                                            src={regle}/> Rules of the game</Link></button>
+                                    </a>
+                                    <a className="dropdown-item" href="#">
+                                        <button onClick={this.handleUnsubscribe}><Link to="/signin"><img
+                                            src={desin}/> Delete my account</Link></button>
+                                    </a>
+                                    <a className="dropdown-item" href="#">
+                                        <button onClick={this.handleDeconnexion}><Link to="/signin"><img
+                                            src={deco}/> Log out</Link></button>
+                                    </a>
+                                </div>
+                            </div>
+                        </nav>
+
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div className="card">
+                                        <div className="card-header">
+                                            <h3> Chose your Deck </h3>
+                                        </div>
+                                        <div className="card-body">
+                                            <p>Loading</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div className="card">
+                                        <div className="card-header">
+                                            <h3>Invite an opponent</h3>
+                                        </div>
+                                        <div className="card-body">
+                                            <table id="tableMatchMaking" className="tableMatch">
+                                                <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td><img src={blue}/></td>
+                                                    <td>nameOpponent</td>
+                                                    <td>
+                                                        <button id="buttonInvite"
+                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src={green}/></td>
+                                                    <td>nameOpponent</td>
+                                                    <td>
+                                                        <button id="buttonInvite"
+                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src={red}/></td>
+                                                    <td>nameOpponent</td>
+                                                    <td>
+                                                        <button id="buttonInvite"
+                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src={yellow}/></td>
+                                                    <td>nameOpponent</td>
+                                                    <td>
+                                                        <button id="buttonInvite"
+                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src={purple}/></td>
+                                                    <td>nameOpponent</td>
+                                                    <td>
+                                                        <button id="buttonInvite"
+                                                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <footer>
                             <div className="footerMatchMaking">
                                 <input type="checkbox" id="aleamatch" onChange={this.handleRandomMatchMaking}
                                        checked={this.state.randomMatch}/>
-                                <label htmlFor="horns">Lancer un match aleatoire</label>
+                                <label htmlFor="horns">Find a game randomly</label>
                             </div>
                             <button id="buttonPlay"
-                                    className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Jouer
+                                    className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"} onClick={this.handleJouer}>Play
                             </button>
 
+                            <button type="button" id="try" className="btn btn-primary" data-toggle="modal"
+                                    data-target="#popupMatch">
+                                Try popupMatch
+                            </button>
                         </footer>
+
+                        <div className="modal fade" id="popupMatch" tabIndex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal-dialog modal-dialog-centered" role="document">
+                                <div className="modal-content">
+                                    <div className="headerpopup">
+                                        <h5 className="modal-title" id="popupMatchlLabel" align="center">Match
+                                            found</h5>
+
+                                    </div>
+                                    <div className="modal-body">
+                                        <img src={blue}/><br/>
+                                        <span id="nameOpponent">nameOpponent</span> wants to confront you
+                                    </div>
+                                    <div className="modal-footer">
+                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                            <button type="button" id="declineMatchmaking" className="btn btn-secondary"
+                                                    data-dismiss="modal">Decline
+                                            </button>
+                                        </div>
+                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                            <button type="button" id="acceptMatchmaking"
+                                                    className="btn btn-primary">Accept !
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 );
             }else{
                 let cards=this.generateCards(tableD);
                 return(<div className="Appli">
-                    <button onClick={this.handleUnsubscribe}>Unsubscribe</button>
-                    <button onClick={this.handleDeconnexion}>Deconnexion</button>
-                    <div className="colequal">
-                        <h1> Choissez votre Deck </h1>
-                        <section className="row">
-                            {cards}
-                        </section>
-                    </div>
-                    <div className="colequal">
-                        <h1>MatchMaking</h1>
-                        <table id="tableMatchMaking" className="tableMatch">
-                            <tr>
-                                <th><h2>id</h2></th>
-                                <th><h2>name</h2></th>
-                            </tr>
-                            <tr>
-                                <th><h2>t</h2></th>
-                                <th><h2>n</h2></th>
-                            </tr>
-                        </table>
+                    <nav className="navbar navbar-light">
+                        <img src={logo}/>
+                        <div>
+                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </a>
+                            <div className="dropdown-menu dropdown-menu-right"
+                                 aria-labelledby="navbarDropdownMenuLink">
+                                <a className="dropdown-item" href="#">
+                                    <button onClick={this.handleRule}><Link to="/signin"><img
+                                        src={regle}/> Rules of the game</Link></button>
+                                </a>
+                                <a className="dropdown-item" href="#">
+                                    <button onClick={this.handleUnsubscribe}><Link to="/signin"><img
+                                        src={desin}/> Delete my account</Link></button>
+                                </a>
+                                <a className="dropdown-item" href="#">
+                                    <button onClick={this.handleDeconnexion}><Link to="/signin"><img
+                                        src={deco}/> Log out</Link></button>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <div className="card">
+                                    <div className="card-header">
+                                        <h3> Chose your Deck </h3>
+                                    </div>
+                                    <div className="card-body">
+                                        {cards}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <div className="card">
+                                    <div className="card-header">
+                                        <h3>Invite an opponent</h3>
+                                    </div>
+                                    <div className="card-body">
+                                        <table id="tableMatchMaking" className="tableMatch">
+                                            <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td><img src={blue}/></td>
+                                                <td>nameOpponent</td>
+                                                <td>
+                                                    <button id="buttonInvite"
+                                                            className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src={green}/></td>
+                                                <td>nameOpponent</td>
+                                                <td>
+                                                    <button id="buttonInvite"
+                                                            className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src={red}/></td>
+                                                <td>nameOpponent</td>
+                                                <td>
+                                                    <button id="buttonInvite"
+                                                            className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src={yellow}/></td>
+                                                <td>nameOpponent</td>
+                                                <td>
+                                                    <button id="buttonInvite"
+                                                            className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src={purple}/></td>
+                                                <td>nameOpponent</td>
+                                                <td>
+                                                    <button id="buttonInvite"
+                                                            className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Invite
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <footer>
                         <div className="footerMatchMaking">
                             <input type="checkbox" id="aleamatch" onChange={this.handleRandomMatchMaking}
                                    checked={this.state.randomMatch}/>
-                            <label htmlFor="horns">Lancer un match aleatoire</label>
+                            <label htmlFor="horns">Find a game randomly</label>
                         </div>
                         <button id="buttonPlay"
-                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Jouer
+                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"} onClick={this.handleJouer}>Play
                         </button>
 
+                        <button type="button" id="try" className="btn btn-primary" data-toggle="modal"
+                                data-target="#popupMatch">
+                            Try popupMatch
+                        </button>
                     </footer>
+
+                    <div className="modal fade" id="popupMatch" tabIndex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog modal-dialog-centered" role="document">
+                            <div className="modal-content">
+                                <div className="headerpopup">
+                                    <h5 className="modal-title" id="popupMatchlLabel" align="center">Match
+                                        found</h5>
+
+                                </div>
+                                <div className="modal-body">
+                                    <img src={blue}/><br/>
+                                    <span id="nameOpponent">nameOpponent</span> wants to confront you
+                                </div>
+                                <div className="modal-footer">
+                                    <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                        <button type="button" id="declineMatchmaking" className="btn btn-secondary"
+                                                data-dismiss="modal">Decline
+                                        </button>
+                                    </div>
+                                    <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                        <button type="button" id="acceptMatchmaking"
+                                                className="btn btn-primary">Accept !
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>);
             }
   }
