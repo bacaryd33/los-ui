@@ -529,11 +529,12 @@ class Game extends Component {
                             let cellN=l1.insertCell(-1);
                             let cellB=l1.insertCell(-1);
                             let img=document.createElement("img");
-                            img.source={blue};
+                            img.source="./IconBlue.png";
                             cellId.appendChild(img);
                             let matchMaking=datafgf[i]["matchmakingId"];
                             cellN.innerHTML=datafgf[i]["name"];
                             let button=document.createElement("button");
+                            button.value="Invite";
                             button.onClick=SendRequest(matchMaking,cont.props.location.token,i);
                             cellB.appendChild(button);
                         }else{
