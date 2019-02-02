@@ -41,25 +41,24 @@ class App extends Component {
         this.setState({ token, isConnected: true });
     }
 
-    render() {
-        return (
-            <Router>
-                <Switch>
-                    <Route
-                        path="/signin"
-                        render={props => (
-                            <Signin setSessionToken={this.setSessionToken} {...props} />
-                        )}
-                    />
-                    <Route path="/signup" component={Signup} />
-                    <PrivateRoute component={Board} isConnected={this.state.isConnected} />
-                    <PrivateRoute path="/matchMaking" component={Board} isConnected={this.state.isConnected} />
-                    <PrivateRoute component={Game} isConnected={this.state.isConnected} />
-                </Switch>
-
-            </Router>
-        );
-    }
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route
+            path="/signin"
+            render={props => (
+              <Signin setSessionToken={this.setSessionToken} {...props} />
+            )}
+          />
+          />
+          <Route path="/signup" component={Signup} />
+          <PrivateRoute path="/board" component={Board} isConnected={this.state.isConnected} />
+          <PrivateRoute component={Game} isConnected={this.state.isConnected} />
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;
