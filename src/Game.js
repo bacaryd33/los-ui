@@ -212,6 +212,7 @@ class Game extends Component {
 
                 </div>
                 <div class="modal-body">
+                  <img src={blue} /><br/>
                   <span id="nameOpponent">nameOpponent</span> wants to confront you
                 </div>
                 <div class="modal-footer">
