@@ -12,6 +12,16 @@ import { SERVER_URL } from "./consts";
 import Card from "./Card";
 import "./App.css";
 import "./card.css";
+import logo from './miniLogo.png';
+import deco from './deconnexion.png';
+import desin from './desinscrire.png';
+import regle from './regles.png';
+import card from './mainLogo.png';
+import blue from './IconBlue.png';
+import green from './IconGreen.png';
+import purple from './IconPurple.png';
+import yellow from './IconYellow.png';
+import red from './IconRed.png';
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
@@ -112,10 +122,11 @@ class Game extends Component {
     }
     generateCards(champs) {
         let cards = [];
+        let str=["offensif","defensif","equilibré","hasard"];
         for (let i = 0; i < champs.length; i++) {
             cards.push(
                 <Card id={champs[i][0].id}
-                      name={champs[i][0].name}
+                      name={str[i]}
                       img={champs[i][0].img}
                       key={i}
                       onClick={this.handleClick.bind(this, i)}
@@ -130,102 +141,268 @@ class Game extends Component {
             const tableD=this.state.tableDeck;
             if(error){
                 return(<div className="Appli">
-                        <button onClick={this.handleUnsubscribe}>Unsubscribe</button>
-                        <button onClick={this.handleDeconnexion}> Deconnexion</button>
-                        <div className="colequal">
-                            <h1> Choissez votre Deck </h1>
-                            <section className="row" classID="board">
-                                <p>Error</p>
-                            </section>
-                        </div>
-                        <div className="colequal">
-                            <h1>MatchMaking</h1>
-                            <table id="tableMatchMaking" className="tableMatch">
-                                <tr>
-                                    <th><h2>id</h2></th>
-                                    <th><h2>name</h2></th>
-                                </tr>
-                            </table>
+                        <nav className="navbar navbar-light">
+                            <img src={logo}/>
+                            <div>
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </a>
+                                <div className="dropdown-menu dropdown-menu-right"
+                                     aria-labelledby="navbarDropdownMenuLink">
+                                    <a className="dropdown-item" href="#">
+                                        <button onClick={this.handleRule}><Link to="/signin"><img
+                                            src={regle}/> Rules of the game</Link></button>
+                                    </a>
+                                    <a className="dropdown-item" href="#">
+                                        <button onClick={this.handleUnsubscribe}><Link to="/signin"><img
+                                            src={desin}/> Delete my account</Link></button>
+                                    </a>
+                                    <a className="dropdown-item" href="#">
+                                        <button onClick={this.handleDeconnexion}><Link to="/signin"><img
+                                            src={deco}/> Log out</Link></button>
+                                    </a>
+                                </div>
+                            </div>
+                        </nav>
+
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div className="card">
+                                        <div className="card-header">
+                                            <h3> Chose your Deck </h3>
+                                        </div>
+                                        <div className="card-body">
+                                            <p>Error</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div className="card">
+                                        <div className="card-header">
+                                            <h3>Invite an opponent</h3>
+                                        </div>
+                                        <div className="card-body">
+                                            <table id="tableMatchMaking" className="tableMatch">
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <footer>
                             <div className="footerMatchMaking">
                                 <input type="checkbox" id="aleamatch" onChange={this.handleRandomMatchMaking}
                                        checked={this.state.randomMatch}/>
-                                <label htmlFor="horns">Lancer un match aleatoire</label>
+                                <label htmlFor="horns">Find a game randomly</label>
                             </div>
                             <button id="buttonPlay"
-                                    className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Jouer
+                                    className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"} onClick={this.handleJouer}>Play
                             </button>
 
+                            <button type="button" id="try" className="btn btn-primary" data-toggle="modal"
+                                    data-target="#popupMatch">
+                                Try popupMatch
+                            </button>
                         </footer>
+
+                        <div className="modal fade" id="popupMatch" tabIndex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal-dialog modal-dialog-centered" role="document">
+                                <div className="modal-content">
+                                    <div className="headerpopup">
+                                        <h5 className="modal-title" id="popupMatchlLabel" align="center">Match
+                                            found</h5>
+
+                                    </div>
+                                    <div className="modal-body">
+                                        <img src={blue}/><br/>
+                                        <span id="nameOpponent">nameOpponent</span> wants to confront you
+                                    </div>
+                                    <div className="modal-footer">
+                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                            <button type="button" id="declineMatchmaking" className="btn btn-secondary"
+                                                    data-dismiss="modal">Decline
+                                            </button>
+                                        </div>
+                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                            <button type="button" id="acceptMatchmaking"
+                                                    className="btn btn-primary">Accept !
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 );
             } else if (!isLoaded){
                 return (<div className="Appli">
-                        <button onClick={this.handleUnsubscribe}>Unsubscribe</button>
-                        <button onClick={this.handleDeconnexion}>Deconnexion</button>
-                        <div className="colequal">
-                            <h1> Choissez votre Deck </h1>
-                            <section className="row" classID="board">
-                                <p>Loading</p>
-                            </section>
-                        </div>
-                        <div className="colequal">
-                            <h1>MatchMaking</h1>
-                            <table id="tableMatchMaking" className="tableMatch">
-                                <tr>
-                                    <th><h2>id</h2></th>
-                                    <th><h2>name</h2></th>
-                                </tr>
-                            </table>
+                        <nav className="navbar navbar-light">
+                            <img src={logo}/>
+                            <div>
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </a>
+                                <div className="dropdown-menu dropdown-menu-right"
+                                     aria-labelledby="navbarDropdownMenuLink">
+                                    <a className="dropdown-item" href="#">
+                                        <button onClick={this.handleRule}><Link to="/signin"><img
+                                            src={regle}/> Rules of the game</Link></button>
+                                    </a>
+                                    <a className="dropdown-item" href="#">
+                                        <button onClick={this.handleUnsubscribe}><Link to="/signin"><img
+                                            src={desin}/> Delete my account</Link></button>
+                                    </a>
+                                    <a className="dropdown-item" href="#">
+                                        <button onClick={this.handleDeconnexion}><Link to="/signin"><img
+                                            src={deco}/> Log out</Link></button>
+                                    </a>
+                                </div>
+                            </div>
+                        </nav>
+
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div className="card">
+                                        <div className="card-header">
+                                            <h3> Chose your Deck </h3>
+                                        </div>
+                                        <div className="card-body">
+                                            <p>Loading</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div className="card">
+                                        <div className="card-header">
+                                            <h3>Invite an opponent</h3>
+                                        </div>
+                                        <div className="card-body">
+                                            <table id="tableMatchMaking" className="tableMatch">
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <footer>
                             <div className="footerMatchMaking">
                                 <input type="checkbox" id="aleamatch" onChange={this.handleRandomMatchMaking}
                                        checked={this.state.randomMatch}/>
-                                <label htmlFor="horns">Lancer un match aleatoire</label>
+                                <label htmlFor="horns">Find a game randomly</label>
                             </div>
                             <button id="buttonPlay"
-                                    className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Jouer
+                                    className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"} onClick={this.handleJouer}>Play
                             </button>
 
+                            <button type="button" id="try" className="btn btn-primary" data-toggle="modal"
+                                    data-target="#popupMatch">
+                                Try popupMatch
+                            </button>
                         </footer>
+
+                        <div className="modal fade" id="popupMatch" tabIndex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal-dialog modal-dialog-centered" role="document">
+                                <div className="modal-content">
+                                    <div className="headerpopup">
+                                        <h5 className="modal-title" id="popupMatchlLabel" align="center">Match
+                                            found</h5>
+
+                                    </div>
+                                    <div className="modal-body">
+                                        <img src={blue}/><br/>
+                                        <span id="nameOpponent">nameOpponent</span> wants to confront you
+                                    </div>
+                                    <div className="modal-footer">
+                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                            <button type="button" id="declineMatchmaking" className="btn btn-secondary"
+                                                    data-dismiss="modal">Decline
+                                            </button>
+                                        </div>
+                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                            <button type="button" id="acceptMatchmaking"
+                                                    className="btn btn-primary">Accept !
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 );
             }else{
                 let cards=this.generateCards(tableD);
+
                 return(<div className="Appli">
-                    <button onClick={this.handleUnsubscribe}>Unsubscribe</button>
-                    <button onClick={this.handleDeconnexion}>Deconnexion</button>
-                    <div className="colequal">
-                        <h1> Choissez votre Deck </h1>
-                        <section className="row">
-                            {cards}
-                        </section>
-                    </div>
-                    <div className="colequal">
-                        <h1>MatchMaking</h1>
-                        <table id="tableMatchMaking" className="tableMatch">
-                            <tr>
-                                <th><h2>id</h2></th>
-                                <th><h2>name</h2></th>
-                            </tr>
-                            <tr>
-                                <th><h2>t</h2></th>
-                                <th><h2>n</h2></th>
-                            </tr>
-                        </table>
+                    <nav className="navbar navbar-light">
+                        <img src={logo}/>
+                        <div>
+                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </a>
+                            <div className="dropdown-menu dropdown-menu-right"
+                                 aria-labelledby="navbarDropdownMenuLink">
+                                <a className="dropdown-item" href="#">
+                                    <button onClick={this.handleRule}><Link to="/signin"><img
+                                        src={regle}/> Rules of the game</Link></button>
+                                </a>
+                                <a className="dropdown-item" href="#">
+                                    <button onClick={this.handleUnsubscribe}><Link to="/signin"><img
+                                        src={desin}/> Delete my account</Link></button>
+                                </a>
+                                <a className="dropdown-item" href="#">
+                                    <button onClick={this.handleDeconnexion}><Link to="/signin"><img
+                                        src={deco}/> Log out</Link></button>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <div className="card">
+                                    <div className="card-header">
+                                        <h3> Chose your Deck </h3>
+                                    </div>
+                                    <div className="card-body">
+                                        <section  className="row">
+                                        {cards}
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <div className="card">
+                                    <div className="card-header">
+                                        <h3>Invite an opponent</h3>
+                                    </div>
+                                    <div className="card-body">
+                                        <table id="tableMatchMaking" className="tableMatch">
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <footer>
                         <div className="footerMatchMaking">
                             <input type="checkbox" id="aleamatch" onChange={this.handleRandomMatchMaking}
                                    checked={this.state.randomMatch}/>
-                            <label htmlFor="horns">Lancer un match aleatoire</label>
+                            <label htmlFor="horns">Find a game randomly</label>
                         </div>
                         <button id="buttonPlay"
-                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"}>Jouer
+                                className={this.state.readyToPlay ? "butMatchMakingSelected" : "butMatchMakingNotSelected"} onClick={this.handleJouer}>Play
                         </button>
-
                     </footer>
                 </div>);
             }
@@ -235,21 +412,33 @@ class Game extends Component {
         function handleMatchRequest(tabRequest,tok) {
             if(tabRequest.length>0){
                 for(let elt of tabRequest){
-                    alert("passe dans elt");
                     console.log(tok);
                     if(window.confirm(elt.name+" vous defie  voulez vous jouez")){
                         let url=SERVER_URL+"/matchmaking/acceptRequest?matchmakingId="+elt.matchmakingId+"&token="+tok;
                         axios.get(url).then(res=>{
                             let data=res.data;
                             if(data.status=="ok"){
-                                this.props.history.push({pathname:process.env.PUBLIC_URL + "/board",
-                                    state:{match:data}});
+                                this.props.history.push({state:{match:data}});
+                                let deck=this.state.tableDeck[this.state.Deck];
+                                for(let i=0;i<deck.length;i++){
+                                    deck[i]=deck[i]["key"];
+                                }
+                                alert("status ok dans accept request avant json stringify de deck");
+                                deck=JSON.stringify(deck);
+                                let urlChooseDeck=SERVER_URL+"/match/initDeck?deck="+deck;
+                                axios.get(urlChooseDeck).then(res=>{
+                                    let data=res.data;
+                                    if(data.status=="ok"){
+                                        alert("deck crée pour le joueur !");
+                                        this.props.history.push(process.env.PUBLIC_URL + "/board");
+                                    }
+                                });
+
                             }
                         })
                     }
                 }
             }else{
-                alert("tab request null");
             }
         }
         function SendRequest(data,tok,i){
@@ -268,14 +457,63 @@ class Game extends Component {
             })
 
         }
-        let tok=this.props.location.state.token;
-        let cont=this;
+
+      let url2=SERVER_URL +
+          "/cards/getAll";
+      axios.get(url2).then(res=>{
+          let data=res.data;
+          if(data.status==="ok") {
+              let tableD=[];
+              data = data.data;
+              for(let i=0;i<4;i++){
+                  tableD[i]=this.randomPick(data,20);
+              }
+              let champs=[];
+              for(let j=0;j<tableD.length;j++){
+                  for(let u=0;u<tableD[j];u++){
+                      champs.push(tableD[j][u]);
+                  }
+              }
+              this.setState({tableDeck:tableD,champs:champs,isLoaded:true});
+          }else{
+              this.setState({error:"Une erreur s'est produite : "+data.message,isLoaded:true});
+          }
+      });
+      let tok=this.props.location.state.token;
+      let cont=this;
+      let tableDeck=this.state.tableDeck;
+      let Deck=this.state.Deck;
         setTimeout(function (cont){
             let url23=SERVER_URL+"/matchmaking/participate?&token="+tok;
             axios.get(url23).then(res=>{
                 let data=res.data;
                 if(data.status=="ok"){
                     let allRequest=data.data["request"];
+                    let match=data.data.match;
+                    alert("ici apres attribution de match");
+                    if(match!=null && this.state.isLoaded==true){
+                        //this.props.history.push({state:{match:match}});
+                        console.log(Deck);
+                        console.log(tableDeck);
+                        let deck=tableDeck[Deck];
+                        console.log(deck);
+                        for(let i=0;i<deck.length;i++){
+                            console.log("test");
+                            deck[i]=deck[i]["key"];
+                        }
+                        alert("status ok dans matchRequest le joueur est dans un match avant la creation de son deck");
+                        deck=JSON.stringify(deck);
+                        let urlChooseDeck=SERVER_URL+"/match/initDeck?deck="+deck;
+                        axios.get(urlChooseDeck).then(res=>{
+                            let data=res.data;
+                            if(data.status=="ok"){
+                                alert("deck crée pour le joueur !");
+                                this.props.history.push(process.env.PUBLIC_URL + "/board");
+                            }
+                        });
+                    }else{
+                        alert("param match a null");
+                    }
                     console.log("affiche tab request before methode");
                     console.log(Object.keys(data));
                     handleMatchRequest(allRequest,tok);
@@ -307,10 +545,15 @@ class Game extends Component {
                             let  l1=tableM.insertRow(-1);
                             let cellId=l1.insertCell(-1);
                             let cellN=l1.insertCell(-1);
+                            let cellB=l1.insertCell(-1);
+                            let imgf=document.createElement("img");
+                            imgf.src=blue;
+                            cellId.appendChild(imgf);
+                            //cellId.innerHTML="<img src='./IconRed.png'/>";
                             let matchMaking=datafgf[i]["matchmakingId"];
-                            cellId.innerHTML=datafgf[i]["email"];
                             cellN.innerHTML=datafgf[i]["name"];
-                            l1.onclick=function(){
+                            cellB.innerHTML="<button> Invite</button>"
+                            cellB.onclick=function(){
                                 SendRequest(matchMaking,cont.props.location.state.token,i);
                             }
                         }else{
@@ -322,27 +565,6 @@ class Game extends Component {
                 }
             });
         },800);
-      let url2=SERVER_URL +
-          "/cards/getAll";
-      axios.get(url2).then(res=>{
-          let data=res.data;
-          if(data.status==="ok") {
-              let tableD=[];
-              data = data.data;
-              for(let i=0;i<4;i++){
-                  tableD[i]=this.randomPick(data,20);
-              }
-              let champs=[];
-              for(let j=0;j<tableD.length;j++){
-                  for(let u=0;u<tableD[j];u++){
-                      champs.push(tableD[j][u]);
-                  }
-              }
-              this.setState({tableDeck:tableD,champs:champs,isLoaded:true});
-          }else{
-              this.setState({error:"Une erreur s'est produite : "+data.message,isLoaded:true});
-          }
-      });
   }
     componentWillReceiveProps(nextProps) {
         function handleMatchRequest(tabRequest,tok) {
@@ -360,11 +582,9 @@ class Game extends Component {
                     }
                 }
             }else{
-                alert("tab request null");
             }
         }
         function SendRequest(data,tok,i){
-            alert("passe ic");
             let url =
                 SERVER_URL +
                 "/matchmaking/request?matchmakingId="+data+"&token="
@@ -420,12 +640,15 @@ class Game extends Component {
                             let  l1=tableM.insertRow(-1);
                             let cellId=l1.insertCell(-1);
                             let cellN=l1.insertCell(-1);
+                            let cellB=l1.insertCell(-1);
+                            let img=document.createElement("img");
+                            img.source={blue};
+                            cellId.appendChild(img);
                             let matchMaking=datafgf[i]["matchmakingId"];
-                            cellId.innerHTML=datafgf[i]["email"];
                             cellN.innerHTML=datafgf[i]["name"];
-                            l1.onclick=function(){
-                                SendRequest(matchMaking,cont.props.location.state.token,i);
-                            }
+                            let button=document.createElement("button");
+                            button.onClick=SendRequest(matchMaking,cont.props.location.token,i);
+                            cellB.appendChild(button);
                         }else{
                         }
                     }
