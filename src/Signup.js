@@ -54,7 +54,7 @@ class Signup extends Component {
     axios.get(url).then(res => {
       let data = res.data;
       if (data.status === "ok") {
-        this.props.history.push(process.env.PUBLIC_URL + "/");
+        this.props.history.push(process.env.PUBLIC_URL + "/signin");
       } else {
         this.setState({ error: "Une erreur s'est produite : " + data.message });
       }
