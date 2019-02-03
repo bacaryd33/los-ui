@@ -68,7 +68,7 @@
 .login-form  .btn.btn-primary {
   background: #f0ad4e none repeat scroll 0 0;
   border-color: #f0ad4e;
-  color: #ffffff;
+  color: #fff;
   font-size: 14px;
   width: 100%;
   height: 50px;
@@ -118,23 +118,11 @@
   }
 }
 
-
-
-/*
-CSS DE LA PAGE SINGIN.JS
-*/
-#connexion{
-  background-color: #1E2328;
-  text-transform: uppercase;
-  border: 3px solid #016A8C;
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: unset;
-}
 .tableDeck,th,td{
   border-collapse: collapse;
   border:solid 1px black;
 }
+
 /*
 CSS DE LA PAGE SINGIN.JS
 */

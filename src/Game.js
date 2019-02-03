@@ -32,14 +32,14 @@ class Game extends Component {
             login: "",
             randomMatch:false,
             findMatch:false,
-            Deck:0,
+            Deck:2,
             readyToPlay:false,
             matchmakingid:"",
             champs:[],
             tableDeck:[],
             tabRequest:[],
             cards:[],
-            isLoaded:true,
+            isLoaded: true,
             error: ""
         };
         this.handleRandomMatchMaking=this.handleRandomMatchMaking.bind(this);
@@ -82,6 +82,7 @@ class Game extends Component {
     }
 
     handleClick(cardPosition, event) {
+        console.log(this.state.tableDeck[cardPosition])
         this.setState({Deck:this.state.tableDeck[cardPosition]});
     }
 
@@ -440,7 +441,7 @@ class Game extends Component {
             }else{
             }
         }
-        
+
         function SendRequest(data,tok,i){
             let url =
                 SERVER_URL +
@@ -458,12 +459,13 @@ class Game extends Component {
             })
 
         }
-
+    let fdp="2"; /////////////////////////////////////////////////
       let url2=SERVER_URL +
           "/cards/getAll";
       axios.get(url2).then(res=>{
           let data=res.data;
           if(data.status==="ok") {
+            alert("cards/getAll ok");
               let tableD=[];
               data = data.data;
               for(let i=0;i<4;i++){
@@ -471,7 +473,8 @@ class Game extends Component {
               }
               let champs=[];
               for(let j=0;j<tableD.length;j++){
-                  for(let u=0;u<tableD[j];u++){
+                  
+                  for(let u=0;u<tableD[j].length;u++){  /////////length 
                       champs.push(tableD[j][u]);
                   }
               }
@@ -479,31 +482,45 @@ class Game extends Component {
           }else{
               this.setState({error:"Une erreur s'est produite : "+data.message,isLoaded:true});
           }
+          fdp=this.state.tableDeck[this.state.Deck];
+          console.log(fdp)
       });
       let tok=this.props.location.state.token;
+      let n=this.state.isLoaded==true
       let cont=this;
-      let tableDeck=this.state.tableDeck;
+      let ptableDeck=this;
+      alert("o");
+      console.log(this);
+      console.log(fdp);
       let Deck=this.state.Deck;
         setTimeout(function (cont){
             let url23=SERVER_URL+"/matchmaking/participate?&token="+tok;
             axios.get(url23).then(res=>{
                 let data=res.data;
                 if(data.status=="ok"){
+                    alert(ptableDeck)
                     let allRequest=data.data["request"];
                     let match=data.data.match;
-                    alert("ici apres attribution de match");
-                    if(match!=null && this.state.isLoaded==true){
+                    alert("participate ok");
+                    
+                    if(match!=null && n){
                         //this.props.history.push({state:{match:match}});
                         console.log(Deck);
-                        console.log(tableDeck);
-                        let deck=tableDeck[Deck];
+                        console.log(ptableDeck.state.tableDeck[ptableDeck.state.Deck]);
+                        let deck=ptableDeck[Deck];
                         console.log(deck);
+                        alert(ptableDeck[Deck])
+                        alert(ptableDeck)
+                        alert(Deck)
                         for(let i=0;i<deck.length;i++){
                             console.log("test");
+                            alert(deck[i]["key"])
                             deck[i]=deck[i]["key"];
+                            alert(Deck)
                         }
                         alert("status ok dans matchRequest le joueur est dans un match avant la creation de son deck");
                         deck=JSON.stringify(deck);
+                        alert(deck)
                         let urlChooseDeck=SERVER_URL+"/match/initDeck?deck="+deck;
                         axios.get(urlChooseDeck).then(res=>{
                             let data=res.data;
@@ -519,12 +536,12 @@ class Game extends Component {
                     console.log(Object.keys(data));
                     handleMatchRequest(allRequest,tok);
                     this.setState({matchmakingid:data.data["matchmakingId"]});
-                    this.forceUpdate();
+                    this.forceUpdate(); 
                 }else{
                     this.setState({error: "Une erreur s'est produite : " + data.message});
                 }
             })
-        },2000);
+        },5000);
         setTimeout(function(count){
             let url2 =
                 SERVER_URL +
@@ -568,6 +585,7 @@ class Game extends Component {
         },800);
   }
     componentWillReceiveProps(nextProps) {
+        console.log(this)
         function handleMatchRequest(tabRequest,tok) {
             if(tabRequest.length>0){
                 for(let elt of tabRequest){
@@ -578,6 +596,10 @@ class Game extends Component {
                             if(data.status=="ok"){
                                 this.props.history.push({pathname:process.env.PUBLIC_URL + "/board",
                                     state:{match:data}});
+                                    alert({pathname:process.env.PUBLIC_URL + "/board"});
+                            }
+                            else{
+                            
                             }
                         });
                     }
@@ -678,7 +700,7 @@ class Game extends Component {
                 }
                 let champs=[];
                 for(let j=0;j<tableD.length;j++){
-                    for(let u=0;u<tableD[j];u++){
+                    for(let u=0;u<tableD[j].length;u++){
                         champs.push(tableD[j][u]);
                     }
                 }

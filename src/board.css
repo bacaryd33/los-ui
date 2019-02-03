@@ -1,8 +1,8 @@
 .board {
   background-image: url("backboard.jpg") ;
   background-position: center;
-  background-size: 'cover';
-  background-repeat: 'no-repeat';
+  /*background-size: 'cover';*/
+  /*background-repeat: 'no-repeat';*/
   height: 100vh;
   width: 100vw;
 } 
@@ -18,13 +18,13 @@
   display:flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 40%; 
+  height: 36%;
 }
 
 .myplayedcard{
   background-color: brown;
   order:2;
-  width:70%;
+  width:100%;
   display: flex;
   justify-content: space-evenly;
 }
@@ -76,6 +76,14 @@
   order:5;
   width:70%;
 }
+.space{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0px;
+  padding: 12px;
+}
 
 .myhand:hover
 {
@@ -95,7 +103,7 @@
   display:flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 40%;
+  height: 36%;
   
 }
 
