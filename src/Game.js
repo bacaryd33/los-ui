@@ -31,7 +31,6 @@ class Game extends Component {
             isLoaded:false,
             error: ""
         };
-        this.handleRandomMatchMaking=this.handleRandomMatchMaking.bind(this);
         this.handleJouer=this.handleJouer.bind(this);
         this.handleDeconnexion=this.handleDeconnexion.bind(this);
         this.handleUnsubscribe=this.handleUnsubscribe.bind(this);
@@ -39,6 +38,7 @@ class Game extends Component {
 
     //todo encrypter le password with bcrypt
     handleUnsubscribe(e){
+        console.log("handle unsubscribe");
         //let hashPass=bcrypt.hash(this.props.location.state.password,10);
         let hashPass=this.props.location.state.password;
         let url=SERVER_URL+"/users/unsubscribe?email="+this.props.location.state.email+"&password="+hashPass+"&token="+this.props.location.state.token;
@@ -67,9 +67,11 @@ class Game extends Component {
     }*/
 
     handleClick(cardPosition, event) {
+        //console.log("handle click");
         this.setState({Deck:cardPosition});
     }
     sendRequest(matchmaking){
+        console.log("SendRequest this");
         let url =
             SERVER_URL +
             "/matchmaking/request?matchmakingId="+matchmaking+"&token="
@@ -86,6 +88,7 @@ class Game extends Component {
         });
     }
     handleJouer(e){
+        console.log("handle jouer");
         if(this.state.isLoaded && this.state.tabAdversaire.length>0){
             for(let elt of this.state.tabAdversaire){
                 this.sendRequest(elt['matchmakingId']);
@@ -94,6 +97,7 @@ class Game extends Component {
     }
 
     handleDeconnexion(e){
+        console.log("handle Deco");
         let urlUnparticipate = SERVER_URL + "/matchmaking/unparticipate?matchmakingid=" + this.state.matchmakingid + "&token=" + this.props.location.state.token;
         axios.get(urlUnparticipate).then(res => {
             let data = res.data;
@@ -114,6 +118,7 @@ class Game extends Component {
     }
 
     randomPick(champs, number) {
+        //console.log("random Pick");
         let rChamps = [];
         for (let i = 0; i < (number); i++) {
             let elem = champs.splice(Math.floor(Math.random() * champs.length), 1)[0];
@@ -123,6 +128,7 @@ class Game extends Component {
         return rChamps;
     }
     generateCards(champs) {
+        //console.log("generate Cards");
         let cards = [];
         let str=["offensif","defensif","equilibré","hasard"];
         for (let i = 0; i < champs.length; i++) {
@@ -138,10 +144,12 @@ class Game extends Component {
     }
 
         render(){
+            //console.log("render");
             const error=this.state.error;
             const isLoaded=this.state.isLoaded;
             const tableD=this.state.tableDeck;
             if(error){
+                console.log("render error");
                 return(
                     <div className="Appli">
                         <nav className="navbar navbar-light">
@@ -203,6 +211,7 @@ class Game extends Component {
                     </div>
                 );
             } else if (!isLoaded){
+                console.log("render not loaded");
                 return (
                     <div className="Appli">
                         <nav className="navbar navbar-light">
@@ -265,6 +274,7 @@ class Game extends Component {
                 );
             }else{
                 let cards=this.generateCards(tableD);
+                console.log("render loaded");
                 return(
                     <div className="Appli">
                     <nav className="navbar navbar-light">
@@ -331,7 +341,9 @@ class Game extends Component {
   }
 
   componentDidMount() {
+      //console.log("componentDedMount");
         function getMatch(){
+            console.log("getMatchComponentDidMount");
             let urlMatch=SERVER_URL+"/match/getMatch?token="+tok;
             axios.get(urlMatch).then(res=>{
                 let data=res.data;
@@ -347,6 +359,7 @@ class Game extends Component {
             });
         }
         function initDeckForMatch(deck){
+            console.log("init Deck componentDidMount");
             let deckJson=[];
             for(let elt of deck){
                 deckJson.push({key:elt['name']});
@@ -364,9 +377,11 @@ class Game extends Component {
             });
         }
         function changeLocToPlateau(){
+            console.log("change loc plateau componentDidMount");
             cont.props.history.push(process.env.PUBLIC_URL + "/board");
         }
         function participateMatchMaking(matchmakingId){
+            console.log("participateMatchMaking didMount");
             let urlParticipate=SERVER_URL+"/matchmaking/participate?&token="+tok;
             axios.get(urlParticipate).then(res=>{
                 let data=res.data;
@@ -386,6 +401,7 @@ class Game extends Component {
             });
         }
         function updateMatchMaking(tabAdversaire){
+            console.log("updateMatchMaking did mount");
             let urlUpdateMatchMaking = SERVER_URL + "/matchmaking/getAll?&token=" +cont.props.location.state.token;
             axios.get(urlUpdateMatchMaking).then(res => {
                 let data;
@@ -421,6 +437,7 @@ class Game extends Component {
             });
         }
         function handleMatchRequest(tabRequest,tok,cont) {
+            console.log("handle match Request component did mount");
           if(tabRequest.length>0){
               for(let elt of tabRequest){
                   if(window.confirm(elt.name+" vous defie  voulez vous jouez")){
@@ -438,6 +455,7 @@ class Game extends Component {
           }
       }
         function SendRequest(data,tok,i){
+            console.log("send Request component did mount");
           let url =
               SERVER_URL +
               "/matchmaking/request?matchmakingId="+data+"&token="
@@ -454,6 +472,7 @@ class Game extends Component {
           });
       }
         function test(DeckAPasser,matchmakingId,isLoad,error,cont){
+            console.log("test component did mount");
           //console.log(DeckAPasser);
           let url23=SERVER_URL+"/matchmaking/participate?&token="+tok;
           axios.get(url23).then((res, error)=>{
@@ -502,6 +521,7 @@ class Game extends Component {
           });
       }
         function getCards(){
+            console.log("get Cards component did mount");
             let url2=SERVER_URL + "/cards/getAll";
             axios.get(url2).then(res=>{
                 let data=res.data;
@@ -509,7 +529,7 @@ class Game extends Component {
                     let tableD=[];
                     data = data.data;
                     for(let i=0;i<4;i++){
-                        let temporary=(this.randomPick(data,20));
+                        let temporary=(cont.randomPick(data,20));
                         tableD.push(temporary);
                     }
                     let champs=[];
@@ -520,9 +540,9 @@ class Game extends Component {
                         }
                     }
                     let isLoad=true;
-                    this.setState({tableDeck:tableD,champs:champs,isLoaded:isLoad});
+                    cont.setState({tableDeck:tableD,champs:champs,isLoaded:true});
                 }else{
-                    this.setState({error:"Une erreur s'est produite : "+data.message,isLoaded:true});
+                    cont.setState({error:"Une erreur s'est produite : "+data.message,isLoaded:true});
                 }
             });
         }
@@ -530,17 +550,243 @@ class Game extends Component {
       let cont=this;
       let matchMaking="";
       let tabAdversaire=[];
+
       if(cont.state.isLoaded==false){
             getCards();
         }else{
+          //console.log("set Timeout componentDidMount");
+          participateMatchMaking(matchMaking);
+          updateMatchMaking(tabAdversaire);
+          cont.setState({matchmakingId:matchMaking,tabAdversaire:tabAdversaire});
+      }
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+        //console.log("component did update");
+      function getMatch(){
+          //console.log("getMatch");
+          let urlMatch=SERVER_URL+"/match/getMatch?token="+tok;
+          axios.get(urlMatch).then(res=>{
+              let data=res.data;
+              if(data.status=="ok"){
+                  console.log("get match succesfull");
+                  if (data.data.status="Deck is pending"){
+                      let deck=cont.state.tableDeck[cont.state.Deck];
+                      initDeckForMatch(deck);
+                  }
+              }else{
+                  cont.setState({error:"Une erreur s'est produite : "+data.message});
+              }
+          });
+      }
+      function initDeckForMatch(deck){
+          //console.log(deck);
+          //console.log("init Deck");
+          let deckJson=[];
+          for(let elt of deck){
+              //console.log(elt);
+              deckJson.push({key:elt['name']});
+          }
+          deckJson=JSON.stringify(deckJson);
+          let urlChooseDeck=SERVER_URL+"/match/initDeck?deck="+deckJson+"&token="+tok;
+          axios.get(urlChooseDeck).then(res=>{
+              let data=res.data;
+              if(data.status=="ok"){
+                  alert("deck crée pour le joueur !");
+                  changeLocToPlateau(cont);
+              }else{
+                  cont.setState({error:"Une erreur s'est produite : "+data.message});
+              }
+          });
+      }
+      function changeLocToPlateau(){
+          console.log("change loc plateau");
+          cont.props.history.push(process.env.PUBLIC_URL + "/board");
+      }
+      function participateMatchMaking(matchmakingId){
+          console.log("participateMatchMaking componentdidupdate");
+          let urlParticipate=SERVER_URL+"/matchmaking/participate?&token="+tok;
+          axios.get(urlParticipate).then(res=>{
+              let data=res.data;
+              if(data.status=="ok"){
+                  data=data.data;
+                  matchmakingId=data['matchmakingId'];
+                  let allRequest=data['request'];
+                  let match=data['match'];
+                  if(match!=undefined && cont.state.isLoaded){
+                      getMatch();
+                  }else{
+                      handleMatchRequest(allRequest,tok,cont)
+                  }
+              }else{
+                  cont.setState({error:"Une erreur s'est produite : "+data.message});
+              }
+          });
+      }
+      function updateMatchMaking(tabAdversaire){
+          console.log("updateMatchMaking");
+          let urlUpdateMatchMaking = SERVER_URL + "/matchmaking/getAll?&token=" +cont.props.location.state.token;
+          axios.get(urlUpdateMatchMaking).then(res => {
+              let data;
+              data = res.data;
+              if (data.status === "ok") {
+                  data=data.data;
+                  let tableM=document.getElementById("tableMatchMaking");
+                  var rowCount = tableM.rows.length;
+                  for (var x=rowCount-1; x>0; x--) {
+                      tableM.deleteRow(x);
+                  }
+                  for( let i=0;i<data.length;i++){
+                      if(data[i]["matchmakingId"]!=cont.state.matchmakingid){
+                          let  l1=tableM.insertRow(-1);
+                          let cellImg=l1.insertCell(-1);
+                          let cellN=l1.insertCell(-1);
+                          let cellB=l1.insertCell(-1);
+                          let img=document.createElement("img");
+                          img.src=blue;
+                          cellImg.appendChild(img);
+                          let matchMaking=data[i]["matchmakingId"];
+                          cellN.innerHTML=data[i]["name"];
+                          cellB.innerHTML="<button> Invite</button>"
+                          cellB.onclick=function(){
+                              SendRequest(matchMaking,cont.props.location.state.token,i);
+                          }
+                      }
+                  }
+                  tabAdversaire=data;
+              } else {
+                  cont.setState({error:"Une erreur s'est produite : "+data.message});
+              }
+          });
+      }
+      function handleMatchRequest(tabRequest,tok,cont) {
+          console.log("handle match Request");
+          if(tabRequest.length>0){
+              for(let elt of tabRequest){
+                  if(window.confirm(elt.name+" vous defie  voulez vous jouez")){
+                      let url=SERVER_URL+"/matchmaking/acceptRequest?matchmakingId="+elt.matchmakingId+"&token="+tok;
+                      axios.get(url).then(res=>{
+                          let data=res.data;
+                          if(data.status=="ok"){
+                              getMatch();
+                          }else{
+                              cont.setState({error:"Une erreur s'est produite : "+data.message});
+                          }
+                      });
+                  }
+              }
+          }
+      }
+      function SendRequest(data,tok,i){
+          console.log("send Request");
+          let url =
+              SERVER_URL +
+              "/matchmaking/request?matchmakingId="+data+"&token="
+              +tok;
+          axios.get(url).then(res=>{
+              let data = res.data;
+              if (data.status=="ok"){
+                  alert("request send");
+                  cont.props.history.push({state:{Deck:this.state.tableDeck[this.state.Deck]}});
+
+              } else{
+                  cont.setState({ error: "Une erreur s'est produite : " + data.message });
+              }
+          });
+      }
+      function test(DeckAPasser,matchmakingId,isLoad,error,cont){
+          console.log("test");
+          //console.log(DeckAPasser);
+          let url23=SERVER_URL+"/matchmaking/participate?&token="+tok;
+          axios.get(url23).then((res, error)=>{
+              let data=res.data;
+              if(data.status=="ok"){
+                  //console.log(DeckAPasser);
+                  let allRequest=data.data["request"];
+                  let match=data.data.match;
+                  if(match!=null && isLoad==true){
+                      console.log(DeckAPasser);
+                      let deck=[];
+                      for(let elt of DeckAPasser[0]){
+                          console.log(elt);
+                          deck.push({key:elt["name"]});
+                      }
+                      //console.log(deck);
+                      alert("status ok dans matchRequest le joueur est dans un match avant la creation de son deck");
+                      let urlMatch=SERVER_URL+"/match/getMatch?token="+tok;
+                      axios.get(urlMatch).then(res=>{
+                          let data=res.data;
+                          if(data.status=="ok"){
+                              console.log("get match succesfull");
+                              if (data.data.status="Deck is pending"){
+                                  deck=JSON.stringify(deck);
+                                  let urlChooseDeck=SERVER_URL+"/match/initDeck?deck="+deck+"&token="+tok;
+                                  axios.get(urlChooseDeck).then(res=>{
+                                      let data=res.data;
+                                      if(data.status=="ok"){
+                                          alert("deck crée pour le joueur !");
+                                          cont.props.history.push(process.env.PUBLIC_URL + "/board");
+                                      }
+                                  });
+                              }
+                          }
+                      });
+
+
+                  }else{
+                      alert("param match a null");
+                  }
+                  handleMatchRequest(allRequest,tok,cont);
+                  matchmakingId=data.data["matchmakingId"];
+              }else{
+                  error="une erreur s'est produite"+data.message;
+              }
+          });
+      }
+      function getCards(){
+          console.log("get Cards");
+          let url2=SERVER_URL + "/cards/getAll";
+          axios.get(url2).then(res=>{
+              let data=res.data;
+              if(data.status==="ok") {
+                  let tableD=[];
+                  data = data.data;
+                  for(let i=0;i<4;i++){
+                      let temporary=(cont.randomPick(data,20));
+                      tableD.push(temporary);
+                  }
+                  let champs=[];
+                  //a quoi ca sert ?? a revoir
+                  for(let i=0;i<tableD.length;i++){
+                      for(let j=0;j<tableD[i].length;j++){
+                          champs.push(tableD[i][j]);
+                      }
+                  }
+                  let isLoad=true;
+                  cont.setState({tableDeck:tableD,champs:champs,isLoaded:true});
+              }else{
+                  cont.setState({error:"Une erreur s'est produite : "+data.message,isLoaded:true});
+              }
+          });
+      }
+      const tok=this.props.location.state.token;
+      let cont=this;
+      let matchMaking=prevState.matchmakingId;
+      let tabAdversaire=[];
+
+      if(prevState.isLoaded==false){
+          getCards();
+      }else{
           setTimeout(function(){
+              //console.log("set Timeout");
               participateMatchMaking(matchMaking);
               updateMatchMaking(tabAdversaire);
               cont.setState({matchmakingId:matchMaking,tabAdversaire:tabAdversaire});
           },800);
       }
   }
+
     componentWillReceiveProps(nextProps) {
+        //console.log("componentwillReceiveProps");
         /*function handleMatchRequest(tabRequest,tok) {
             if(tabRequest.length>0){
                 for(let elt of tabRequest){
