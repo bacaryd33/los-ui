@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
-import "./card.css";
-class Card extends Component {
+import "../style/card.css";
+class CardsDeck extends Component {
     constructor(props) {
         super(props);
     }
@@ -23,4 +23,4 @@ class Card extends Component {
         );
     }
 }
-export default Card;
+export default CardsDeck;

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import {Nav, NavItem} from "react-bootstrap"
 import "bootstrap/dist/css/bootstrap.css";
-import "./board.css";
+import "../style/board.css";
 import Card from "./Card.js";
-import { SERVER_URL } from "./consts";
+import { SERVER_URL } from "../consts";
 import Mediacard from "./CardBoard"
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -15,7 +15,8 @@ import { connect } from 'react-redux'
 //récupérer json depuis web service
 import "bootstrap/dist/js/bootstrap.js";
 import axios from "axios";
-import Makedeck from "./Makedeck";
+
+
 // import CardBoard from "CardBoard";
 
 
@@ -96,7 +97,7 @@ class Board extends Component {
 	}
 
 	componentWillReceiveProps(){
-
+		// let ulr2=(SERVER_URL+)
 	}
 
 	render()
@@ -130,7 +131,6 @@ class Board extends Component {
 					</div>
 				</div>
 				<div className="space">
-					SPACE
 				</div>
 				<div className="midbottom">
 					<div className="mydeck">
@@ -151,7 +151,7 @@ class Board extends Component {
 						NAME
 					</div>
 					<div className="myavatar">
-						AVATAR
+					
 					</div>
 				</div>
 			</div>

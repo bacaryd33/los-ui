@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import logo from './mainLogo.png';
+import logo from '../images/mainLogo.png';
 
-import { SERVER_URL } from "./consts";
+import { SERVER_URL } from "../consts";
 import 'bootstrap/dist/css/bootstrap.css';
 
-import "./App.css";
+import "../App.css";
 
 class Signin extends Component {
     constructor(props) {

@@ -105,7 +105,7 @@
   opacity: 1;
 }
 #allPage {
-  background-image: url("back.jpg") ;
+  background-image: url("images/back.jpg") ;
   width: 100vw;
   height: 100vh;
 }
@@ -148,7 +148,7 @@ CSS DE LA PAGE SINGIN.JS
   text-decoration: underline;
 }
 body {
- background-image: url("bgTest.jpg");
+ background-image: url("images/bgTest.jpg");
  background-color: #cccccc;
 }
 .card {
