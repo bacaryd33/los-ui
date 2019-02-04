@@ -37,10 +37,12 @@ class Game extends Component {
             tabAdversaire:[],
             isLoaded:false,
             error: ""
+
         };
         this.handleJouer=this.handleJouer.bind(this);
         this.handleDeconnexion=this.handleDeconnexion.bind(this);
         this.handleUnsubscribe=this.handleUnsubscribe.bind(this);
+
     }
 
     //todo encrypter le password with bcrypt
@@ -478,55 +480,55 @@ class Game extends Component {
                 }
             });
         }
-        function test(DeckAPasser,matchmakingId,isLoad,error,cont){
-            console.log("test component did mount");
-            //console.log(DeckAPasser);
-            let url23=SERVER_URL+"/matchmaking/participate?&token="+tok;
-            axios.get(url23).then((res, error)=>{
-                let data=res.data;
-                if(data.status=="ok"){
-                    //console.log(DeckAPasser);
-                    let allRequest=data.data["request"];
-                    let match=data.data.match;
-                    if(match!=null && isLoad==true){
-                        console.log(DeckAPasser);
-                        let deck=[];
-                        for(let elt of DeckAPasser[0]){
-                            console.log(elt);
-                            deck.push({key:elt["name"]});
-                        }
-                        //console.log(deck);
-                        alert("status ok dans matchRequest le joueur est dans un match avant la creation de son deck");
-                        let urlMatch=SERVER_URL+"/match/getMatch?token="+tok;
-                        axios.get(urlMatch).then(res=>{
-                            let data=res.data;
-                            if(data.status=="ok"){
-                                console.log("get match succesfull");
-                                if (data.data.status="Deck is pending"){
-                                    deck=JSON.stringify(deck);
-                                    let urlChooseDeck=SERVER_URL+"/match/initDeck?deck="+deck+"&token="+tok;
-                                    axios.get(urlChooseDeck).then(res=>{
-                                        let data=res.data;
-                                        if(data.status=="ok"){
-                                            alert("deck crée pour le joueur !");
-                                            cont.props.history.push(process.env.PUBLIC_URL + "/board");
-                                        }
-                                    });
-                                }
-                            }
-                        });
-
-
-                    }else{
-                        alert("param match a null");
-                    }
-                    handleMatchRequest(allRequest,tok,cont);
-                    matchmakingId=data.data["matchmakingId"];
-                }else{
-                    error="une erreur s'est produite"+data.message;
-                }
-            });
-        }
+        // function test(DeckAPasser,matchmakingId,isLoad,error,cont){
+        //     console.log("test component did mount");
+        //     //console.log(DeckAPasser);
+        //     let url23=SERVER_URL+"/matchmaking/participate?&token="+tok;
+        //     axios.get(url23).then((res, error)=>{
+        //         let data=res.data;
+        //         if(data.status=="ok"){
+        //             //console.log(DeckAPasser);
+        //             let allRequest=data.data["request"];
+        //             let match=data.data.match;
+        //             if(match!=null && isLoad==true){
+        //                 console.log(DeckAPasser);
+        //                 let deck=[];
+        //                 for(let elt of DeckAPasser[0]){
+        //                     console.log(elt);
+        //                     deck.push({key:elt["name"]});
+        //                 }
+        //                 //console.log(deck);
+        //                 alert("status ok dans matchRequest le joueur est dans un match avant la creation de son deck");
+        //                 let urlMatch=SERVER_URL+"/match/getMatch?token="+tok;
+        //                 axios.get(urlMatch).then(res=>{
+        //                     let data=res.data;
+        //                     if(data.status=="ok"){
+        //                         console.log("get match succesfull");
+        //                         if (data.data.status="Deck is pending"){
+        //                             deck=JSON.stringify(deck);
+        //                             let urlChooseDeck=SERVER_URL+"/match/initDeck?deck="+deck+"&token="+tok;
+        //                             axios.get(urlChooseDeck).then(res=>{
+        //                                 let data=res.data;
+        //                                 if(data.status=="ok"){
+        //                                     alert("deck crée pour le joueur !");
+        //                                     cont.props.history.push(process.env.PUBLIC_URL + "/board");
+        //                                 }
+        //                             });
+        //                         }
+        //                     }
+        //                 });
+        //
+        //
+        //             }else{
+        //                 alert("param match a null");
+        //             }
+        //             handleMatchRequest(allRequest,tok,cont);
+        //             matchmakingId=data.data["matchmakingId"];
+        //         }else{
+        //             error="une erreur s'est produite"+data.message;
+        //         }
+        //     });
+        // }
         function getCards(){
             console.log("get Cards component did mount");
             let url2=SERVER_URL + "/cards/getAll";
@@ -608,12 +610,9 @@ class Game extends Component {
         }
         function changeLocToPlateau(){
             console.log("change loc plateau");
-            // let bidon =  {
-            //     getDeck: []
-            // };
-            //
-            // bidon.table.push({status})
+
             cont.props.history.push(process.env.PUBLIC_URL + "/board");
+
         }
         function participateMatchMaking(matchmakingId){
             console.log("participateMatchMaking componentdidupdate");

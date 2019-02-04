@@ -6,7 +6,7 @@ class Player extends Component{
     constructor(props) {
 		super(props);
 		this.state = {
-            hp:25,
+            hp:150,
             hand:[],
             board:[],
             deck:[],
