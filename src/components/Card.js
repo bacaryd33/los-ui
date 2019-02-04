@@ -12,8 +12,7 @@ class CardsDeck extends Component {
                 <div className="card thumbnail " >
                     <div className="face front">
                         <img className="card-img"
-                             src={"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + this.props.img}
-                             alt="Card  cap"/>
+                             src={"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + this.props.img}/>
                         <div className="card-body">
                             <p className="card-text">{this.props.name}</p>
                         </div>

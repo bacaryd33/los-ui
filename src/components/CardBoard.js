@@ -9,7 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 
 
-class MediaCard extends React.Component {
+class CardBoard extends React.Component {
 
 
 
@@ -17,7 +17,7 @@ class MediaCard extends React.Component {
         const {name,attack,defense} = this.props
         return(
             <div>
-            <Card className='carta'>
+            <Card>
                 <CardActionArea>
                     <CardMedia
                         image="/static/images/cards/contemplative-reptile.jpg"
@@ -42,4 +42,4 @@ class MediaCard extends React.Component {
 }
 
 
-export default MediaCard;
+export default CardBoard;

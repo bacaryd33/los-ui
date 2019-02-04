@@ -5,46 +5,23 @@ import "../style/board.css";
 import Card from "./Card.js";
 import { SERVER_URL } from "../consts";
 import Mediacard from "./CardBoard"
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-// import Grid from 'react-css-grid'
-//ajouter navbar
-//automatiser resize board
-//placer zone carte (deck, hand, board)
-//facultatif placer hand adverse
-//récupérer json depuis web service
 import "bootstrap/dist/js/bootstrap.js";
 import axios from "axios";
 
-
-// import CardBoard from "CardBoard";
 
 
 class Board extends Component {
 
 	constructor(props) {
 		super(props);
+		this.getMatch()
 		this.state = {
-			status:null, //Deck is pending /
-			player1:null,
-			player2:null,
-		};
-	}
-    //localhost:3001/match/initDeck?[{key:"Jax"},{key:"Sona"},{key:"Tristana"},{key:"TahmKench"},{key:"Singed"},{key:"Thresh"},{key:"Karma"}]
+			status: null, //Deck is pending /
+			player1: true,
+			player2: false
+		}
+	};
 
-	initDeck(tabdeck,token,i){ //a tester
-		let url =
-			SERVER_URL +
-			"/match/initDeck?deck="+tabdeck+"&token="+token;
-		axios.get(url).then(res=>{
-			let data = res.data;
-			if (data.status=="ok"){
-				alert("Deck initialized");
-			} else{
-				this.setState({ error: "Error Deck initialization : " + data.message });
-			}
-		})
-	}
 
 	pickCard(deck,npick){
 		if(this.turn && npick==0){
@@ -60,6 +37,7 @@ class Board extends Component {
 		}
 
 	}
+
 
 	playcard(hand,turn,card){
 		if(turn){
@@ -79,23 +57,53 @@ class Board extends Component {
 
 	}
 
-	endturn(turn){
+	attackPlayer(card, ennemycard, hp){
+		let attp = (SERVER_URL + "/match/attackPlayer?token=")
 
+		//if (card = isBoard){
+
+		}
+
+
+	getMatch(){
+		let getM = (SERVER_URL + "/match/getMatch?&token=")
+		console.log(getM);
+	}
+
+
+	async endturn() {
+		let end = (SERVER_URL + "/match/endTurn?&token=")
+		console.log(end);
+		await axios.get(end + this.props.location.state.token)
+			.then(res => {
+				let data = res.data;
+				console.log(data);
+			})
 	}
 
 	finishmatch(){
-
+		let end = (SERVER_URL + "/match/finishMatch?&token=");
+		console.log(end);
+		axios.get(end)
+			.then(res => {
+				let data = res.data;
+				console.log(data);
+			})
 	}
 
-	componentDidMount(){
-		let url=(SERVER_URL+"/cards/getAll");
-			console.log(url)     
+
+	componentDidMount() {
+		// const tok = this.props.location.token;
+		// console.log(tok);
+		let url = (SERVER_URL + "/cards/getAll");
+		console.log(url)
 		axios.get(url)
-			.then(res=>{
-				let data=res.data;
-				console.log(data);});
-	}
+			.then(res => {
+				let data = res.data;
+				console.log(data);
+			});
 
+	}
 	componentWillReceiveProps(){
 		// let ulr2=(SERVER_URL+)
 	}
@@ -116,12 +124,6 @@ class Board extends Component {
 					</div>
 				</div>
 				<div className="midtop">
-					<div className="oppdeck">
-						DECK
-					</div>
-					<div className="oppendturn">
-						END TURN
-					</div>
 					<div className="oppplayedcard">
 						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
 						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
@@ -137,7 +139,8 @@ class Board extends Component {
 						DECK
 					</div>
 					<div className="myendturn">
-						END TURN
+						<button onClick={this.endturn}> END TURN BOOOOOY </button>
+
 					</div>
 					<div className="myplayedcard">
 						<Card/>
@@ -151,7 +154,7 @@ class Board extends Component {
 						NAME
 					</div>
 					<div className="myavatar">
-					
+
 					</div>
 				</div>
 			</div>
