@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import {Nav, NavItem} from "react-bootstrap"
+import "bootstrap/dist/css/bootstrap.css";
+import "./board.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
 import { SERVER_URL } from "./consts";
 
 class Board extends Component{
@@ -18,7 +20,7 @@ class Board extends Component{
 
     render() {
         return (
-            <div className="container">
+            <div className="board">
                 <p> dans le match making</p>
             </div>
         );

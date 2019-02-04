@@ -116,9 +116,12 @@
   to {
     transform: rotate(360deg);
   }
-
 }
 
+.tableDeck,th,td{
+  border-collapse: collapse;
+  border:solid 1px black;
+}
 /*
 CSS DE LA PAGE SINGIN.JS
 */
