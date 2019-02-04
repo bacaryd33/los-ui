@@ -16,38 +16,24 @@ import { connect } from 'react-redux'
 import "bootstrap/dist/js/bootstrap.js";
 import axios from "axios";
 import Makedeck from "./Makedeck";
+import Game from "./Game";
 // import CardBoard from "CardBoard";
 
 
-class Board extends Component {
+class Board extends Component{
 
 	constructor(props) {
 		super(props);
+		this.turn=true;
+		console.log(props)
 		this.state = {
-			status:null, //Deck is pending /
-			player1:null,
-			player2:null,
+			
 		};
-	}
-    //localhost:3001/match/initDeck?[{key:"Jax"},{key:"Sona"},{key:"Tristana"},{key:"TahmKench"},{key:"Singed"},{key:"Thresh"},{key:"Karma"}]
-
-	initDeck(tabdeck,token,i){ //a tester
-		let url =
-			SERVER_URL +
-			"/match/initDeck?deck="+tabdeck+"&token="+token;
-		axios.get(url).then(res=>{
-			let data = res.data;
-			if (data.status=="ok"){
-				alert("Deck initialized");
-			} else{
-				this.setState({ error: "Error Deck initialization : " + data.message });
-			}
-		})
 	}
 
 	pickCard(deck,npick){
 		if(this.turn && npick==0){
-			let url=SERVER_URL + "match/pickCard"
+			let url=SERVER_URL + "match/pickCard"//+"?token="+this.state.player1.token
 			axios.get(url).then(res=>{
 				let data = res.data;
 				if (data.status=="ok"){
@@ -57,12 +43,11 @@ class Board extends Component {
 				}
 			})
 		}
-
 	}
 
 	playcard(hand,turn,card){
 		if(turn){
-			let url=SERVER_URL + "match/playCard"
+			let url=SERVER_URL + "match/playCard"//+"?card="+this.state.player1.hand.card.key+"&token="+this.state.player1.token
 			axios.get(url).then(res=>{
 				let data = res.data;
 				if (data.status=="ok"){
@@ -75,7 +60,17 @@ class Board extends Component {
 	}
 
 	attack(card,ennemycard){
-
+		if(this.turn){
+			let url=SERVER_URL + "match/attack?card="//+this.player1.board.key+"&ennemyCard="+this.player2.board.key+"token="+this.props.location.token
+			axios.get(url).then(res=>{
+				let data = res.data;
+				if (data.status=="ok"){
+					alert("Card played");
+				} else{
+					this.setState({ error: "Error Playing Card : " + data.message });
+				}
+			})
+		}
 	}
 
 	endturn(turn){
@@ -86,7 +81,7 @@ class Board extends Component {
 
 	}
 
-	componentDidMount(){
+	componentDidMount(){//douille get token par action extérieure
 		let url=(SERVER_URL+"/cards/getAll");
 			console.log(url)     
 		axios.get(url)
@@ -105,22 +100,15 @@ class Board extends Component {
 			<div className="board">
 				<div className="top">
 					<div className="opphand">
-						HAND
+						Opp HAND
 					</div>
 					<div className="oppname">
-						NAME
+						su culo
 					</div>
-					<div className="oppavatar">
-						AVATAR
+					<div className="oppavatar"> 
 					</div>
 				</div>
 				<div className="midtop">
-					<div className="oppdeck">
-						DECK
-					</div>
-					<div className="oppendturn">
-						END TURN
-					</div>
 					<div className="oppplayedcard">
 						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
 						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
@@ -130,25 +118,32 @@ class Board extends Component {
 					</div>
 				</div>
 				<div className="space">
-					SPACE
-				</div>
-				<div className="midbottom">
 					<div className="mydeck">
 						DECK
 					</div>
 					<div className="myendturn">
 						END TURN
 					</div>
+				</div>
+				<div className="midbottom">
 					<div className="myplayedcard">
-						<Card/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
 					</div>
 				</div>
 				<div className="bottom">
 					<div className="myhand">
-						HAND
+						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="Aatrox" />
+						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="Jax" />
+						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
+						
 					</div>
 					<div className="myname">
-						NAME
+						mi culo
 					</div>
 					<div className="myavatar">
 						AVATAR

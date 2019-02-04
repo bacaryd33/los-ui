@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 10%; 
+  height: 10%;
 }
 
 .midbottom{
@@ -22,21 +22,25 @@
 }
 
 .myplayedcard{
-  background-color: brown;
+  //background-color: brown;
   order:2;
-  width:100%;
+  margin-left: 15vw;
+  margin-right: 15vw;
+  width:70%;
   display: flex;
   justify-content: space-evenly;
 }
 
 .myname{
-  background-color: blueviolet;
+  //background-color: blueviolet;
   order: 4;
   width:15%;
   font-size: 2vh;
+  font-weight: bold;
   text-align: center;
   color: white;
-  padding-top: 3%;
+  padding-top: 10vh;
+  margin-top:-15vh; 
 }
 
 .myavatar{
@@ -45,13 +49,15 @@
   background-size: cover;
   order: 6;
   width: 15%;
-
+  padding-top: 10vh;
+  margin-top:-15vh; 
+  border-radius: 50%; 
 }
 
 .mydeck{
   order:1;
   background-color:darkblue;
-  border: solid 0.5vw goldenrod;
+  border: solid 0.5vh goldenrod;
   color:goldenrod;
   font-weight: bold;
   width:15%;
@@ -75,7 +81,17 @@
   background-color: fuchsia;
   order:5;
   width:70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  float: bottom;
+  //visibility: hidden;
 }
+
+.handcard:hover{
+  border: solid 2px blue;
+}
+
 .space{
   display: flex;
   flex-direction: row;
@@ -87,16 +103,20 @@
 
 .myhand:hover
 {
-  background-color: aqua;
-  height: 200%;
-  top:20px;
-  text-align: center;
+  margin-top: -20vh;
+  visibility: visible;
 }
 .top{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   height: 10%; 
+}
+
+.space{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .midtop{
@@ -108,43 +128,40 @@
 }
 
 .oppplayedcard{
-  /*background-color: brown;*/
+  //background-color: brown;
   order:2;
+  margin-left: 15vw;
+  margin-right: 15vw;
   width:70%;
   display: flex;
   justify-content: space-evenly;
 }
 
 .oppname{
-  background-color: blueviolet;
+  //background-color: blueviolet;
   order: 4;
   width:15%;
   font-size: 2vh;
+  font-weight:bold;
   text-align: center;
   color: white;
-  padding-top: 3%;
+  padding-bottom: 10vh;
+  margin-bottom: -15vh;  
 }
 
 .oppavatar{
-  background-image: url("https://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/Pantheon.png");
+  background-image: url("https://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/Aatrox.png");
   order: 6;
   width: 15%;
-}
-
-.oppdeck{
-  background-color: red;
-  order:1;
-  width:15%;
-}
-
-.oppendturn{
-  background-color: crimson;
-  order:3;
-  width:15%;
+  background-repeat: 'no-repeat';
+  background-size: cover;
+  padding-bottom: 10vh;
+  margin-bottom: -15vh;
+  border-radius: 50%;  
 }
 
 .opphand{
-  background-color: fuchsia;
+  //background-color: fuchsia;
   order:5;
   width:70%;
 }

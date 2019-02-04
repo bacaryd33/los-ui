@@ -64,11 +64,35 @@ class Card extends Component {
     }
     render() {
         return (
-            <div id={this.props.id} className="col-lg-3 col-md-4 col-xs-6 thumb flip" onClick={this.props.onClick} >
+            <div id={this.props.id} className="cardzone" onClick={this.props.onClick} >
+                <img className="imgcard"
+                    src={"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + this.props.img+"_0.jpg"}
+                />
+                <div className="namecard">
+                        <p className="card-text">{this.props.name}</p>
+                    </div>
+                    <div className="skillcard">
+                    <div className="atqcard">
+                        Atq
+                    </div>
+                    <div className="defcard">
+                        Def
+                    </div>
+                </div>
+            </div>
+
+            
+        );
+    }
+}
+export default Card;
+
+/**
+ * <div id={this.props.id} className="col-lg-3 col-md-4 col-xs-6 thumb flip" onClick={this.props.onClick} >
                 <div className="card thumbnail " >
                     <div className="face front">
                         <img className="card-img"
-                             src={"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + this.props.img}
+                             src={"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + this.props.img+"_0.jpg"}
                              alt="Card  cap"/>
                         <div className="card-body">
                             <p className="card-text">{this.props.name}</p>
@@ -76,7 +100,4 @@ class Card extends Component {
                     </div>
                 </div>
             </div>
-        );
-    }
-}
-export default Card;
+ */
