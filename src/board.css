@@ -1,5 +1,167 @@
 .board {
   background-image: url("backboard.jpg") ;
-  width:1000000000000000000000px;
-  height:100000000000000000000px;
+  background-position: center;
+  /*background-size: 'cover';*/
+  /*background-repeat: 'no-repeat';*/
+  height: 100vh;
+  width: 100vw;
+} 
+
+.bottom{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 10%;
+}
+
+.midbottom{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 36%;
+}
+
+.myplayedcard{
+  //background-color: brown;
+  order:2;
+  margin-left: 15vw;
+  margin-right: 15vw;
+  width:70%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.myname{
+  //background-color: blueviolet;
+  order: 4;
+  width:15%;
+  font-size: 2vh;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  padding-top: 10vh;
+  margin-top:-15vh; 
+}
+
+.myavatar{
+  background-image: url("https://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/Pantheon.png");
+  background-repeat: 'no-repeat';
+  background-size: cover;
+  order: 6;
+  width: 15%;
+  padding-top: 10vh;
+  margin-top:-15vh; 
+  border-radius: 50%; 
+}
+
+.mydeck{
+  order:1;
+  background-color:darkblue;
+  border: solid 0.5vh goldenrod;
+  color:goldenrod;
+  font-weight: bold;
+  width:15%;
+  font-size: 3vh;
+  text-align: center;
+
+}
+
+.myendturn{
+  background-color: green;
+  border: solid 0.5vh darkgreen;
+  color:white;
+  font-weight: bold;
+  order:3;
+  width:15%;
+  font-size: 3vh;
+  text-align: center;
+}
+
+.myhand{
+  background-color: fuchsia;
+  order:5;
+  width:70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  float: bottom;
+  //visibility: hidden;
+}
+
+.handcard:hover{
+  border: solid 2px blue;
+}
+
+.space{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0px;
+  padding: 12px;
+}
+
+.myhand:hover
+{
+  margin-top: -20vh;
+  visibility: visible;
+}
+.top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 10%; 
+}
+
+.space{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.midtop{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 36%;
+  
+}
+
+.oppplayedcard{
+  //background-color: brown;
+  order:2;
+  margin-left: 15vw;
+  margin-right: 15vw;
+  width:70%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.oppname{
+  //background-color: blueviolet;
+  order: 4;
+  width:15%;
+  font-size: 2vh;
+  font-weight:bold;
+  text-align: center;
+  color: white;
+  padding-bottom: 10vh;
+  margin-bottom: -15vh;  
+}
+
+.oppavatar{
+  background-image: url("https://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/Aatrox.png");
+  order: 6;
+  width: 15%;
+  background-repeat: 'no-repeat';
+  background-size: cover;
+  padding-bottom: 10vh;
+  margin-bottom: -15vh;
+  border-radius: 50%;  
+}
+
+.opphand{
+  //background-color: fuchsia;
+  order:5;
+  width:70%;
 }

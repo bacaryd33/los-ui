@@ -365,6 +365,7 @@ class Game extends Component {
                 }
             });
         }
+
         function initDeckForMatch(deck){
             console.log("init Deck componentDidMount");
             let deckJson=[];
@@ -527,6 +528,23 @@ class Game extends Component {
               }
           });
       }
+
+        /*      
+      function getName(){
+        let url2=SERVER_URL + "/user";
+        axios.get(url2).then(res=>{
+            let data=res.data;
+            if(data.status==="ok") {
+                let tableD=[];
+                data = data.data;
+
+            }else{
+                cont.setState({error:"Une erreur s'est produite : "+data.message,isLoaded:true});
+            }
+        });
+      }*/
+
+
         function getCards(){
             console.log("get Cards component did mount");
             let url2=SERVER_URL + "/cards/getAll";
@@ -534,7 +552,7 @@ class Game extends Component {
                 let data=res.data;
                 if(data.status==="ok") {
                     let tableD=[];
-                    data = data.data;
+                    data = data.data; //res.data.data[0].player1
                     for(let i=0;i<4;i++){
                         let temporary=(cont.randomPick(data,20));
                         tableD.push(temporary);
