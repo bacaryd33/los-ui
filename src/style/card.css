@@ -1,25 +1,44 @@
 
 .cardzone{
     margin-top: 5%;
-    height: 70%;
-    width:18%;
-    border: solid 5px goldenrod;
-    border-radius: 10px 10px;
+    height: 19vh;
+    width:13vw;
+    border-radius: 15%;
+    background-color: black;
+    background-image: url("cardbg.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin:3.5px;
+    
 }
 
+
+hr.style-five {
+    border: 0;
+    height: 0; /* Firefox... */
+    box-shadow: 0 0 10px 1px black;
+}
+hr.style-five:after {  /* Not really supposed to work, but does */
+    content: "\00a0";  /* Prevent margin collapse */
+}
 
 .imgcard{
     height:50%;
     position: center;
-    width:100%;
+    width:11.2vw;
+    margin-left: 7%;
+    margin-right: 7%;
+    border: 2px solid black;
 }
 .namecard{
     height: 25%;
-    background-color: darkslategrey;
     text-align: center;
     font-size: 3vm;
     font-style: normal;
+    font-family: 'Palatino Linotype';
     color: white;
+    border-radius: 0 0 20% 20%;
+    
 }
 
 .skillcard{
@@ -28,17 +47,25 @@
     flex-direction: row;
     text-align:center;
     border-radius: 10px 10px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Palatino Linotype';
 }
 
 .atqcard{
+    font-family:'Palatino Linotype';
     background-color: silver;
     width:50%;
+    margin-top:8%;
+    margin-left: 7%;
+    border-radius: 25% 0 0 0;
 }
 
 .defcard{
-    background-color: red;
+    border-radius: 0 25% 0 0;
+    background-color: crimson;
+    font-family:'Palatino Linotype';
     width:50%;
+    margin-top:8%;
+    margin-right: 7%;
 }
 .bottomcard{
     display: flex;

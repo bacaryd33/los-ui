@@ -9,7 +9,9 @@ import axios from "axios";
 import Game from "./Game";
 import { Alert } from 'react-alert';
 // import CardBoard from "CardBoard";
-
+import Iblue from "./IconBlue.png";
+import Ired from "./IconRed.png";
+import heart from "./like.png";
 
 class Board extends Component{
 
@@ -117,54 +119,81 @@ class Board extends Component{
 			<div className="board">
 				<div className="top">
 					<div className="opphand">
+<<<<<<< HEAD:src/Board.js
+						
+					</div>
+					<div className="oppname">
+						<img src={heart} />
+						<br/><p>150/150</p>
+=======
 					</div>
 					<div className="oppname">
 						Name Player 1
+>>>>>>> 3904a61521330fcda2f4e68d01aa032f9013cc91:src/components/Board.js
 					</div>
-					<div className="oppavatar"> 
+					<div className="oppavatar">
+						<img src={Ired} /><br/>
+						Opponent
 					</div>
-				</div>
+				</div>	
+				
 				<div className="midtop">
 					<div className="oppplayedcard">
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
+					<Card name="Jax" key="Jax" img="Jax"/>
+					<Card name="Jax" key="Jax" img="Jax"/>
+					<Card name="Jax" key="Jax" img="Jax"/>
+					<Card name="Jax" key="Jax" img="Jax"/>
+					<Card name="Jax" key="Jax" img="Jax"/>
+					
 					</div>
 				</div>
+
 				<div className="space">
 					<div className="mydeck">
 						DECK
 					</div>
+					
 					<div className="myendturn">
 						<button onClick={() => this.endturn()}> END TURN BOOOOOY </button>
 
 					</div>
 				</div>
+				
 				<div className="midbottom">
 					<div className="myplayedcard">
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
+					<Card name="Jax" key="Jax" img="Jax"/>
+					<Card name="Jax" key="Jax" img="Jax"/>
+					<Card name="Jax" key="Jax" img="Jax"/>
+					<Card name="Jax" key="Jax" img="Jax"/>
+					<Card name="Jax" key="Jax" img="Jax"/>
 					</div>
+					
 				</div>
+				
 				<div className="bottom">
-					<div className="myhand">
-						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="Aatrox" />
-						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="Jax" />
-						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
-						
-					</div>
 					<div className="myname">
+<<<<<<< HEAD:src/Board.js
+						<img src={heart} />
+						<br/><p>150/150</p>
+					</div>
+					<div className="myhand">
+					<Card name="Jax" key="Jax" img="Jax"/>
+					<Card name="Jax" key="Jax" img="Jax"/>
+					<Card name="Jax" key="Jax" img="Jax"/>
+					<Card name="Jax" key="Jax" img="Jax"/>
+					
+					</div>
+					<div className="myavatar">
+						<img src={Iblue} /><br/>
+						MyName
+=======
 						Name Player 2
 					</div>
 					<div className="myavatar">
+>>>>>>> 3904a61521330fcda2f4e68d01aa032f9013cc91:src/components/Board.js
 					</div>
 				</div>
+				
 			</div>
 		)}
 }
