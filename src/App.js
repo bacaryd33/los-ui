@@ -6,12 +6,13 @@ import {
     Redirect
 } from "react-router-dom";
 
-import Signin from "./Signin";
-import Signup from "./Signup";
-import Game from "./Game";
-import Board from "./Board";
+import Signin from "./components/Signin";
+import Signup from "./components/Signup";
+import Game from "./components/Game";
+import Board from "./components/Board";
 
 import "./App.css";
+
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -54,7 +55,7 @@ class App extends Component {
           />
           <Route path="/signup" component={Signup} />
           <Route path="/board" component={Board} />
-          <PrivateRoute component={Board} isConnected={this.state.isConnected} />
+          <PrivateRoute component={Game} isConnected={this.state.isConnected} />
         </Switch>
       </Router>
     );

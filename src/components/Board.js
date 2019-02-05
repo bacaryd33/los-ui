@@ -1,22 +1,13 @@
 import React, { Component } from "react";
 import {Nav, NavItem} from "react-bootstrap"
 import "bootstrap/dist/css/bootstrap.css";
-import "./board.css";
+import "../style/board.css";
 import Card from "./Card.js";
-import { SERVER_URL } from "./consts";
-import Mediacard from "./CardBoard"
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-// import Grid from 'react-css-grid'
-//ajouter navbar
-//automatiser resize board
-//placer zone carte (deck, hand, board)
-//facultatif placer hand adverse
-//récupérer json depuis web service
+import { SERVER_URL } from "../consts";
 import "bootstrap/dist/js/bootstrap.js";
 import axios from "axios";
-import Makedeck from "./Makedeck";
 import Game from "./Game";
+import { Alert } from 'react-alert';
 // import CardBoard from "CardBoard";
 import Iblue from "./IconBlue.png";
 import Ired from "./IconRed.png";
@@ -26,11 +17,7 @@ class Board extends Component{
 
 	constructor(props) {
 		super(props);
-		this.turn=true;
-		console.log(props)
-		this.state = {
-			
-		};
+		this.turn = true;
 	}
 
 	pickCard(deck,npick){
@@ -46,6 +33,7 @@ class Board extends Component{
 			})
 		}
 	}
+
 
 	playcard(hand,turn,card){
 		if(turn){
@@ -75,25 +63,54 @@ class Board extends Component{
 		}
 	}
 
-	endturn(turn){
+	attackPlayer(card, ennemycard, hp){
+		let attp = (SERVER_URL + "/match/attackPlayer?token=")
 
+		//if (card = isBoard){
+
+		}
+
+
+	getMatch(){
+		let getM = (SERVER_URL + "/match/getMatch?&token=")
+		console.log(getM);
+	}
+
+
+	endturn() {
+		console.log(this.props)
+		let end = (SERVER_URL + "/match/endTurn?&token=" + this.props.location.state.token)
+			.then(res => {
+				let data = res.data;
+				console.log(end);
+			})
 	}
 
 	finishmatch(){
+		// let finish = (SERVER_URL + "/match/finishMatch?&token=")
+		// console.log(end);
+		// if (player1.hp <= 0 && player2.hp <= 0)
+		// axios.get(end + )
+		// 	.then(res => {
+		// 		let dd = res.dd
+
 
 	}
 
-	componentDidMount(){//douille get token par action extérieure
-		let url=(SERVER_URL+"/cards/getAll");
-			console.log(url)     
+	componentDidMount() {
+		// const tok = this.props.location.token;
+		// console.log(tok);
+		let url = (SERVER_URL + "/cards/getAll");
+		console.log(url)
 		axios.get(url)
-			.then(res=>{
-				let data=res.data;
-				console.log(data);});
+			.then(res => {
+				let data = res.data;
+				console.log(data);
+			});
+
 	}
-
 	componentWillReceiveProps(){
-
+		// let ulr2=(SERVER_URL+)
 	}
 
 	render()
@@ -102,11 +119,17 @@ class Board extends Component{
 			<div className="board">
 				<div className="top">
 					<div className="opphand">
+<<<<<<< HEAD:src/Board.js
 						
 					</div>
 					<div className="oppname">
 						<img src={heart} />
 						<br/><p>150/150</p>
+=======
+					</div>
+					<div className="oppname">
+						Name Player 1
+>>>>>>> 3904a61521330fcda2f4e68d01aa032f9013cc91:src/components/Board.js
 					</div>
 					<div className="oppavatar">
 						<img src={Ired} /><br/>
@@ -131,7 +154,8 @@ class Board extends Component{
 					</div>
 					
 					<div className="myendturn">
-						END TURN
+						<button onClick={() => this.endturn()}> END TURN BOOOOOY </button>
+
 					</div>
 				</div>
 				
@@ -148,6 +172,7 @@ class Board extends Component{
 				
 				<div className="bottom">
 					<div className="myname">
+<<<<<<< HEAD:src/Board.js
 						<img src={heart} />
 						<br/><p>150/150</p>
 					</div>
@@ -161,6 +186,11 @@ class Board extends Component{
 					<div className="myavatar">
 						<img src={Iblue} /><br/>
 						MyName
+=======
+						Name Player 2
+					</div>
+					<div className="myavatar">
+>>>>>>> 3904a61521330fcda2f4e68d01aa032f9013cc91:src/components/Board.js
 					</div>
 				</div>
 				

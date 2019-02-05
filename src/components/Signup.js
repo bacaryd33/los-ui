@@ -2,9 +2,15 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+<<<<<<< HEAD:src/Signup.js
 import { SERVER_URL } from "./consts";
 import logo from './mainLogo.png';
 //var bcrypt=require("bcrypt");
+=======
+import { SERVER_URL } from "../consts";
+import logo from '../images/mainLogo.png';
+
+>>>>>>> 3904a61521330fcda2f4e68d01aa032f9013cc91:src/components/Signup.js
 class Signup extends Component {
   constructor(props) {
     super(props);

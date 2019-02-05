@@ -1,10 +1,11 @@
 .board {
-  background-image: url("backboard.jpg") ;
+  background-image: url("../images/backboard.jpg") ;
   background-position: center;
   background-size: 'cover';
   background-repeat: 'no-repeat';
   height: 100vh;
   width: 100vw;
+  position: relative;
 } 
 
 .bottom{
@@ -129,9 +130,6 @@
 .oppplayedcard{
   order:2;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin-left: 15%;
 }
 
 .oppname{
