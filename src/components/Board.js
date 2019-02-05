@@ -24,7 +24,8 @@ class Board extends Component{
 
 	}
 
-	pickCard(deck,npick){
+	pickCard(deck,npick) {
+	}
 
 
 
@@ -75,8 +76,13 @@ class Board extends Component{
 
 
 	async endturn() {
+			console.log(this.props);
+			await axios.get(SERVER_URL + '/match/endTurn?&token='+this.props.userReducer.token)
+			this.setState({mana : 0})
+			this.getMatch()
+		}
 
-	}
+	
 
 	finishmatchtoGame(){
 		axios.get(SERVER_URL + '/match/finishMatch?&token='+this.props.userReducer.token)
