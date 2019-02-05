@@ -27,8 +27,24 @@ class Board extends Component{
 		this.turn=true;
 		console.log(props)
 		this.state = {
-			
+			showHand: false
 		};
+		this.showHand = this.showHand.bind(this);
+		this.closeHand = this.closeHand.bind(this);
+	}
+
+	showHand(event) {
+		event.preventDefault();
+
+		this.setState({ showHand: true }, () => {
+				document.addEventListener('onMouseEnter', this.closeHand);
+			});
+	}
+
+	closeHand() {
+		this.setState({ showHand: false }, () => {
+			document.removeEventListener('onMouseEnter', this.closeHand);
+		});
 	}
 
 	pickCard(deck,npick){
@@ -110,11 +126,11 @@ class Board extends Component{
 				</div>
 				<div className="midtop">
 					<div className="oppplayedcard">
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={false}/>
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={false}/>
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={false}/>
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={false}/>
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={false}/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
 					</div>
 				</div>
 				<div className="space">
@@ -125,7 +141,7 @@ class Board extends Component{
 						END TURN
 					</div>
 				</div>
-				<div className="midbottom">
+				<div className="midbottom" onMouseEnter={this.closeHand}>
 					<div className="myplayedcard">
 						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
 						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
@@ -134,14 +150,27 @@ class Board extends Component{
 						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
 					</div>
 				</div>
-				<div className="bottom">
-					<div className="myhand">
-						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="Aatrox" />
+				<div className="bottom" onMouseEnter={this.showHand}>
+				{
+					this.state.showHand
+					? (
+					<div
+					className="myhand"
+					ref={(element) => {
+						this.dropdownHand = element;
+					}}
+					>
+						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="Aatrox" flipped={true}/>
 						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="Jax" flipped={true}/>
 						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
 						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
-						
-					</div>
+					</div>	
+						)
+					: (
+						null
+					)
+				}
+					
 					<div className="myname">
 						main
 					</div>

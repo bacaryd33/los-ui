@@ -69,10 +69,12 @@ class Card extends Component {
         const isFlipped = this.props.flipped
         let DisplaySrc = ''
         let DisplayNameCard = ''
+        let DisplaySkillCard = ""
 
         if (isFlipped) {
             DisplaySrc = <img className="imgcard" src={"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + this.props.img+"_0.jpg"}/>
-            DisplayNameCard = ''
+            DisplayNameCard = <p className="card-text">{this.props.name}</p>
+            DisplaySkillCard = <div className="skillcard"><div className="atqcard">atk</div><div className="defcard">def</div></div>
         }
         else {
             DisplaySrc = <img className="imgcard" src={"http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/Amumu.png"}/>
@@ -84,16 +86,9 @@ class Card extends Component {
             <div id={this.props.id} className="cardzone" onClick={this.props.onClick} >
                 {DisplaySrc}
                 <div className="namecard">
-                        <p className="card-text">{this.props.name}</p>
+                        {DisplayNameCard}
                     </div>
-                    <div className="skillcard">
-                    <div className="atqcard">
-                        Atq
-                    </div>
-                    <div className="defcard">
-                        Def
-                    </div>
-                </div>
+                {DisplaySkillCard}
             </div>
 
             
