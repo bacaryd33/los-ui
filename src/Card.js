@@ -58,16 +58,31 @@ import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "./card.css";
+import { Button } from "bootstrap/dist/js/bootstrap.js";
 class Card extends Component {
     constructor(props) {
         super(props);
     }
+
     render() {
+
+        const isFlipped = this.props.flipped
+        let DisplaySrc = ''
+        let DisplayNameCard = ''
+
+        if (isFlipped) {
+            DisplaySrc = <img className="imgcard" src={"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + this.props.img+"_0.jpg"}/>
+            DisplayNameCard = ''
+        }
+        else {
+            DisplaySrc = <img className="imgcard" src={"http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/Amumu.png"}/>
+        }
+        console.log(this.props.DisplaySrc);
+        
+
         return (
             <div id={this.props.id} className="cardzone" onClick={this.props.onClick} >
-                <img className="imgcard"
-                    src={"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + this.props.img+"_0.jpg"}
-                />
+                {DisplaySrc}
                 <div className="namecard">
                         <p className="card-text">{this.props.name}</p>
                     </div>

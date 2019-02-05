@@ -103,22 +103,22 @@ class Board extends Component{
 						Opp HAND
 					</div>
 					<div className="oppname">
-						su culo
+						main adverse
 					</div>
 					<div className="oppavatar"> 
 					</div>
 				</div>
 				<div className="midtop">
 					<div className="oppplayedcard">
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={false}/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={false}/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={false}/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={false}/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={false}/>
 					</div>
 				</div>
 				<div className="space">
-					<div className="mydeck">
+					<div type="button" class="btn btn-primary" className="mydeck">
 						DECK
 					</div>
 					<div className="myendturn">
@@ -127,9 +127,9 @@ class Board extends Component{
 				</div>
 				<div className="midbottom">
 					<div className="myplayedcard">
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
-						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
+						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
 						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
 						<Card key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
 					</div>
@@ -137,13 +137,13 @@ class Board extends Component{
 				<div className="bottom">
 					<div className="myhand">
 						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="Aatrox" />
-						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="Jax" />
-						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="XinZhao" />
+						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="Jax" flipped={true}/>
+						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
 						<Card className="handcard" key={"XinZhao"} name={"XinZhao"} img="XinZhao" flipped={true}/>
 						
 					</div>
 					<div className="myname">
-						mi culo
+						main
 					</div>
 					<div className="myavatar">
 						AVATAR

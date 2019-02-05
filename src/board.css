@@ -22,7 +22,7 @@
 }
 
 .myplayedcard{
-  //background-color: brown;
+  /*background-color: brown;*/
   order:2;
   margin-left: 15vw;
   margin-right: 15vw;
@@ -32,7 +32,7 @@
 }
 
 .myname{
-  //background-color: blueviolet;
+  /*background-color: blueviolet;*/
   order: 4;
   width:15%;
   font-size: 2vh;
@@ -85,7 +85,7 @@
   flex-direction: row;
   justify-content: space-between;
   float: bottom;
-  //visibility: hidden;
+  /*visibility: hidden;*/
 }
 
 .handcard:hover{
@@ -128,7 +128,7 @@
 }
 
 .oppplayedcard{
-  //background-color: brown;
+  /*background-color: brown;*/
   order:2;
   margin-left: 15vw;
   margin-right: 15vw;
@@ -138,7 +138,7 @@
 }
 
 .oppname{
-  //background-color: blueviolet;
+  /*background-color: blueviolet;*/
   order: 4;
   width:15%;
   font-size: 2vh;
@@ -161,7 +161,7 @@
 }
 
 .opphand{
-  //background-color: fuchsia;
+  /*background-color: fuchsia;*/
   order:5;
   width:70%;
 }
