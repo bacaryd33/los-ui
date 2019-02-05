@@ -1,8 +1,8 @@
 .board {
   background-image: url("../images/backboard.jpg") ;
   background-position: center;
-  /*background-size: 'cover';*/
-  /*background-repeat: 'no-repeat';*/
+  background-size: 'cover';
+  background-repeat: 'no-repeat';
   height: 100vh;
   width: 100vw;
   position: relative;
@@ -19,11 +19,10 @@
   display:flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 36%;
+  height: 38.5%;
 }
 
 .myplayedcard{
-  //background-color: brown;
   order:2;
   margin-left: 15vw;
   margin-right: 15vw;
@@ -33,7 +32,6 @@
 }
 
 .myname{
-  //background-color: blueviolet;
   order: 4;
   width:15%;
   font-size: 2vh;
@@ -41,7 +39,8 @@
   text-align: center;
   color: white;
   padding-top: 10vh;
-  margin-top:-15vh; 
+  margin-top:-15vh;
+  font-family: 'Palatino Linotype'; 
 }
 
 .myavatar{
@@ -52,7 +51,7 @@
   width: 15%;
   padding-top: 10vh;
   margin-top:-15vh; 
-  border-radius: 50%; 
+  border-radius: 50%;
 }
 
 .mydeck{
@@ -79,33 +78,22 @@
 }
 
 .myhand{
-  background-color: fuchsia;
+  //background-color: fuchsia;
   order:5;
   width:70%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   float: bottom;
-  //visibility: hidden;
+  //display:none;
 }
 
-.handcard:hover{
-  border: solid 2px blue;
-}
-
-.space{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
-  margin: 0px;
-  padding: 12px;
-}
 
 .myhand:hover
 {
   margin-top: -20vh;
-  visibility: visible;
+  transition-duration: 1s;
+  
 }
 .top{
   display: flex;
@@ -129,13 +117,11 @@
 }
 
 .oppplayedcard{
-  //background-color: brown;
   order:2;
-  margin-left: 15vw;
-  margin-right: 15vw;
-  width:70%;
   display: flex;
-
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: 15%;
 }
 
 .oppname{
@@ -145,9 +131,11 @@
   font-size: 2vh;
   font-weight:bold;
   text-align: center;
+  padding-top: 10vh;
   color: white;
   padding-bottom: 10vh;
   margin-bottom: -15vh;  
+  font-family: 'Palatino Linotype';
 }
 
 .oppavatar{

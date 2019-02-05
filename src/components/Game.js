@@ -42,6 +42,7 @@ class Game extends Component {
         this.handleJouer=this.handleJouer.bind(this);
         this.handleDeconnexion=this.handleDeconnexion.bind(this);
         this.handleUnsubscribe=this.handleUnsubscribe.bind(this);
+        this.handleRule=this.handleRule.bind(this);
 
     }
 
@@ -74,6 +75,11 @@ class Game extends Component {
             this.setState({readyToPlay:false});
         }
     }*/
+
+    handleRule(){
+        alert("handle rules");
+
+    }
 
     handleClick(cardPosition, event) {
         //console.log("handle click");

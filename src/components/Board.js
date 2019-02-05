@@ -177,7 +177,7 @@ class Board extends Component{
 						DECK
 					</div>
 					<div className="myendturn">
-						<button onClick={() => this.endturn()}> END TURN BOOOOOY </button>
+						<button onClick={() => this.endturn()}> END TURN </button>
 
 					</div>
 				</div>
