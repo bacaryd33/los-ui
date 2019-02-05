@@ -1,3 +1,3 @@
-const SERVER_URL = "http://ling.westeurope.cloudapp.azure.com";
+const SERVER_URL = "http://localhost:3000";
 
 export { SERVER_URL };
