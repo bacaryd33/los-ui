@@ -7,6 +7,9 @@ import { SERVER_URL } from "../consts";
 import 'bootstrap/dist/css/bootstrap.css';
 
 import "../App.css";
+import {bindActionCreators} from "redux";
+import * as userActions from "../actions/userActions";
+import {connect} from "react-redux";
 
 class Signin extends Component {
     constructor(props) {
@@ -34,6 +37,7 @@ class Signin extends Component {
             )
             .then(res => {
                 if (res.data.status === "ok") {
+                    this.props.userActions.storeToken(res.data["data"]["token"])
                     this.props.setSessionToken(res.data["data"]["token"]);
                     this.setState({token:res.data["data"]["token"]});
                     this.props.history.push({pathname:process.env.PUBLIC_URL + "/",
@@ -82,4 +86,18 @@ class Signin extends Component {
     }
 }
 
-export default Signin;
+function mapStateToProps(state) {
+    return {
+        userReducer: state.userReducer
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        userActions: bindActionCreators(userActions, dispatch),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin)
+
+

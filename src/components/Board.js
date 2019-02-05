@@ -8,29 +8,24 @@ import Mediacard from "./CardBoard"
 import "bootstrap/dist/js/bootstrap.js";
 import axios from "axios";
 import Game from "./Game";
-// import CardBoard from "CardBoard";
-
+import * as userActions from '../actions/userActions'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 class Board extends Component{
 
 	constructor(props) {
 		super(props);
 		this.turn = true;
+		this.state = {
+			mana: 0
+		}
+
+
 	}
 
 	pickCard(deck,npick){
-		if(this.turn && npick==0){
-			let url=SERVER_URL + "match/pickCard"//+"?token="+this.state.player1.token
-			axios.get(url).then(res=>{
-				let data = res.data;
-				if (data.status=="ok"){
-					alert("Card Picked");
-				} else{
-					this.setState({ error: "Error of Card Picking : " + data.message });
-				}
-			})
-		}
-	}
+
 
 
 	playcard(hand,turn,card){
@@ -69,40 +64,30 @@ class Board extends Component{
 		}
 
 
-	getMatch(){
-		let getM = (SERVER_URL + "/match/getMatch?&token=")
-		console.log(getM);
-	}
-
-
-	endturn() {
-		console.log(this.props)
-		let end = (SERVER_URL + "/match/endTurn?&token=" + this.props.location.state.token)
-			.then(res => {
-				let data = res.data;
-				console.log(end);
-			})
-	}
-
-	finishmatch(){
-		// let finish = (SERVER_URL + "/match/finishMatch?&token=")
-		// console.log(end);
-		// if (player1.hp <= 0 && player2.hp <= 0)
-		// axios.get(end + )
-		// 	.then(res => {
-		// 		let dd = res.dd
-
-
-	}
-	//
-	// componentDidMount(){//douille get token par action extérieure
-	// 	let url=(SERVER_URL+"/cards/getAll");
-	// 		console.log(url)
-	// 	axios.get(url)
-	// 		.then(res=>{
-	// 			let data=res.data;
-	// 			console.log(data);});
+	// getMatch(){  //getmatch with redux
+	// 	let getM = (SERVER_URL + '/match/getMatch?&token='+this.props.userReducer.token).then(response=>{
+	// 		if (response.data.user
+	// 	})
+	// 	console.log(getM);
 	// }
+
+
+
+
+	async endturn() {
+
+	}
+
+	finishmatchtoGame(){
+		axios.get(SERVER_URL + '/match/finishMatch?&token='+this.props.userReducer.token)
+		this.props.history.push(process.env.PUBLIC_URL + "/Game")
+	}
+
+	// mountPile(){
+	// 	let pile = this.props.location.state.tableDeck;
+	//
+	// }
+
 
 
 	componentDidMount() {
@@ -179,4 +164,17 @@ class Board extends Component{
 		)}
 }
 
-export default Board;
+
+function mapStateToProps(state) {
+	return {
+		userReducer: state.userReducer
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		userActions: bindActionCreators(userActions, dispatch),
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board)
