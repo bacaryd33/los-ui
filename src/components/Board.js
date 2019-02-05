@@ -28,7 +28,7 @@ class Board extends Component{
 		if(this.turn){
 			axios.get(SERVER_URL + 'match/pickCard?&token='+this.props.userReducer.token)
 				.then(response => {
-					if (data.status=="ok"){
+					if (response.data.status=="ok"){
 						alert("Card Picked");
 						this.ManaGer()
 					} else{
@@ -43,43 +43,61 @@ class Board extends Component{
 
 
 	playcard(hand,turn,card){
-		if(turn){
-			let url=SERVER_URL + "match/playCard"//+"?card="+this.state.player1.hand.card.key+"&token="+this.state.player1.token
-			axios.get(url).then(res=>{
-				let data = res.data;
-				if (data.status=="ok"){
-					alert("Card played");
-				} else{
-					this.setState({ error: "Error Playing Card : " + data.message });
-				}
-			})
-		}
-	}
-
-	attack(card,ennemycard){
+		console.log(hand);
+		const {
+			handP=hand.data,
+			currentCard=handP.card
+		} = this.state;
 		if(this.turn){
-			let url=SERVER_URL + "match/attack?card="//+this.player1.board.key+"&ennemyCard="+this.player2.board.key+"token="+this.props.location.token
-			axios.get(url).then(res=>{
-				let data = res.data;
-				if (data.status=="ok"){
-					alert("Card played");
-				} else{
+			axios.get(SERVER_URL + 'match/playCard?card=' + currentCard + '&token=' +this.props.userReducer.token)
+				.then(response =>{
+					if(response.data.status == 'ok'){
+						alert("Card played")
+					}
+				else{
 					this.setState({ error: "Error Playing Card : " + data.message });
 				}
 			})
 		}
 	}
 
-	attackPlayer(card, ennemycard, hp){
-		let attp = (SERVER_URL + "/match/attackPlayer?token=")
-
-		//if (card = isBoard){
-
+	attack(card,enemycard) {
+		const {
+			cardP = card,
+			enemycardP = enemycard,
+			} = this.state
+		if (cardP !== undefined && cardP !== null && enemycardP !== undefined && enemycardP !== null) {
+			axios.get(SERVER_URL + '/match/attack?card=' + cardP + '&enemycard=' + enemycardP + '&token=' + this.props.userReducer.token)
+				.then(response => {
+					if (response.data.status == "ok") {
+						alert("Attack donne");
+						this.ManaGer()
+					}
+				})
 		}
+	}
+
+	attackPlayer(card, enemycard){
+		const {
+			cardP = card,
+			enemycardP = enemycard,
+			// hpP = hp a voir
+		} = this.state
+		if (cardP !== undefined && cardP !== null && enemycardP == null) {
+			axios.get(SERVER_URL + '/match/attackPlayer?card=' + cardP + '&token=' + this.props.userReducer.token)
+				.then(response => {
+					if (response.data.status == "ok") {
+						alert("Attack to player done");
+						this.ManaGer()
+					}
+				})
+		}
+	}
+
 
 
 	// getMatch(){  //getmatch with redux
-	// 	let getM = (SERVER_URL + '/match/getMatch?&token='+this.props.userReducer.token).then(response=>{
+	// 	let getM = (SERVER_URL + '/match/getMatch?&token='+this.props.userReducer.token).then(response=>{ !== undefined && enemycardP !
 	// 		if (response.data.user
 	// 	})
 	// 	console.log(getM);
