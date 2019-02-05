@@ -13,6 +13,7 @@
     "jquery": "^3.3.1",
     "material-ui": "^1.0.0-beta.47",
     "prop-types": "latest",
+    "bcrypt": "3.0.2",
     "react": "^16.7.0",
     "react-bootstrap": "^0.32.4",
     "react-css-grid": "^2.0.0-0",

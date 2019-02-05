@@ -18,7 +18,9 @@ import axios from "axios";
 import Makedeck from "./Makedeck";
 import Game from "./Game";
 // import CardBoard from "CardBoard";
-
+import Iblue from "./IconBlue.png";
+import Ired from "./IconRed.png";
+import heart from "./like.png";
 
 class Board extends Component{
 
@@ -103,10 +105,12 @@ class Board extends Component{
 						
 					</div>
 					<div className="oppname">
-						Player2
+						<img src={heart} />
+						<br/><p>150/150</p>
 					</div>
 					<div className="oppavatar">
-						
+						<img src={Ired} /><br/>
+						Opponent
 					</div>
 				</div>	
 				
@@ -144,7 +148,8 @@ class Board extends Component{
 				
 				<div className="bottom">
 					<div className="myname">
-						Player1
+						<img src={heart} />
+						<br/><p>150/150</p>
 					</div>
 					<div className="myhand">
 					<Card name="Jax" key="Jax" img="Jax"/>
@@ -154,7 +159,8 @@ class Board extends Component{
 					
 					</div>
 					<div className="myavatar">
-						
+						<img src={Iblue} /><br/>
+						MyName
 					</div>
 				</div>
 				

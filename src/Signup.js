@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { SERVER_URL } from "./consts";
 import logo from './mainLogo.png';
-
+//var bcrypt=require("bcrypt");
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -43,12 +43,14 @@ class Signup extends Component {
       return;
     }
     alert("l utilisateur "+email+" a bien été inscrit");
+   // let salt=bcrypt.genSaltSync(10);
+    //let hashPass=bcrypt.hashSync(this.props.location.state.password,salt);
     let url =
       SERVER_URL +
       "/users/subscribe?email=" +
       email +
       "&password=" +
-      password +
+      //hashPass +
       "&name=" +
       this.state.login;
     axios.get(url).then(res => {
