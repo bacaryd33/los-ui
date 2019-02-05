@@ -1,45 +1,46 @@
 import React, { Component } from "react";
 import {
-  HashRouter as Router,
-  Switch,
-  Route,
-  Redirect
+    HashRouter as Router,
+    Switch,
+    Route,
+    Redirect
 } from "react-router-dom";
 
-import Signin from "./Signin";
-import Signup from "./Signup";
-import Game from "./Game";
-import Board from "./Board";
+import Signin from "./components/Signin";
+import Signup from "./components/Signup";
+import Game from "./components/Game";
+import Board from "./components/Board";
 
 import "./App.css";
 
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props => {
-      return rest.isConnected ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/signin" />
-      );
-    }}
-  />
+    <Route
+        {...rest}
+        render={props => {
+            return rest.isConnected ? (
+                <Component {...props} />
+            ) : (
+                <Redirect to="/signin" />
+            );
+        }}
+    />
 );
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      token: "",
-      isConnected: false
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            token: "",
+            isConnected: false
+        };
 
-    this.setSessionToken = this.setSessionToken.bind(this);
-  }
+        this.setSessionToken = this.setSessionToken.bind(this);
+    }
 
-  setSessionToken(token) {
-    this.setState({ token, isConnected: true });
-  }
+    setSessionToken(token) {
+        this.setState({ token, isConnected: true });
+    }
 
   render() {
     return (
@@ -56,7 +57,6 @@ class App extends Component {
           <Route path="/board" component={Board} />
           <PrivateRoute component={Game} isConnected={this.state.isConnected} />
         </Switch>
-       
       </Router>
     );
   }

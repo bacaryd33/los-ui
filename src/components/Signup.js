@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import { SERVER_URL } from "./consts";
-import logo from './mainLogo.png';
+import { SERVER_URL } from "../consts";
+import logo from '../images/mainLogo.png';
 
 class Signup extends Component {
   constructor(props) {
