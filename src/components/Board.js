@@ -9,9 +9,9 @@ import axios from "axios";
 import Game from "./Game";
 import { Alert } from 'react-alert';
 // import CardBoard from "CardBoard";
-import Iblue from "./IconBlue.png";
-import Ired from "./IconRed.png";
-import heart from "./like.png";
+import Iblue from "../images/IconBlue.png";
+import Ired from "../images/IconRed.png";
+import heart from "../images/like.png";
 
 class Board extends Component{
 
@@ -119,17 +119,17 @@ class Board extends Component{
 			<div className="board">
 				<div className="top">
 					<div className="opphand">
-<<<<<<< HEAD:src/Board.js
+
 						
 					</div>
 					<div className="oppname">
 						<img src={heart} />
 						<br/><p>150/150</p>
-=======
+
 					</div>
 					<div className="oppname">
 						Name Player 1
->>>>>>> 3904a61521330fcda2f4e68d01aa032f9013cc91:src/components/Board.js
+
 					</div>
 					<div className="oppavatar">
 						<img src={Ired} /><br/>
@@ -172,7 +172,7 @@ class Board extends Component{
 				
 				<div className="bottom">
 					<div className="myname">
-<<<<<<< HEAD:src/Board.js
+
 						<img src={heart} />
 						<br/><p>150/150</p>
 					</div>
@@ -186,11 +186,10 @@ class Board extends Component{
 					<div className="myavatar">
 						<img src={Iblue} /><br/>
 						MyName
-=======
-						Name Player 2
+
 					</div>
 					<div className="myavatar">
->>>>>>> 3904a61521330fcda2f4e68d01aa032f9013cc91:src/components/Board.js
+
 					</div>
 				</div>
 				
