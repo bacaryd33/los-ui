@@ -4,10 +4,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../style/board.css";
 import Card from "./Card.js";
 import { SERVER_URL } from "../consts";
-import Mediacard from "./CardBoard"
 import "bootstrap/dist/js/bootstrap.js";
 import axios from "axios";
 import Game from "./Game";
+import { Alert } from 'react-alert';
 // import CardBoard from "CardBoard";
 
 
@@ -94,16 +94,6 @@ class Board extends Component{
 
 
 	}
-	//
-	// componentDidMount(){//douille get token par action extérieure
-	// 	let url=(SERVER_URL+"/cards/getAll");
-	// 		console.log(url)
-	// 	axios.get(url)
-	// 		.then(res=>{
-	// 			let data=res.data;
-	// 			console.log(data);});
-	// }
-
 
 	componentDidMount() {
 		// const tok = this.props.location.token;

@@ -10,7 +10,7 @@ class Card extends Component {
         return (
             <div id={this.props.id} className="cardzone" onClick={this.props.onClick} >
                 <img className="imgcard"
-                     src={"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + this.props.img+"_0.jpg"}
+                     src={"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + this.props.img+ "_0.jpg"}
                 />
                 <div className="namecard">
                     <p className="card-text">{this.props.name}</p>

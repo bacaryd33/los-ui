@@ -24,24 +24,26 @@ import red from '../images/IconRed.png';
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
+import { Alert } from 'react-alert';
 
 class Game extends Component {
     constructor(props) {
         super(props);
         this.state = {
             login: "",
-            Deck:0,
-            matchmakingId:"",
-            champs:[],
-            tableDeck:[],
-            tabAdversaire:[],
-            isLoaded:false,
+            Deck: 0,
+            matchmakingId: "",
+            champs: [],
+            tableDeck: [],
+            tabAdversaire: [],
+            isLoaded: false,
             error: ""
 
         };
-        this.handleJouer=this.handleJouer.bind(this);
-        this.handleDeconnexion=this.handleDeconnexion.bind(this);
-        this.handleUnsubscribe=this.handleUnsubscribe.bind(this);
+        this.handleJouer = this.handleJouer.bind(this);
+        this.handleDeconnexion = this.handleDeconnexion.bind(this);
+        this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
+        // this.handleRule = this.handleRule.bind(this);
 
     }
 
@@ -75,6 +77,7 @@ class Game extends Component {
         }
     }*/
 
+    //Manages the click of the current player
     handleClick(cardPosition, event) {
         //console.log("handle click");
         this.setState({Deck:cardPosition});
@@ -96,6 +99,8 @@ class Game extends Component {
             }
         });
     }
+
+    //Manage the player
     handleJouer(e){
         console.log("handle jouer");
         if(this.state.isLoaded && this.state.tabAdversaire.length>0){
@@ -105,6 +110,7 @@ class Game extends Component {
         }
     }
 
+    //For disconnect the current user
     handleDeconnexion(e){
         console.log("handle Deco");
         let urlUnparticipate = SERVER_URL + "/matchmaking/unparticipate?matchmakingid=" + this.state.matchmakingid + "&token=" + this.props.location.state.token;
@@ -126,6 +132,7 @@ class Game extends Component {
         });
     }
 
+    //Fonction for generate randoms cards
     randomPick(champs, number) {
         //console.log("random Pick");
         let rChamps = [];
@@ -136,6 +143,8 @@ class Game extends Component {
         //console.log(rChamps);
         return rChamps;
     }
+
+    //With this we can generate the information of each card
     generateCards(champs) {
         //console.log("generate Cards");
         let cards = [];
@@ -160,6 +169,12 @@ class Game extends Component {
         if(error){
             console.log("render error");
             return(
+                /*In this render we will show the MatchMaking part wich is divised in 3 futur states, else we got a good response
+                and we got the MatchMaking board and then we can choose the deck, else we got a bad response and we will get a Matchmaking
+                in wich we will be able to play but with a random deck
+                */
+
+                //This division is for the nav bar
                 <div className="Appli">
                     <nav className="navbar navbar-light">
                         <img src={logo}/>
@@ -170,7 +185,7 @@ class Game extends Component {
                             <div className="dropdown-menu dropdown-menu-right"
                                  aria-labelledby="navbarDropdownMenuLink">
                                 <a className="dropdown-item" href="#">
-                                    <button onClick={this.handleRule}><Link to="/signin"><img
+                                    <button onClick={() => {this.props.alert.show('Oh look, an alert!')}}><Link to="/signin"><img
                                         src={regle}/> Rules of the game</Link></button>
                                 </a>
                                 <a className="dropdown-item" href="#">
@@ -185,6 +200,7 @@ class Game extends Component {
                         </div>
                     </nav>
 
+                    {/*Div for choose the deck before playing*/}
                     <div className="container">
                         <div className="row">
                             <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -232,7 +248,7 @@ class Game extends Component {
                             <div className="dropdown-menu dropdown-menu-right"
                                  aria-labelledby="navbarDropdownMenuLink">
                                 <a className="dropdown-item" href="#">
-                                    <button onClick={this.handleRule}><Link to="/signin"><img
+                                    <button onClick={() => {this.props.alert.show('Oh look, an alert!')}}><Link to="/signin"><img
                                         src={regle}/> Rules of the game</Link></button>
                                 </a>
                                 <a className="dropdown-item" href="#">
@@ -294,10 +310,24 @@ class Game extends Component {
                             </a>
                             <div className="dropdown-menu dropdown-menu-right"
                                  aria-labelledby="navbarDropdownMenuLink">
+
                                 <a className="dropdown-item" href="#">
-                                    <button onClick={this.handleRule}><Link to="/signin"><img
-                                        src={regle}/> Rules of the game</Link></button>
+                                    <Alert color="info">
+                                    {alert => (
+                                        <button
+                                                onClick={() =>{
+                                                    alert.show(<div style={{ color: '#a19797' , display: 'inline',  }}>The goal of the game is to let the opponent's points to 0,
+                                                        you can play the number of cards that you want, you can attack with a card and then if there is no cards left
+                                                        in the board you will attack to the player directly!
+                                                    </div>)
+                                            }}
+                                        >
+                                        <img src={regle}/> Rules of the game
+                                        </button>
+                                    )}
+                                    </Alert>
                                 </a>
+
                                 <a className="dropdown-item" href="#">
                                     <button onClick={this.handleUnsubscribe}><Link to="/signin"><img
                                         src={desin}/> Delete my account</Link></button>
@@ -351,6 +381,7 @@ class Game extends Component {
 
     componentDidMount() {
         //console.log("componentDedMount");
+        //So, when the page will be loaded, we will get
         function getMatch(){
             console.log("getMatchComponentDidMount");
             let urlMatch=SERVER_URL+"/match/getMatch?token="+tok;
@@ -480,55 +511,7 @@ class Game extends Component {
                 }
             });
         }
-        // function test(DeckAPasser,matchmakingId,isLoad,error,cont){
-        //     console.log("test component did mount");
-        //     //console.log(DeckAPasser);
-        //     let url23=SERVER_URL+"/matchmaking/participate?&token="+tok;
-        //     axios.get(url23).then((res, error)=>{
-        //         let data=res.data;
-        //         if(data.status=="ok"){
-        //             //console.log(DeckAPasser);
-        //             let allRequest=data.data["request"];
-        //             let match=data.data.match;
-        //             if(match!=null && isLoad==true){
-        //                 console.log(DeckAPasser);
-        //                 let deck=[];
-        //                 for(let elt of DeckAPasser[0]){
-        //                     console.log(elt);
-        //                     deck.push({key:elt["name"]});
-        //                 }
-        //                 //console.log(deck);
-        //                 alert("status ok dans matchRequest le joueur est dans un match avant la creation de son deck");
-        //                 let urlMatch=SERVER_URL+"/match/getMatch?token="+tok;
-        //                 axios.get(urlMatch).then(res=>{
-        //                     let data=res.data;
-        //                     if(data.status=="ok"){
-        //                         console.log("get match succesfull");
-        //                         if (data.data.status="Deck is pending"){
-        //                             deck=JSON.stringify(deck);
-        //                             let urlChooseDeck=SERVER_URL+"/match/initDeck?deck="+deck+"&token="+tok;
-        //                             axios.get(urlChooseDeck).then(res=>{
-        //                                 let data=res.data;
-        //                                 if(data.status=="ok"){
-        //                                     alert("deck crée pour le joueur !");
-        //                                     cont.props.history.push(process.env.PUBLIC_URL + "/board");
-        //                                 }
-        //                             });
-        //                         }
-        //                     }
-        //                 });
-        //
-        //
-        //             }else{
-        //                 alert("param match a null");
-        //             }
-        //             handleMatchRequest(allRequest,tok,cont);
-        //             matchmakingId=data.data["matchmakingId"];
-        //         }else{
-        //             error="une erreur s'est produite"+data.message;
-        //         }
-        //     });
-        // }
+
         function getCards(){
             console.log("get Cards component did mount");
             let url2=SERVER_URL + "/cards/getAll";
