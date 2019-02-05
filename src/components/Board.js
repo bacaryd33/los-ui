@@ -25,7 +25,20 @@ class Board extends Component{
 	}
 
 	pickCard(deck,npick) {
+		if(this.turn){
+			axios.get(SERVER_URL + 'match/pickCard?&token='+this.props.userReducer.token)
+				.then(response => {
+					if (data.status=="ok"){
+						alert("Card Picked");
+						this.ManaGer()
+					} else{
+						this.setState({ error: "Error of Card Picking : " + data.message });
+					}
+				})
+		}
+		this.getMatch()
 	}
+
 
 
 
@@ -72,7 +85,11 @@ class Board extends Component{
 	// 	console.log(getM);
 	// }
 
-
+	ManaGer(){
+		let mana = this.state.mana;
+		mana = mana + 1;
+		this.setState(mana)
+	}
 
 
 	async endturn() {
@@ -80,9 +97,9 @@ class Board extends Component{
 			await axios.get(SERVER_URL + '/match/endTurn?&token='+this.props.userReducer.token)
 			this.setState({mana : 0})
 			this.getMatch()
-		}
+	}
 
-	
+
 
 	finishmatchtoGame(){
 		axios.get(SERVER_URL + '/match/finishMatch?&token='+this.props.userReducer.token)
