@@ -24,7 +24,7 @@ class Board extends Component{
 
 	}
 
-	pickCard(deck,npick) {
+	pickCard() {
 		if(this.turn){
 			axios.get(SERVER_URL + 'match/pickCard?&token='+this.props.userReducer.token)
 				.then(response => {
@@ -32,7 +32,7 @@ class Board extends Component{
 						alert("Card Picked");
 						this.ManaGer()
 					} else{
-						this.setState({ error: "Error of Card Picking : " + data.message });
+						this.setState({ error: "Error of Picking CArd"});
 					}
 				})
 		}
@@ -42,7 +42,7 @@ class Board extends Component{
 
 
 
-	playcard(hand,turn,card){
+	playcard(hand,card){
 		console.log(hand);
 		const {
 			handP=hand.data,
@@ -55,10 +55,11 @@ class Board extends Component{
 						alert("Card played")
 					}
 				else{
-					this.setState({ error: "Error Playing Card : " + data.message });
+					this.setState({ error: "Error Playing Card"});
 				}
 			})
 		}
+		this.getMatch()
 	}
 
 	attack(card,enemycard) {
@@ -75,6 +76,7 @@ class Board extends Component{
 					}
 				})
 		}
+		this.getMatch()
 	}
 
 	attackPlayer(card, enemycard){
@@ -92,16 +94,17 @@ class Board extends Component{
 					}
 				})
 		}
+		this.getMatch()
 	}
 
 
 
-	// getMatch(){  //getmatch with redux
+	getMatch(){  //getmatch with redux
 	// 	let getM = (SERVER_URL + '/match/getMatch?&token='+this.props.userReducer.token).then(response=>{ !== undefined && enemycardP !
 	// 		if (response.data.user
 	// 	})
 	// 	console.log(getM);
-	// }
+	}
 
 	ManaGer(){
 		let mana = this.state.mana;
@@ -113,7 +116,7 @@ class Board extends Component{
 	async endturn() {
 			console.log(this.props);
 			await axios.get(SERVER_URL + '/match/endTurn?&token='+this.props.userReducer.token)
-			this.setState({mana : 0})
+			this.setState({mana : 0});
 			this.getMatch()
 	}
 
